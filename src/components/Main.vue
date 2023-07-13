@@ -72,6 +72,7 @@ export default {
 
     main{
         height: 100vh;
+        margin-bottom: 50px;
         h1{
             background-color: $argentinian_blue;
             color: white;
