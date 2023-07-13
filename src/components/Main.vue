@@ -14,7 +14,7 @@ export default {
             <div class="container-card d-flex flex-wrap">
 
                 <!-- Single card -->
-                <div class="mc-card">
+                <div class="mc-card reveal fade-left">
                     <img src="https://hips.hearstapps.com/hmg-prod/images/napoli-1653914862.png">
                     <h3>Appartamento a Napoli</h3>
                     <p>Napoli, Campania</p>
@@ -22,7 +22,7 @@ export default {
                 </div>
                 
                 <!-- Single card -->
-                <div class="mc-card">
+                <div class="mc-card reveal fade-bottom">
                     <img src="https://hips.hearstapps.com/hmg-prod/images/napoli-1653914862.png">
                     <h3>Appartamento a Napoli</h3>
                     <p>Napoli, Campania</p>
@@ -30,7 +30,7 @@ export default {
                 </div>
                 
                 <!-- Single card -->
-                <div class="mc-card">
+                <div class="mc-card reveal fade-right">
                     <img src="https://hips.hearstapps.com/hmg-prod/images/napoli-1653914862.png">
                     <h3>Appartamento a Napoli</h3>
                     <p>Napoli, Campania</p>
@@ -38,7 +38,7 @@ export default {
                 </div>
 
                 <!-- Single card -->
-                <div class="mc-card">
+                <div class="mc-card reveal fade-left">
                     <img src="https://hips.hearstapps.com/hmg-prod/images/napoli-1653914862.png">
                     <h3>Appartamento a Napoli</h3>
                     <p>Napoli, Campania</p>
@@ -46,7 +46,7 @@ export default {
                 </div>
 
                 <!-- Single card -->
-                <div class="mc-card">
+                <div class="mc-card reveal fade-top">
                     <img src="https://hips.hearstapps.com/hmg-prod/images/napoli-1653914862.png">
                     <h3>Appartamento a Napoli</h3>
                     <p>Napoli, Campania</p>
@@ -54,7 +54,7 @@ export default {
                 </div>
 
                 <!-- Single card -->
-                <div class="mc-card">
+                <div class="mc-card reveal fade-right">
                     <img src="https://hips.hearstapps.com/hmg-prod/images/napoli-1653914862.png">
                     <h3>Appartamento a Napoli</h3>
                     <p>Napoli, Campania</p>
