@@ -50,8 +50,8 @@ import jumbotron from './partials/jumbotron.vue'
     
                         <div class="side-links d-flex mb-0 navbar-menu mt-4 register me-5">
                             <ul class="d-flex">
-                                <li class="ps-4"><a href="">Login</a></li>
-                                <li class="ps-4"><a href="">Registrati</a></li>
+                                <li class="nav-link ps-4"><a href="">Login</a></li>
+                                <li class="nav-link ps-4"><a href="">Registrati</a></li>
                             </ul>
                         </div>
                     </div>
@@ -80,12 +80,15 @@ header{
         }
         .wrapper{
             width: 100%;
+            height: 100%;
             //debug
             // border: 1px solid red;
             .central-links {
                 height: 100%;
+                margin-left: 80px;
                 //debug
                 // background-color: lightcyan;
+                // border: 1px solid red;
             }
         }
         ul{
@@ -97,10 +100,10 @@ header{
                 }
                 a{
                     text-decoration: none;
-                    color: rgb(226, 180, 28);
+                    color: #0A0F59;
                     &:hover{
-                        color: rgb(23, 23, 254);
-                        transform: scale(1.20);
+                        // color: #FDE74C;
+                        transform: scale(1.1);
                     }
                 }
             }
@@ -108,10 +111,12 @@ header{
         
     }
 }
-
+//
+// TODO: SISTEMARE COLORI CON VARIABILI SETTATE DA MARCOCNC
+//
 .nav-link{
     &:hover{
-        color: $orange;
+        color: #FDE74C;
         cursor: pointer;
     }
     &::after{
@@ -120,7 +125,7 @@ header{
         margin: 0 auto;
         width: 0;
         height: 2px;
-        background-color: $orange;
+        background-color: #FDE74C;
         transition: width 0.3s;
     }
     &:hover::after{
