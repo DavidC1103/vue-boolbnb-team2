@@ -17,8 +17,8 @@
   }
   .menu__btn {
     position: fixed;
-    top: 25px;
-    left: 20px;
+    top: 39px;
+    left: 15px;
     width: 26px;
     height: 26px;
     cursor: pointer;
@@ -69,30 +69,3 @@
   .menu__item:hover {
     background-color: #CFD8DC;
   }
-
-  @media screen and (max-width: 768px){
-    .navbar-menu li{
-        display: none;
-    }
-    .container-fluid{
-        display: flex;
-        justify-content: flex-end;
-        nav{
-          flex-direction: row-reverse;
-        }
-    }
-    .jumbo{
-      display: none;
-    }
-
-    header{
-      background-color: red;
-      height: 50px;
-    }
-}
-@media screen and (min-width: 768px){
-    .menu__btn, .hamburger-menu  {
-        display: none;
-    }
-
-}

@@ -6,15 +6,15 @@ export default {
 </script>
 
 <template>
-    <main>
-        <h1 class="text-center py-1 mt-4 mb-3">In evidenza</h1>
-        <div class="container">
+    <main class="container">
+        <h1 class="text-start py-1 mt-4 mb-3" id="evidenza">In evidenza</h1>
+        
 
             <!-- Cards container -->
             <div class="container-card d-flex flex-wrap">
 
                 <!-- Single card -->
-                <div class="mc-card reveal fade-left">
+                <div class="boolbnb-card ">
                     <img src="https://hips.hearstapps.com/hmg-prod/images/napoli-1653914862.png">
                     <h3>Appartamento a Napoli</h3>
                     <p>Napoli, Campania</p>
@@ -22,7 +22,7 @@ export default {
                 </div>
                 
                 <!-- Single card -->
-                <div class="mc-card reveal fade-bottom">
+                <div class="boolbnb-card ">
                     <img src="https://hips.hearstapps.com/hmg-prod/images/napoli-1653914862.png">
                     <h3>Appartamento a Napoli</h3>
                     <p>Napoli, Campania</p>
@@ -30,7 +30,7 @@ export default {
                 </div>
                 
                 <!-- Single card -->
-                <div class="mc-card reveal fade-right">
+                <div class="boolbnb-card">
                     <img src="https://hips.hearstapps.com/hmg-prod/images/napoli-1653914862.png">
                     <h3>Appartamento a Napoli</h3>
                     <p>Napoli, Campania</p>
@@ -38,7 +38,7 @@ export default {
                 </div>
 
                 <!-- Single card -->
-                <div class="mc-card reveal fade-left">
+                <div class="boolbnb-card ">
                     <img src="https://hips.hearstapps.com/hmg-prod/images/napoli-1653914862.png">
                     <h3>Appartamento a Napoli</h3>
                     <p>Napoli, Campania</p>
@@ -46,7 +46,7 @@ export default {
                 </div>
 
                 <!-- Single card -->
-                <div class="mc-card reveal fade-top">
+                <div class="boolbnb-card ">
                     <img src="https://hips.hearstapps.com/hmg-prod/images/napoli-1653914862.png">
                     <h3>Appartamento a Napoli</h3>
                     <p>Napoli, Campania</p>
@@ -54,7 +54,7 @@ export default {
                 </div>
 
                 <!-- Single card -->
-                <div class="mc-card reveal fade-right">
+                <div class="boolbnb-card ">
                     <img src="https://hips.hearstapps.com/hmg-prod/images/napoli-1653914862.png">
                     <h3>Appartamento a Napoli</h3>
                     <p>Napoli, Campania</p>
@@ -62,28 +62,25 @@ export default {
                 </div>
 
             </div>
-        </div>
 
     </main>
 </template>
 
-<style lang="scss" scoped>
-@use '../scss/partials/vars' as *;
+<style lang="scss">
+@use '../scss/main.scss' as *;
 
     main{
-        height: 100vh;
         margin-bottom: 50px;
-        h1{
-            background-color: $argentinian_blue;
-            color: white;
-        }
+        margin-top: 100px;
         .container-card{
-            .mc-card{
-                width: calc(100% / 3 - 20px);
-                margin: 15px 10px;
+            width: 100%;
+            height: 100%;
+            .boolbnb-card{
+                flex-basis: 25%;
+                margin: 10px 20px;
                 img{
                     width: 100%;
-                    height: 300px;
+                    height: 250px;
                     object-fit: cover;
                     border-radius: 10px;
                 }
@@ -95,4 +92,5 @@ export default {
         }
         
     }
+
 </style>

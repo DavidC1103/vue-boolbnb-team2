@@ -17,38 +17,37 @@ import jumbotron from './partials/jumbotron.vue'
 
 <template>
 
-    <header>
-        <div class="container-fluid">
-            <nav class="d-flex align-items-center justify-content-between h-100">
+    <header id="nav" class=" d-flex align-items-center">
+        <div class="container-fluid h-100 align-items-center">
+            <nav class="d-flex align-items-center h-100">
                 
                     <div class="hamburger-menu">
                         <input id="menu__toggle" type="checkbox" />
                         <label class="menu__btn" for="menu__toggle">
                         <span></span>
                         </label>
-
                         <ul class="menu__box">
-                            <li><a class="menu__item" href="#">In Evidenza</a></li>
+                            <li><a class="menu__item" href="#evidenza">In Evidenza</a></li>
                             <li><a class="menu__item" href="#">Appartamenti</a></li>
                         </ul>
                     </div>
                     
-                    <div class="wrapper d-flex justify-content-between">
+                    <div class="d-flex justify-content-between w-100 logo-container">
 
-                        <div class="logo-container logo-mixin">
+                        <div class="logo-mixin">
                             <img src="../assets/logo-boolbnb/1.png" alt="" class="logo ms-5 mt-2">
                         </div>
     
-                        <div class="central-links d-flex mb-0 mt-4">
+                        <div class="d-flex mb-0 mt-4">
                             <ul class="navbar-menu d-flex">
-                                <li class="nav-link"><a href="">In Evidenza</a></li>
+                                <li class="nav-link"><a href="#evidenza">In Evidenza</a></li>
                                 <li class="nav-link ps-4"><a href="">Appartamenti</a></li>
                                 <li class="nav-link ps-4"><a href="">Contatti</a></li>
                                 <li class="nav-link ps-4"><a href="">About Us</a></li>
                             </ul>
                         </div>
     
-                        <div class="side-links d-flex mb-0 navbar-menu mt-4 register me-5">
+                        <div class="d-flex mb-0 navbar-menu mt-4 me-5">
                             <ul class="d-flex">
                                 <li class="nav-link ps-4"><a href="">Login</a></li>
                                 <li class="nav-link ps-4"><a href="">Registrati</a></li>
@@ -78,19 +77,6 @@ header{
         img.logo{
             width: 120px;
         }
-        .wrapper{
-            width: 100%;
-            height: 100%;
-            //debug
-            // border: 1px solid red;
-            .central-links {
-                height: 100%;
-                margin-left: 80px;
-                //debug
-                // background-color: lightcyan;
-                // border: 1px solid red;
-            }
-        }
         ul{
             li{
                 list-style: none;
@@ -100,7 +86,10 @@ header{
                 }
                 a{
                     text-decoration: none;
-                    color: #0A0F59;
+                    color: darken($color: #FDE74C, $amount: 20%);
+                    background-color: #0A0F59;
+                    padding: 10px 15px;
+                    border-radius: 20px;
                     &:hover{
                         // color: #FDE74C;
                         transform: scale(1.1);
@@ -113,10 +102,11 @@ header{
 }
 //
 // TODO: SISTEMARE COLORI CON VARIABILI SETTATE DA MARCOCNC
+
 //
 .nav-link{
     &:hover{
-        color: #FDE74C;
+        color: #0A0F59;
         cursor: pointer;
     }
     &::after{
@@ -133,5 +123,8 @@ header{
     }
 
 }
-
+.header-bg{
+    background-color: #35a7ff61;
+    
+}
 </style>

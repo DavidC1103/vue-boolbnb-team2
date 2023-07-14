@@ -1,0 +1,33 @@
+@media screen and (max-width: 768px){
+    .navbar-menu li{
+        display: none;
+    }
+    .container-fluid{
+        .hamburger-menu{
+          top: 10px;
+        }
+        .logo-container{
+          display: flex;
+          align-items: center;
+          flex-direction: row-reverse;
+        }
+    }
+    .jumbo{
+      display: none;
+    }
+    main{
+        .container-card{
+            .boolbnb-card{
+                flex-basis: 100%;
+            }
+        }
+        
+    }
+
+}
+@media screen and (min-width: 768px){
+    .menu__btn, .hamburger-menu  {
+        display: none;
+    }
+
+}
