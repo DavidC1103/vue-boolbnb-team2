@@ -1,7 +1,19 @@
 
 <script>
+import testimonials from './partials/testimonials.vue'
+
+
 export default {
-    name: 'Main'
+    name: 'Main',
+    components: {
+        testimonials
+    },
+    data(){
+
+        return{
+
+        }
+    }
 }
 </script>
 
@@ -64,6 +76,7 @@ export default {
             </div>
 
     </main>
+    <testimonials/>
 </template>
 
 <style lang="scss">

@@ -113,7 +113,7 @@ $t: .65s;
 	width: $btn-d; height: $btn-d;
 	border-radius: 50%;
 	transform: translate(var(--pos, -.5*$txt-w)) rotate(45deg);
-	background: hsl(calc(336 - var(--i)*269), calc(77% + var(--i)*2%), calc(49% + var(--i)*13%));
+	background: #3fa9e4;
 	text-indent: -100vw;
 	transition: $t ease-out;
 	cursor: pointer;
