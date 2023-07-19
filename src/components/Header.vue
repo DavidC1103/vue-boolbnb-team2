@@ -40,7 +40,7 @@ import jumbotron from './partials/jumbotron.vue'
     
                         <div class="d-flex mb-0 mt-4">
                             <ul class="navbar-menu d-flex">
-                                <li class="nav-link"><a href="#evidenza">In Evidenza</a></li>
+                                <li class="nav-link"><a href="#evidenza">Home</a></li>
                                 <li class="nav-link ps-4"><a href="">Appartamenti</a></li>
                                 <li class="nav-link ps-4"><a href="">Contatti</a></li>
                                 <li class="nav-link ps-4"><a href="">About Us</a></li>
@@ -49,8 +49,7 @@ import jumbotron from './partials/jumbotron.vue'
     
                         <div class="d-flex mb-0 navbar-menu mt-4 me-5">
                             <ul class="d-flex">
-                                <li class="nav-link ps-4"><a href="">Login</a></li>
-                                <li class="nav-link ps-4"><a href="">Registrati</a></li>
+                                <li class="nav-link ps-4"><a href="">Login</a><span>|</span><a href="">Registrati</a><i class="fa-solid fa-globe"></i></li>
                             </ul>
                         </div>
                     </div>
@@ -80,20 +79,29 @@ header{
         ul{
             li{
                 list-style: none;
+                i{
+                    color: white;
+                }
                 &:hover{
                     transform: scale(1.1);
                     transition: all .3s;
                 }
                 a{
                     text-decoration: none;
-                    color: darken($color: #FDE74C, $amount: 20%);
-                    background-color: #0A0F59;
+                    color: white;
                     padding: 10px 15px;
                     border-radius: 20px;
+                    font-size: 1.1rem;
+                    font-weight: bold;
                     &:hover{
                         // color: #FDE74C;
+                        color: #0a0f59;
                         transform: scale(1.1);
                     }
+                }
+                span{
+                    font-size: 1.1rem;
+                    color: white;
                 }
             }
         }
@@ -106,7 +114,6 @@ header{
 //
 .nav-link{
     &:hover{
-        color: #0A0F59;
         cursor: pointer;
     }
     &::after{
@@ -124,7 +131,11 @@ header{
 
 }
 .header-bg{
-    background-color: #35a7ff61;
+    background-color: #3fa9e4;
     
+}
+
+.shadow-header{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 </style>
