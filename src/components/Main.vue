@@ -1,18 +1,32 @@
-
 <script>
-import testimonials from './partials/testimonials.vue'
+import testimonials from './partials/testimonials.vue';
+import { store } from '../data/store';
+import axios from 'axios';
 
 
-export default {
+export default{
     name: 'Main',
     components: {
-        testimonials
+        testimonials,
+        store
+
     },
     data(){
-
         return{
-
+            store
         }
+    },
+    methods:{
+
+        apiCall(){
+            axios.get(store.apiUrl + 'apartments')
+            .then(result=>{
+                store.arrApartments = result.data
+            })
+        }
+    },
+    mounted(){
+    this.apiCall()
     }
 }
 </script>
@@ -26,53 +40,19 @@ export default {
             <div class="container-card d-flex flex-wrap">
 
                 <!-- Single card -->
-                <div class="boolbnb-card ">
-                    <img src="https://hips.hearstapps.com/hmg-prod/images/napoli-1653914862.png">
-                    <h3>Appartamento a Napoli</h3>
-                    <p>Napoli, Campania</p>
-                    <h6><strong>300,00€</strong> a notte</h6>
+                <div
+                    class="boolbnb-card"
+                    v-for="apartment in store.arrApartments"
+                    :key="apartment.id">
+
+                    <img :src=" 'http://127.0.0.1:8000/storage/' +  apartment.cover_image ">
+                    <h3>{{ apartment.title }}</h3>
+                    <p>{{ apartment.address }}</p>
+                    <h6><strong>{{ apartment.price }} &euro;</strong> a notte</h6>
                 </div>
                 
-                <!-- Single card -->
-                <div class="boolbnb-card ">
-                    <img src="https://hips.hearstapps.com/hmg-prod/images/napoli-1653914862.png">
-                    <h3>Appartamento a Napoli</h3>
-                    <p>Napoli, Campania</p>
-                    <h6><strong>300,00€</strong> a notte</h6>
-                </div>
                 
-                <!-- Single card -->
-                <div class="boolbnb-card">
-                    <img src="https://hips.hearstapps.com/hmg-prod/images/napoli-1653914862.png">
-                    <h3>Appartamento a Napoli</h3>
-                    <p>Napoli, Campania</p>
-                    <h6><strong>300,00€</strong> a notte</h6>
-                </div>
-
-                <!-- Single card -->
-                <div class="boolbnb-card ">
-                    <img src="https://hips.hearstapps.com/hmg-prod/images/napoli-1653914862.png">
-                    <h3>Appartamento a Napoli</h3>
-                    <p>Napoli, Campania</p>
-                    <h6><strong>300,00€</strong> a notte</h6>
-                </div>
-
-                <!-- Single card -->
-                <div class="boolbnb-card ">
-                    <img src="https://hips.hearstapps.com/hmg-prod/images/napoli-1653914862.png">
-                    <h3>Appartamento a Napoli</h3>
-                    <p>Napoli, Campania</p>
-                    <h6><strong>300,00€</strong> a notte</h6>
-                </div>
-
-                <!-- Single card -->
-                <div class="boolbnb-card ">
-                    <img src="https://hips.hearstapps.com/hmg-prod/images/napoli-1653914862.png">
-                    <h3>Appartamento a Napoli</h3>
-                    <p>Napoli, Campania</p>
-                    <h6><strong>300,00€</strong> a notte</h6>
-                </div>
-
+                
             </div>
 
     </main>
@@ -89,7 +69,7 @@ export default {
             width: 100%;
             height: 100%;
             .boolbnb-card{
-                flex-basis: 25%;
+                flex-basis: 20%;
                 margin: 10px 20px;
                 img{
                     width: 100%;
