@@ -1,5 +1,6 @@
 <script>
 import testimonials from './partials/testimonials.vue';
+import accordion from './partials/accordion.vue';
 import { store } from '../data/store';
 import axios from 'axios';
 
@@ -8,6 +9,7 @@ export default{
     name: 'Main',
     components: {
         testimonials,
+        accordion,
         store
 
     },
@@ -57,6 +59,7 @@ export default{
 
     </main>
     <testimonials/>
+    <accordion/>
 </template>
 
 <style lang="scss">
