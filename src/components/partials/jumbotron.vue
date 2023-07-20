@@ -12,7 +12,7 @@ export default {
 <template>
     <div class="boolbnb-jumbotron">
         <div class="layer text-white text-center">
-            <h1>10,321 immobili disponibili</h1>
+            <h1>Trova e prenota il tuo posto ideale</h1>
             <div class="search">
                 <input id='search-btn' type='checkbox'/>
                 <label for='search-btn'>Show search bar</label>
@@ -51,6 +51,7 @@ export default {
             font-weight: bold;
             margin-bottom: 20px;
             padding-top: 20px;
+						font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         }
         h2{
             font-size: 1.4rem;
@@ -63,9 +64,7 @@ export default {
                 font-size: 1.5rem;
                 color: white;
                 margin-bottom: 30px;
-                &:hover{
-                    // color: #d9eb52;
-                }
+                
             }
         }
         .search{
@@ -75,7 +74,6 @@ export default {
         }
     }
     .jumbo-faded{
-        margin-top: 68px;
         height: 7rem;
         background-image: linear-gradient(180deg, transparent, rgba(202, 202, 202, 0.61),#fff);
     }
