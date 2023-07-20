@@ -8,26 +8,14 @@ export default {
   name: "App",
   components: {
     Header,
-    Footer
+    Footer,
+    store
   },
   data(){
     return{
       store,
-      apartments: [],
     }
   },
-  methods:{
-
-    apiCall(){
-      axios.get(store.apiUrl + "apartments").then(result=>{
-        this.apartments = result.data
-        console.log(this.apartments)
-      })
-    }
-  },
-  mounted(){
-    this.apiCall()
-  }
 }
 
 </script>
