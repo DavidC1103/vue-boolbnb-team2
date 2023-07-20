@@ -40,8 +40,8 @@ import jumbotron from './partials/jumbotron.vue'
     
                         <div class="d-flex mb-0 mt-4">
                             <ul class="navbar-menu d-flex">
-                                <li class="nav-link"><a href="#evidenza">Home</a></li>
-                                <li class="nav-link ps-4"><a href="">Appartamenti</a></li>
+                                <li class="nav-link"><router-link :to='{ name: "home"}'>Home</router-link></li>
+                                <li class="nav-link ps-4"><router-link :to='{ name: "apartments"}'>Immobili</router-link></li>
                                 <li class="nav-link ps-4"><a href="">Contatti</a></li>
                                 <li class="nav-link ps-4"><a href="">About Us</a></li>
                             </ul>
@@ -49,7 +49,7 @@ import jumbotron from './partials/jumbotron.vue'
     
                         <div class="d-flex mb-0 navbar-menu mt-4 me-5">
                             <ul class="d-flex">
-                                <li class="nav-link ps-4"><a href="">Login</a><span>|</span><a href="">Registrati</a><i class="fa-solid fa-globe"></i></li>
+                                <li class="nav-link ps-4"><a href="http://127.0.0.1:8000/login">Login</a><span>|</span><a href="http://127.0.0.1:8000/register">Registrati</a><i class="fa-solid fa-globe"></i></li>
                             </ul>
                         </div>
                     </div>
@@ -57,7 +57,6 @@ import jumbotron from './partials/jumbotron.vue'
         </div>
     </header>
 
-    <jumbotron class="jumbo"/>
 
 </template>
 
