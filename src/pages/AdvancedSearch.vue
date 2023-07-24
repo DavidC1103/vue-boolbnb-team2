@@ -8,7 +8,7 @@ export default {
     return {
       longitude: 14.198047,
       latitude: 40.803755,
-      radius: 20000,
+      radius: 2000,
       store
     };
   },
@@ -20,7 +20,9 @@ export default {
         radius: this.radius
       };
 
-      axios.post(store.apiUrl + 'apartments/earch', requestData)
+      console.log('requestData:', requestData);
+
+      axios.post(store.apiUrl + 'search/', requestData)
         .then(response => {
           store.arrApartments = response.data.filteredApartments;
           console.log('response.data', response.data); 
@@ -28,6 +30,8 @@ export default {
       })
         .catch(error => {
           console.error(error);
+          console.error("Error status:", error.response.status);
+          console.error("Error data:", error.response.data);
         });
     }
   },
