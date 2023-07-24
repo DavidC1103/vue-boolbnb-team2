@@ -6,33 +6,28 @@ export default {
   name: 'AdvancedSearch',
   data() {
     return {
-      longitude: 14.198047,
       latitude: 40.803755,
-      radius: 2000,
+      longitude: 14.198047,
+      radius: 50000,
+      arrSearch :[],
       store
     };
   },
   methods: {
     searchApartments() {
       const requestData = {
-        longitude: this.longitude,
         latitude: this.latitude,
+        longitude: this.longitude,
         radius: this.radius
       };
 
       console.log('requestData:', requestData);
 
-      axios.post(store.apiUrl + 'search/', requestData)
+      axios.post(store.apiUrl + 'search', requestData)
         .then(response => {
-          store.arrApartments = response.data.filteredApartments;
-          console.log('response.data', response.data); 
-          console.log('store.arrApartments', store.arrApartments);
+          this.arrSearch = response.data.apartments;
+          console.log(this.arrSearch); 
       })
-        .catch(error => {
-          console.error(error);
-          console.error("Error status:", error.response.status);
-          console.error("Error data:", error.response.data);
-        });
     }
   },
   mounted() {
