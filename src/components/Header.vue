@@ -5,6 +5,7 @@ import jumbotron from './partials/jumbotron.vue'
         components: {
             jumbotron
         },
+        
         data(){
 
             return{

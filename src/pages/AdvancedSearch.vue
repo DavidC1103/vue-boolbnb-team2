@@ -15,9 +15,9 @@ export default {
   methods: {
     searchApartments() {
       const requestData = {
-        longitude: this.longitude,
-        latitude: this.latitude,
-        radius: this.radius
+        input: store.inputText,
+        radius: this.radius,
+        services: []
       };
 
       console.log('requestData:', requestData);
