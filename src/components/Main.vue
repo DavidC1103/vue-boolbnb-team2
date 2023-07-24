@@ -39,7 +39,7 @@ export default{
         
 
             <!-- Cards container -->
-            <div class="container-card d-flex flex-wrap">
+            <div class="container-card d-flex flex-wrap justify-content-center">
 
                 <!-- Single card -->
                 <div
