@@ -9,7 +9,6 @@ export default {
   components: {
     Header,
     Footer,
-    store
   },
   data(){
     return{
