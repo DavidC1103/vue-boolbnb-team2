@@ -23,7 +23,7 @@ export default{
         apiCall(){
             axios.get(store.apiUrl + 'apartments')
             .then(result=>{
-                store.arrApartments = result.data
+                store.arrApartments = result.data.sponsored_apartments
             })
         }
     },

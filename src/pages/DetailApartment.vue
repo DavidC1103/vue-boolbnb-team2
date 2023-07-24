@@ -12,10 +12,8 @@ export default{
     methods:{
         detailApi(){
             axios.get(store.apiUrl + 'apartments').then(results=>{
-                     //this.apartment = results.data;
-                        this.apartment = results.data.filter((apartmentSlug => apartmentSlug.slug == this.$route.params.slug))
+                        this.apartment = results.data.total_apartments.filter((apartmentSlug => apartmentSlug.slug == this.$route.params.slug))
                         this.apartment = this.apartment[0]
-                        console.log(this.apartment);
             });
         }
     },
