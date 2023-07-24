@@ -10,17 +10,19 @@ export default{
         }
     },
     methods:{
-        // detailApi(){
-        //     axios.get(store.apiUrl + 'apartments/' + this.$route.params.slug).then(results=>{
-        //             this.apartment = results.data;
-        //             console.log(results.data);
-        //     });
-        // }
+        detailApi(){
+            axios.get(store.apiUrl + 'apartments').then(results=>{
+                     //this.apartment = results.data;
+                        this.apartment = results.data.filter((apartmentSlug => apartmentSlug.slug == this.$route.params.slug))
+                        this.apartment = this.apartment[0]
+                        console.log(this.apartment);
+            });
+        }
     },
     
-    // mounted(){
-    //     this.detailApi();
-    // }
+     mounted(){
+         this.detailApi();
+     }
 
 }
 
@@ -38,12 +40,20 @@ export default{
         
         <div class="mt-5 d-flex">
 
-            <img src="../assets/img/1.webp" alt="" class="reveal fade-left">
+            <img src="../assets/img/1.webp" alt="">
 
             <ul>
                 <li>Dove si trova : {{ apartment.address }}</li>
                 <li>Prezzo : {{ apartment.price }} &euro;</li>
-                <li>Servizi : {{ apartment.services }}</li>
+
+                <li>Servizi :<ul>
+                    <li
+                    v-for="service in apartment.services"
+                    :key="service.id">
+                        {{ service.name }}
+                    </li>
+
+                </ul></li>
                 <li>Stanze : {{ apartment.n_rooms }}</li>
                 <li>Letti : {{ apartment.n_beds }}</li>
                 <li>Bagni : {{ apartment.n_bathrooms }}</li>
