@@ -196,7 +196,7 @@ li{
     margin-right: 15px;
     color: black;
     &:hover{
-        color: #3d40f5;
+        color: #3fa9e4;
     }
 }
 .use-links li a{
