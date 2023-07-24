@@ -1,9 +1,12 @@
 <script>
+
+import { store } from '../../data/store';
+
 export default {
     data(){
         name:'jumbotron'
         return{
-    
+			store
         }
     }
 }
@@ -16,7 +19,7 @@ export default {
             <div class="search">
                 <input id='search-btn' type='checkbox'/>
                 <label for='search-btn'>Show search bar</label>
-                <input id='search-bar' type='text' placeholder='Inserisci indirizzo'/>
+                <input @keyup.enter="$router.push('/advanced-search') " v-model="store.inputText" id='search-bar' type='text' placeholder='Inserisci indirizzo'/>
             </div>
             <h2>Ricerche popolari</h2>
             <div class="links-ricerche">
