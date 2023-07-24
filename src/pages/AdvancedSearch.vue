@@ -3,45 +3,39 @@ import { store } from '../data/store';
 import axios from 'axios';
 
 export default {
-    name: 'AdvancedSearch',
+  name: 'AdvancedSearch',
+  data() {
+    return {
+      longitude: 14.198047,
+      latitude: 40.803755,
+      radius: 20000,
+      store
+    };
+  },
+  methods: {
+    searchApartments() {
+      const requestData = {
+        longitude: this.longitude,
+        latitude: this.latitude,
+        radius: this.radius
+      };
 
-    components: {
-        store,
-    },
-
-    data() {
-        return {
-            longitude: 14.198047, // Inizializzare i valori per la ricerca
-            latitude: 40.803755,
-            radius: 20,
-            apartments: [],
-            store
-        };
-    },
-    methods: {
-        searchApartments() {
-            const requestData = {
-                longitude: this.longitude,
-                latitude: this.latitude,
-                radius: this.radius
-            };
-
-            console.log(this.searchApartments());
-
-            axios.post('advanced-search', requestData)
-                .then(response => {
-                    this.apartments = response.data.filteredApartments;
-                    console.log(response);
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-        }
-    },
-    mounted(){
-    this.searchApartments()
+      axios.post(store.apiUrl + 'apartments/earch', requestData)
+        .then(response => {
+          store.arrApartments = response.data.filteredApartments;
+          console.log('response.data', response.data); 
+          console.log('store.arrApartments', store.arrApartments);
+      })
+        .catch(error => {
+          console.error(error);
+        });
     }
+  },
+  mounted() {
+    this.searchApartments();
+  }
 }
+
 </script>
 
 <template>
@@ -52,3 +46,4 @@ export default {
 <style lang="scss" scoped>
 
 </style>
+
