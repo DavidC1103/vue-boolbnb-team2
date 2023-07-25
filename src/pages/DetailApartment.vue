@@ -19,6 +19,16 @@ export default{
                         this.apartment = results.data.total_apartments.filter((apartmentSlug => apartmentSlug.slug == this.$route.params.slug))
                         this.apartment = this.apartment[0]
             });
+        },
+        sendMessage(id) {
+
+            store.messageForm.apartment_id = id;
+
+            axios.post(store.apiUrl + 'message', store.messageForm).then(response=>{
+                console.log(response.data);
+            })
+
+            console.warn(store.messageForm);
         }
     },
     
@@ -110,14 +120,14 @@ export default{
                     <form>
                         <h1 class="title text-center mb-4">Contattami</h1>
 
-                            <input type="number" :value="apartment.id" name="apartment_id" hidden>
+                            <!-- <input type="number" :value="apartment.id" name="apartment_id" hidden> -->
 
                             <!-- Name -->
                             <div class="form-group position-relative">
                                 <label for="sender_name" class="d-block">
                                     <i class="icon" data-feather="user"></i>
                                 </label>
-                                <input type="text" id="sender_name" class="form-control form-control-lg thick" placeholder="Nome" name="sender_name">
+                                <input v-model="store.messageForm.sender_name" type="text" id="sender_name" class="form-control form-control-lg thick" placeholder="Nome" name="sender_name">
                             </div>
 
                             <!-- Lastname -->
@@ -125,7 +135,7 @@ export default{
                                 <label for="sender_lastname" class="d-block">
                                     <i class="icon" data-feather="user"></i>
                                 </label>
-                                <input type="text" id="sender_lastname" class="form-control form-control-lg thick" placeholder="Cognome" name="sender_lastname">
+                                <input v-model="store.messageForm.sender_lastname" type="text" id="sender_lastname" class="form-control form-control-lg thick" placeholder="Cognome" name="sender_lastname">
                             </div>
 
                             <!-- E-mail -->
@@ -133,17 +143,17 @@ export default{
                                 <label for="sender_email" class="d-block">
                                     <i class="icon" data-feather="mail"></i>
                                 </label>
-                                <input type="email" id="sender_email" name="sender_email" class="form-control form-control-lg thick" placeholder="E-mail">
+                                <input v-model="store.messageForm.sender_email" type="email" id="sender_email" name="sender_email" class="form-control form-control-lg thick" placeholder="E-mail">
                             </div>
 
                             <!-- Message -->
                             <div class="form-group message">
-                                <textarea id="text" name="text" class="form-control form-control-lg" rows="7" placeholder="Messaggio"></textarea>
+                                <textarea v-model="store.messageForm.text" id="text" name="text" class="form-control form-control-lg" rows="7" placeholder="Messaggio"></textarea>
                             </div>
                         
                             <!-- Submit btn -->
                             <div class="text-center">
-                                <button class="btn btn-primary" tabIndex="-1">Invia messaggio</button>
+                                <button class="btn btn-primary" @click="sendMessage(apartment.id)" tabIndex="-1">Invia messaggio</button>
                             </div>
 	                </form>
                 </div>
