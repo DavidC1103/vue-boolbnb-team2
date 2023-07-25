@@ -20,7 +20,7 @@ export default {
 
 <template>
     <div class="boolbnb-jumbotron">
-        <div class="layer text-white text-center">
+        <div class="layer text-white text-center active fade-left ">
             <h1>Trova e prenota il tuo posto ideale</h1>
             <div class="search">
                 <input id='search-btn' type='checkbox'/>
