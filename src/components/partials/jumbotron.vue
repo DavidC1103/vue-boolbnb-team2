@@ -8,7 +8,13 @@ export default {
         return{
 			store
         }
-    }
+    },
+		methods:{
+			getResult(city){
+				store.inputText = city;
+				$router.push('/advanced-search');
+			}
+		}
 }
 </script>
 
@@ -23,7 +29,7 @@ export default {
             </div>
             <h2>Ricerche popolari</h2>
             <div class="links-ricerche">
-                <a href="#">Roma, </a>
+                <a @click="getResult('Roma')" href="#">Roma, </a>
                 <a href="#">Napoli, </a>
                 <a href="#">Palermo, </a>
                 <a href="#">Milano, </a> 

@@ -24,6 +24,7 @@ export default{
             axios.get(store.apiUrl + 'apartments')
             .then(result=>{
                 store.arrApartments = result.data.sponsored_apartments
+                store.arrServices = result.data.availableServices
             })
         }
     },
@@ -75,7 +76,7 @@ export default{
             width: 100%;
             height: 100%;
             .boolbnb-card{
-                flex-basis: 20%;
+                flex-basis: 30%;
                 margin: 10px 20px;
                 img{
                     width: 100%;
