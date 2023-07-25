@@ -110,30 +110,40 @@ export default{
                     <form>
                         <h1 class="title text-center mb-4">Contattami</h1>
 
+                            <input type="number" :value="apartment.id" name="apartment_id" hidden>
+
                             <!-- Name -->
                             <div class="form-group position-relative">
-                                <label for="formName" class="d-block">
+                                <label for="sender_name" class="d-block">
                                     <i class="icon" data-feather="user"></i>
                                 </label>
-                                <input type="text" id="formName" class="form-control form-control-lg thick" placeholder="Nome">
+                                <input type="text" id="sender_name" class="form-control form-control-lg thick" placeholder="Nome" name="sender_name">
+                            </div>
+
+                            <!-- Lastname -->
+                            <div class="form-group position-relative">
+                                <label for="sender_lastname" class="d-block">
+                                    <i class="icon" data-feather="user"></i>
+                                </label>
+                                <input type="text" id="sender_lastname" class="form-control form-control-lg thick" placeholder="Cognome" name="sender_lastname">
                             </div>
 
                             <!-- E-mail -->
                             <div class="form-group position-relative">
-                                <label for="formEmail" class="d-block">
+                                <label for="sender_email" class="d-block">
                                     <i class="icon" data-feather="mail"></i>
                                 </label>
-                                <input type="email" id="formEmail" class="form-control form-control-lg thick" placeholder="E-mail">
+                                <input type="email" id="sender_email" name="sender_email" class="form-control form-control-lg thick" placeholder="E-mail">
                             </div>
 
                             <!-- Message -->
                             <div class="form-group message">
-                                <textarea id="formMessage" class="form-control form-control-lg" rows="7" placeholder="Messaggio"></textarea>
+                                <textarea id="text" name="text" class="form-control form-control-lg" rows="7" placeholder="Messaggio"></textarea>
                             </div>
                         
                             <!-- Submit btn -->
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary" tabIndex="-1">Invia messaggio</button>
+                                <button class="btn btn-primary" tabIndex="-1">Invia messaggio</button>
                             </div>
 	                </form>
                 </div>
