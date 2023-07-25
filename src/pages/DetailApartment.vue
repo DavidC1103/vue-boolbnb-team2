@@ -40,7 +40,6 @@ export default{
             
             if (this.isValidUserEmail && this.isValidUserName && this.isValidUserLastname && store.messageForm.text) {
                 return false;
-                
             } else {
                 return true;
             }
