@@ -2,257 +2,195 @@
     import Header from "../components/Header.vue";
     import { store } from '../data/store';
     import axios from 'axios';
-export default{
-    name: 'DetailApartment',
-    components:{
-        Header,
-    },
-    data(){
-        return{
-            store,
-            apartment : [],
-            isValidUserEmail : false,
-            isValidUserName : false,
-            isValidUserLastname : false,
-            messageSent: ''
-        }
-    },
-    methods:{
-        detailApi(){
-            axios.get(store.apiUrl + 'apartments').then(results=>{
-                        this.apartment = results.data.total_apartments.filter((apartmentSlug => apartmentSlug.slug == this.$route.params.slug))
-                        this.apartment = this.apartment[0]
-            });
+    export default{
+        name: 'DetailApartment',
+        components:{
+            Header,
         },
-
-        // Funzione per inviare messaggi
-        sendMessage(id) {
-            store.messageForm.apartment_id = id;
-            
-            axios.post(store.apiUrl + 'message', store.messageForm).then(response=>{
-                this.messageSent = response.data;
-            })
-        },
-
-        // Validare il form di invio dei messaggi
-        validateForm(){
-            
-            if (this.isValidUserEmail && this.isValidUserName && this.isValidUserLastname && store.messageForm.text) {
-                return false;
-            } else {
-                return true;
+        data(){
+            return{
+                store,
+                mapKey: '',
+                isLoaded: false,
+                apartment : [],
+                isValidUserEmail : false,
+                isValidUserName : false,
+                isValidUserLastname : false,
+                messageSent: ''
             }
         },
+        methods:{
+            getKeyApi(){
+                axios.get(store.apiUrl + 'apartments/get-key').then(results=>{
+                    this.mapKey = results.data;
+                });
+            },
+            detailApi(){
+                axios.get(store.apiUrl + 'apartments').then(results=>{
+                            this.apartment = results.data.total_apartments.filter((apartmentSlug => apartmentSlug.slug == this.$route.params.slug));
+                            this.apartment = this.apartment[0];
+                            this.isLoaded = true;
+                            this.$nextTick(() => {
+                                this.launchMap();
+                            });
+                });
+            },
 
-        // Validare i campi Nome e Cognome del form messaggi
-        validateUserInput(id) {
-            const inputValue = document.getElementById(id).value;
+            // Funzione per lanciare la mappa solo al caricamento di tutti i dati
+            launchMap() {
+                
+                if(this.isLoaded) {
+
+                    const mapContainer = document.getElementById('map');
+                    if(mapContainer) {
+                        /***** MAP SCRIPT *****/
     
-            const regex = /^[a-zA-Z\s]{2,}$/;
-    
-            if (regex.test(inputValue)) {
-                document.getElementById(id).classList.add('is-valid');
-                document.getElementById(id).classList.remove('is-invalid');
-                if(id === 'sender_name') this.isValidUserName = true;
-                if(id === 'sender_lastname') this.isValidUserLastname = true;
-            } else {
-                document.getElementById(id).classList.add('is-invalid');
-                document.getElementById(id).classList.remove('is-valid');
-                if(id === 'sender_name') this.isValidUserName = false;
-                if(id === 'sender_lastname') this.isValidUserLastname = false;
+                        // INSERT LONGITUDE AND LATITUDE
+                        let center= [this.apartment.longitude, this.apartment.latitude];
+                        const map = tt.map({
+                            key: this.mapKey,
+                            container: "map",
+                            center: center,
+                            zoom: 10
+                        });
+                        map.on('load', () =>{
+                            new tt.Marker().setLngLat(center).addTo(map)
+                        });
+                        const ref = document.getElementsByClassName('mapboxgl-control-container')[0];
+                        ref.classList.add('d-none');
+                    }
+                }
+            },
+
+            // Funzione per inviare messaggi
+            sendMessage(id) {
+                store.messageForm.apartment_id = id;
+                
+                axios.post(store.apiUrl + 'message', store.messageForm).then(response=>{
+                    this.messageSent = response.data;
+                })
+            },
+
+            // Validare il form di invio dei messaggi
+            validateForm(){
+                
+                if (this.isValidUserEmail && this.isValidUserName && this.isValidUserLastname && store.messageForm.text) {
+                    return false;
+                } else {
+                    return true;
+                }
+            },
+
+            // Validare i campi Nome e Cognome del form messaggi
+            validateUserInput(id) {
+                const inputValue = document.getElementById(id).value;
+        
+                const regex = /^[a-zA-Z\s]{2,}$/;
+        
+                if (regex.test(inputValue)) {
+                    document.getElementById(id).classList.add('is-valid');
+                    document.getElementById(id).classList.remove('is-invalid');
+                    if(id === 'sender_name') this.isValidUserName = true;
+                    if(id === 'sender_lastname') this.isValidUserLastname = true;
+                } else {
+                    document.getElementById(id).classList.add('is-invalid');
+                    document.getElementById(id).classList.remove('is-valid');
+                    if(id === 'sender_name') this.isValidUserName = false;
+                    if(id === 'sender_lastname') this.isValidUserLastname = false;
+                }
+            },
+
+            // Validare il campo Messaggio del form messaggi
+            validateUserMessage(id){
+                if(store.messageForm.text.length >= 3){
+                    document.getElementById(id).classList.add('is-valid');
+                    document.getElementById(id).classList.remove('is-invalid');
+                } else {
+                    document.getElementById(id).classList.add('is-invalid');
+                    document.getElementById(id).classList.remove('is-valid');
+                }
+            },
+
+            // Validare il campo Email del form messaggi
+            validateUserEmail(id){
+                const validRegex = /^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]{2,})+$/;
+                if(store.messageForm.sender_email.match(validRegex)){
+                    document.getElementById(id).classList.add('is-valid');
+                    document.getElementById(id).classList.remove('is-invalid');
+                    this.isValidUserEmail = true;
+                } else {
+                    document.getElementById(id).classList.add('is-invalid');
+                    document.getElementById(id).classList.remove('is-valid');
+                    this.isValidUserEmail = false;
+                }   
             }
         },
-
-        // Validare il campo Messaggio del form messaggi
-        validateUserMessage(id){
-            if(store.messageForm.text.length >= 3){
-                document.getElementById(id).classList.add('is-valid');
-                document.getElementById(id).classList.remove('is-invalid');
-            } else {
-                document.getElementById(id).classList.add('is-invalid');
-                document.getElementById(id).classList.remove('is-valid');
-            }
-        },
-
-        // Validare il campo Email del form messaggi
-        validateUserEmail(id){
-            const validRegex = /^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]{2,})+$/;
-            if(store.messageForm.sender_email.match(validRegex)){
-                document.getElementById(id).classList.add('is-valid');
-                document.getElementById(id).classList.remove('is-invalid');
-                this.isValidUserEmail = true;
-            } else {
-                document.getElementById(id).classList.add('is-invalid');
-                document.getElementById(id).classList.remove('is-valid');
-                this.isValidUserEmail = false;
-            }   
+        mounted(){
+            this.getKeyApi();
+            this.detailApi();
         }
-    },
-    mounted(){
-        this.detailApi();
     }
-}
-
 </script>
 
 
 <template>
 
     <Header class="header-bg"/>
-
+    
     <div class="bg-detail">
-        <div class="ps-container d-flex">
 
+        <div v-if="!isLoaded" class="ps-container loader d-flex">
             <div class="left-side">
-
                 <div class="description-general">
-                    <div class="d-flex justify-content-between">
-                        <div class="description">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="description p-5">
+                            <div class="title loader"></div>
+                            <div class="subtitle loader"></div>
                         </div>
-    
                         <div class="user-information text-center">
-                            <div class="image-user">
-                                <!-- <img :src="store.imageUrl + apartment.cover_image" alt=""> -->
+                            <div class="image-user loader">
                             </div>
-                            <!-- <h5>{{ apartment.user.name }}</h5> -->
                         </div>
                     </div>
-    
-                    <div class="box-image">
-                        <!-- <img :src="store.imageUrl + apartment.cover_image" alt=""> -->
+                    <div class="box-image loader">
                     </div>
-    
-                    <div class="feature d-flex text-center ">
-                        <!-- <div class="box-feature d-flex flex-column justify-content-center">
-                            <i class="fa-solid fa-house-chimney"></i>
-                            <span>Categoria</span>
-                            <h3>{{ apartment.category }}</h3>
+                    <div class="feature d-flex text-center">
+                        <div class="box-feature d-flex flex-column justify-content-center loader">
                         </div>
-    
-                        <div class="box-feature d-flex flex-column justify-content-center">
-                            <i class="fa-solid fa-bed"></i>
-                            <span>Stanze</span>
-                            <h3>{{ apartment.n_rooms }}</h3>
+                        <div class="box-feature d-flex flex-column justify-content-center loader">
                         </div>
-    
-                        <div class="box-feature d-flex flex-column justify-content-center">
-                            <i class="fa-solid fa-bed"></i>
-                            <span>Letti</span>
-                            <h3>{{ apartment.n_beds }}</h3>
-                        </div> -->
-    
-                        <!-- <div class="box-feature d-flex flex-column justify-content-center">
-                            <i class="fa-solid fa-toilet"></i>
-                            <span>Bagni</span>
-                            <h3>{{ apartment.n_bathrooms }}</h3>
-                        </div> -->
+                        <div class="box-feature d-flex flex-column justify-content-center loader">
+                        </div>
+                        <div class="box-feature d-flex flex-column justify-content-center loader">
+                        </div>
                     </div>
-
                 </div>
-
-
                 <div class="services d-flex">
-                    <span>Servizi disponibili:</span>
-                    <ul>
-                        <li
-                        v-for="service in apartment.services"
-                        :key="service.id">
-                        <i class="fa-solid fa-check"></i> {{ service.name }}
-                    </li>
-                    </ul>
+                    <div class="loaderServices loader"></div>
                 </div>
-
-                <div id="map" style="width: 400px; height: 300px"></div>
-
-                
-
             </div>
-
             <div class="right-side">
                 <div class="contact">
-                    <div class="form" v-if="!messageSent">
-
-                        <h1 class="title text-center mb-4">Contattami</h1>
-
-                        <!-- Name -->
-                        <div class="form-group position-relative">
-                            <label for="sender_name" class="d-block">
-                                <i class="icon" data-feather="user"></i>
-                            </label>
-                            <input v-model="store.messageForm.sender_name" type="text" id="sender_name" class="form-control form-control-lg thick" placeholder="Nome" name="sender_name" @keyup="validateUserInput('sender_name')" autocomplete="off">
-                        </div>
-
-                        <!-- Lastname -->
-                        <div class="form-group position-relative">
-                            <label for="sender_lastname" class="d-block">
-                                <i class="icon" data-feather="user"></i>
-                            </label>
-                            <input v-model="store.messageForm.sender_lastname" type="text" id="sender_lastname" class="form-control form-control-lg thick" placeholder="Cognome" name="sender_lastname" @keyup="validateUserInput('sender_lastname')" autocomplete="off">
-                        </div>
-
-                        <!-- E-mail -->
-                        <div class="form-group position-relative">
-                            <label for="sender_email" class="d-block">
-                                <i class="icon" data-feather="mail"></i>
-                            </label>
-                            <input v-model="store.messageForm.sender_email" type="email" id="sender_email" name="sender_email" class="form-control form-control-lg thick" placeholder="E-mail" @keyup="validateUserEmail('sender_email')" autocomplete="off">
-                        </div>
-
-                        <!-- Message -->
-                        <div class="form-group message">
-                            <textarea v-model="store.messageForm.text" id="text" name="text" class="form-control form-control-lg" rows="7" placeholder="Messaggio" @keyup="validateUserMessage('text')"></textarea>
-                        </div>
-                    
-                        <!-- Submit btn -->
-                        <div class="text-center">
-                            <button class="btn btn-primary" @click="sendMessage(apartment.id)" tabIndex="-1" :disabled="validateForm()">Invia messaggio</button>
-                        </div>
-
-                    </div>
-
-                    <div class="messageSuccess text-center" v-else>
-                        <div class="success-checkmark">
-                            <div class="check-icon">
-                                <span class="icon-line line-tip"></span>
-                                <span class="icon-line line-long"></span>
-                                <div class="icon-circle"></div>
-                                <div class="icon-fix"></div>
-                            </div>
-                        </div>
-                        <span>{{ messageSent }}</span>
+                    <div class="form">
+                        <div class="title loader"></div>
+                        <div class="subtitle loader"></div>
+                        <div class="subtitle loader"></div>
+                        <div class="subtitle loader"></div>
+                        <div class="subtitle loader"></div>
                     </div>
                 </div>
-
-                <div class="booking">
-                    <div class="header text-center">
-                        <span>a partire da <strong>{{ apartment.price }}</strong> &euro; a notte</span>
-                    </div>
-                    <form action="">
-                        <div class="date text-center">
-
-                            <input type="date">
-                            <input type="date">
-
-                        </div>
-
-                        <button class="ps-btn" type="submit">PRENOTA</button>
-                        
-                    </form>
+                <div class="map d-flex justify-content-center align-items-center mt-3">
+                    <div class="box-image loader"></div>
                 </div>
-
             </div>
-
-            
         </div>
 
-    </div>
-    <div class="bg-detail">
-        <div class="ps-container d-flex">
+        <div v-else class="ps-container d-flex">
 
             <div class="left-side">
 
                 <div class="description-general">
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between align-items-center">
                         <div class="description">
                             <h1>{{ apartment.title }}</h1>
                             <h4>{{ apartment.address }}</h4>
@@ -309,14 +247,11 @@ export default{
                     </li>
                     </ul>
                 </div>
-
-                <div id="map" style="width: 400px; height: 300px"></div>
-
                 
-
             </div>
 
             <div class="right-side">
+
                 <div class="contact">
                     <div class="form" v-if="!messageSent">
 
@@ -371,21 +306,9 @@ export default{
                     </div>
                 </div>
 
-                <div class="booking">
-                    <div class="header text-center">
-                        <span>a partire da <strong>{{ apartment.price }}</strong> &euro; a notte</span>
-                    </div>
-                    <form action="">
-                        <div class="date text-center">
-
-                            <input type="date">
-                            <input type="date">
-
-                        </div>
-
-                        <button class="ps-btn" type="submit">PRENOTA</button>
-                        
-                    </form>
+                
+                <div class="map d-flex justify-content-center align-items-center mt-3">
+                    <div id="map"></div>
                 </div>
 
             </div>
@@ -395,13 +318,42 @@ export default{
 
     </div>
 
-    
-
 </template>
 
 
 <style lang="scss" scoped>
 @use '../scss/partials/msgSentAnimation';
+
+.loader {
+    // background: rgba($color: grey, $alpha: .3);
+    // border: 1px solid black;
+    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    border-radius: 5px;
+    background-size: 200% 100%;
+    animation: 1s shine linear infinite;
+    .title {
+        height: 1.5rem;
+        margin-bottom: 1.2rem;
+    }
+    .subtitle {
+        height: 1rem;
+        margin-bottom: 1.2rem;
+    }
+    .box-image {
+        height: 400px;
+        width: 100%;
+    }
+    .loaderServices {
+        width: 100%;
+        height: 1.5rem;
+    }
+}
+
+@keyframes shine {
+    to {
+        background-position-x: -200%;
+    }
+}
 
 .bg-detail{
     background-color: #f2f2f2;
@@ -421,7 +373,7 @@ export default{
                 background-color: #ffffff;
                 .description{
                     width: 100%;
-                    padding: 40px 0px 0px 40px;
+                    padding-left: 40px;
                     border-radius: 10px;
                     h1{
                         font-size: 4rem;
@@ -587,36 +539,16 @@ export default{
                     font-weight: bold;
                 }
             }
-            .booking{
-                margin-top: 20px;
+
+            .map {
+                width: 100%;
+                height: 500px;
                 background-color: #ffffff;
-                .header{
-                    background-color: #555555;
-                    padding: 20px;
-                    span{
-                        font-size: 1.4rem;
-                        font-style: italic;
-                        color: #ffffff;
-                    }
-                }
-                .date{
-                    margin-top: 20px;
-                }
-                button{
-                    width: calc(100% - 40px);
-                    margin: 20px;
-                    padding: 15px;
-                    font-size: 1.4rem;
-                    border-radius: 8px;
-                    background-color: #3fa9e4;
-                    color: #ffffff;
-                    border: none;
-                    transition: all 0.3s ease-in-out;
-                }
-                .ps-btn:hover{
-                    box-shadow: 0 0.5em 0.5em -0.4em #3fa9e4;
-                    background-size: 100% 100%;
-                    transform: translateY(-0.15em);
+                border-radius: 10px; 
+                padding: 2rem;
+                #map {
+                    width: 100%;
+                    height: 100%;
                 }
             }
         }

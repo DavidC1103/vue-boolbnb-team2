@@ -88,7 +88,7 @@ export default{
     <accordion/>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @use '../scss/main.scss' as *;
 
     .ps-container{
