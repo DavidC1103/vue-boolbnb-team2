@@ -13,7 +13,8 @@ export default{
             apartment : [],
             isValidUserEmail : false,
             isValidUserName : false,
-            isValidUserLastname : false
+            isValidUserLastname : false,
+            messageSent: ''
         }
     },
     methods:{
@@ -27,12 +28,10 @@ export default{
         // Funzione per inviare messaggi
         sendMessage(id) {
             store.messageForm.apartment_id = id;
-
+            
             axios.post(store.apiUrl + 'message', store.messageForm).then(response=>{
-                console.log(response.data);
+                this.messageSent = response.data;
             })
-
-            console.warn(store.messageForm);
         },
 
         // Validare il form di invio dei messaggi
@@ -56,8 +55,6 @@ export default{
                 document.getElementById(id).classList.remove('is-invalid');
                 if(id === 'sender_name') this.isValidUserName = true;
                 if(id === 'sender_lastname') this.isValidUserLastname = true;
-                console.log('isValidUserName', this.isValidUserName);
-                console.log('isValidUserLastname', this.isValidUserLastname);
             } else {
                 document.getElementById(id).classList.add('is-invalid');
                 document.getElementById(id).classList.remove('is-valid');
@@ -77,7 +74,6 @@ export default{
             }
         },
 
-
         // Validare il campo Email del form messaggi
         validateUserEmail(id){
             const validRegex = /^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]{2,})+$/;
@@ -85,7 +81,6 @@ export default{
                 document.getElementById(id).classList.add('is-valid');
                 document.getElementById(id).classList.remove('is-invalid');
                 this.isValidUserEmail = true;
-                console.log('isValidUserEmail', this.isValidUserEmail);
             } else {
                 document.getElementById(id).classList.add('is-invalid');
                 document.getElementById(id).classList.remove('is-valid');
@@ -93,12 +88,9 @@ export default{
             }   
         }
     },
-
-    
-     mounted(){
+    mounted(){
         this.detailApi();
-     }
-
+    }
 }
 
 </script>
@@ -116,15 +108,161 @@ export default{
                 <div class="description-general">
                     <div class="d-flex justify-content-between">
                         <div class="description">
+                        </div>
+    
+                        <div class="user-information text-center">
+                            <div class="image-user">
+                                <!-- <img :src="store.imageUrl + apartment.cover_image" alt=""> -->
+                            </div>
+                            <!-- <h5>{{ apartment.user.name }}</h5> -->
+                        </div>
+                    </div>
+    
+                    <div class="box-image">
+                        <!-- <img :src="store.imageUrl + apartment.cover_image" alt=""> -->
+                    </div>
+    
+                    <div class="feature d-flex text-center ">
+                        <!-- <div class="box-feature d-flex flex-column justify-content-center">
+                            <i class="fa-solid fa-house-chimney"></i>
+                            <span>Categoria</span>
+                            <h3>{{ apartment.category }}</h3>
+                        </div>
+    
+                        <div class="box-feature d-flex flex-column justify-content-center">
+                            <i class="fa-solid fa-bed"></i>
+                            <span>Stanze</span>
+                            <h3>{{ apartment.n_rooms }}</h3>
+                        </div>
+    
+                        <div class="box-feature d-flex flex-column justify-content-center">
+                            <i class="fa-solid fa-bed"></i>
+                            <span>Letti</span>
+                            <h3>{{ apartment.n_beds }}</h3>
+                        </div> -->
+    
+                        <!-- <div class="box-feature d-flex flex-column justify-content-center">
+                            <i class="fa-solid fa-toilet"></i>
+                            <span>Bagni</span>
+                            <h3>{{ apartment.n_bathrooms }}</h3>
+                        </div> -->
+                    </div>
+
+                </div>
+
+
+                <div class="services d-flex">
+                    <span>Servizi disponibili:</span>
+                    <ul>
+                        <li
+                        v-for="service in apartment.services"
+                        :key="service.id">
+                        <i class="fa-solid fa-check"></i> {{ service.name }}
+                    </li>
+                    </ul>
+                </div>
+
+                <div id="map" style="width: 400px; height: 300px"></div>
+
+                
+
+            </div>
+
+            <div class="right-side">
+                <div class="contact">
+                    <div class="form" v-if="!messageSent">
+
+                        <h1 class="title text-center mb-4">Contattami</h1>
+
+                        <!-- Name -->
+                        <div class="form-group position-relative">
+                            <label for="sender_name" class="d-block">
+                                <i class="icon" data-feather="user"></i>
+                            </label>
+                            <input v-model="store.messageForm.sender_name" type="text" id="sender_name" class="form-control form-control-lg thick" placeholder="Nome" name="sender_name" @keyup="validateUserInput('sender_name')" autocomplete="off">
+                        </div>
+
+                        <!-- Lastname -->
+                        <div class="form-group position-relative">
+                            <label for="sender_lastname" class="d-block">
+                                <i class="icon" data-feather="user"></i>
+                            </label>
+                            <input v-model="store.messageForm.sender_lastname" type="text" id="sender_lastname" class="form-control form-control-lg thick" placeholder="Cognome" name="sender_lastname" @keyup="validateUserInput('sender_lastname')" autocomplete="off">
+                        </div>
+
+                        <!-- E-mail -->
+                        <div class="form-group position-relative">
+                            <label for="sender_email" class="d-block">
+                                <i class="icon" data-feather="mail"></i>
+                            </label>
+                            <input v-model="store.messageForm.sender_email" type="email" id="sender_email" name="sender_email" class="form-control form-control-lg thick" placeholder="E-mail" @keyup="validateUserEmail('sender_email')" autocomplete="off">
+                        </div>
+
+                        <!-- Message -->
+                        <div class="form-group message">
+                            <textarea v-model="store.messageForm.text" id="text" name="text" class="form-control form-control-lg" rows="7" placeholder="Messaggio" @keyup="validateUserMessage('text')"></textarea>
+                        </div>
+                    
+                        <!-- Submit btn -->
+                        <div class="text-center">
+                            <button class="btn btn-primary" @click="sendMessage(apartment.id)" tabIndex="-1" :disabled="validateForm()">Invia messaggio</button>
+                        </div>
+
+                    </div>
+
+                    <div class="messageSuccess text-center" v-else>
+                        <div class="success-checkmark">
+                            <div class="check-icon">
+                                <span class="icon-line line-tip"></span>
+                                <span class="icon-line line-long"></span>
+                                <div class="icon-circle"></div>
+                                <div class="icon-fix"></div>
+                            </div>
+                        </div>
+                        <span>{{ messageSent }}</span>
+                    </div>
+                </div>
+
+                <div class="booking">
+                    <div class="header text-center">
+                        <span>a partire da <strong>{{ apartment.price }}</strong> &euro; a notte</span>
+                    </div>
+                    <form action="">
+                        <div class="date text-center">
+
+                            <input type="date">
+                            <input type="date">
+
+                        </div>
+
+                        <button class="ps-btn" type="submit">PRENOTA</button>
+                        
+                    </form>
+                </div>
+
+            </div>
+
+            
+        </div>
+
+    </div>
+    <div class="bg-detail">
+        <div class="ps-container d-flex">
+
+            <div class="left-side">
+
+                <div class="description-general">
+                    <div class="d-flex justify-content-between">
+                        <div class="description">
                             <h1>{{ apartment.title }}</h1>
-                            <h4>{{ apartment.address }} | <a href="#">Mappa</a></h4>
+                            <h4>{{ apartment.address }}</h4>
                         </div>
     
                         <div class="user-information text-center">
                             <div class="image-user">
                                 <img :src="store.imageUrl + apartment.cover_image" alt="">
                             </div>
-                            <h5>Franco</h5>
+                            <h5>{{ apartment.user.name }}</h5>
                         </div>
                     </div>
     
@@ -180,45 +318,57 @@ export default{
 
             <div class="right-side">
                 <div class="contact">
-                    <form>
+                    <div class="form" v-if="!messageSent">
+
                         <h1 class="title text-center mb-4">Contattami</h1>
 
-                            <!-- <input type="number" :value="apartment.id" name="apartment_id" hidden> -->
+                        <!-- Name -->
+                        <div class="form-group position-relative">
+                            <label for="sender_name" class="d-block">
+                                <i class="icon" data-feather="user"></i>
+                            </label>
+                            <input v-model="store.messageForm.sender_name" type="text" id="sender_name" class="form-control form-control-lg thick" placeholder="Nome" name="sender_name" @keyup="validateUserInput('sender_name')" autocomplete="off">
+                        </div>
 
-                            <!-- Name -->
-                            <div class="form-group position-relative">
-                                <label for="sender_name" class="d-block">
-                                    <i class="icon" data-feather="user"></i>
-                                </label>
-                                <input v-model="store.messageForm.sender_name" type="text" id="sender_name" class="form-control form-control-lg thick" placeholder="Nome" name="sender_name" @keyup="validateUserInput('sender_name')" autocomplete="off">
-                            </div>
+                        <!-- Lastname -->
+                        <div class="form-group position-relative">
+                            <label for="sender_lastname" class="d-block">
+                                <i class="icon" data-feather="user"></i>
+                            </label>
+                            <input v-model="store.messageForm.sender_lastname" type="text" id="sender_lastname" class="form-control form-control-lg thick" placeholder="Cognome" name="sender_lastname" @keyup="validateUserInput('sender_lastname')" autocomplete="off">
+                        </div>
 
-                            <!-- Lastname -->
-                            <div class="form-group position-relative">
-                                <label for="sender_lastname" class="d-block">
-                                    <i class="icon" data-feather="user"></i>
-                                </label>
-                                <input v-model="store.messageForm.sender_lastname" type="text" id="sender_lastname" class="form-control form-control-lg thick" placeholder="Cognome" name="sender_lastname" @keyup="validateUserInput('sender_lastname')" autocomplete="off">
-                            </div>
+                        <!-- E-mail -->
+                        <div class="form-group position-relative">
+                            <label for="sender_email" class="d-block">
+                                <i class="icon" data-feather="mail"></i>
+                            </label>
+                            <input v-model="store.messageForm.sender_email" type="email" id="sender_email" name="sender_email" class="form-control form-control-lg thick" placeholder="E-mail" @keyup="validateUserEmail('sender_email')" autocomplete="off">
+                        </div>
 
-                            <!-- E-mail -->
-                            <div class="form-group position-relative">
-                                <label for="sender_email" class="d-block">
-                                    <i class="icon" data-feather="mail"></i>
-                                </label>
-                                <input v-model="store.messageForm.sender_email" type="email" id="sender_email" name="sender_email" class="form-control form-control-lg thick" placeholder="E-mail" @keyup="validateUserEmail('sender_email')" autocomplete="off">
-                            </div>
+                        <!-- Message -->
+                        <div class="form-group message">
+                            <textarea v-model="store.messageForm.text" id="text" name="text" class="form-control form-control-lg" rows="7" placeholder="Messaggio" @keyup="validateUserMessage('text')"></textarea>
+                        </div>
+                    
+                        <!-- Submit btn -->
+                        <div class="text-center">
+                            <button class="btn btn-primary" @click="sendMessage(apartment.id)" tabIndex="-1" :disabled="validateForm()">Invia messaggio</button>
+                        </div>
 
-                            <!-- Message -->
-                            <div class="form-group message">
-                                <textarea v-model="store.messageForm.text" id="text" name="text" class="form-control form-control-lg" rows="7" placeholder="Messaggio" @keyup="validateUserMessage('text')"></textarea>
+                    </div>
+
+                    <div class="messageSuccess text-center" v-else>
+                        <div class="success-checkmark">
+                            <div class="check-icon">
+                                <span class="icon-line line-tip"></span>
+                                <span class="icon-line line-long"></span>
+                                <div class="icon-circle"></div>
+                                <div class="icon-fix"></div>
                             </div>
-                        
-                            <!-- Submit btn -->
-                            <div class="text-center">
-                                <button class="btn btn-primary" @click="sendMessage(apartment.id)" tabIndex="-1" :disabled="validateForm()">Invia messaggio</button>
-                            </div>
-	                </form>
+                        </div>
+                        <span>{{ messageSent }}</span>
+                    </div>
                 </div>
 
                 <div class="booking">
@@ -251,6 +401,7 @@ export default{
 
 
 <style lang="scss" scoped>
+@use '../scss/partials/msgSentAnimation';
 
 .bg-detail{
     background-color: #f2f2f2;
@@ -360,74 +511,80 @@ export default{
                     font-family: 'Pacifico', cursive;
                     color: #212529;
                     font-size: 2.5rem;
-            }
-            
-            .form-control {
-                
-                background-color: #f2f6f8;
-                border-radius: 2rem;
-                border: none;
-                box-shadow: 0px 7px 5px rgba(0, 0, 0, 0.11);
-                
-                &.thick {
-                height: 3.3rem;
-                padding: .5rem 3.5rem;
-                margin: 20px 0px;
                 }
+            
+                .form-control {
                     
+                    background-color: #f2f6f8;
+                    border-radius: 2rem;
+                    border: none;
+                    box-shadow: 0px 7px 5px rgba(0, 0, 0, 0.11);
+                    
+                    &.thick {
+                        height: 3.3rem;
+                        padding: .5rem 2rem;
+                        margin: 20px 0px;
+                    }
+                        
                     &:focus {
                         background-color: #f2f6f8;
                         border: none;
                         box-shadow: 0px 7px 5px rgba(0, 0, 0, 0.11);
                     }
-            }
-                
-                .message .form-control {
-                        padding: .5rem 1.8rem;
                 }
                 
-            ::placeholder {
-                font-family: 'Quicksand', sans-serif;
-                    font-weight: 600;
-                font-size: 1.1rem;
-                color: #838788;
-                position: relative;
-                left: 0;
-            }
+                .message .form-control {
+                        padding: 1rem 2rem;
+                }
                 
-            input,
-            textarea {
+                ::placeholder {
                     font-family: 'Quicksand', sans-serif;
-                color: #212529;
-                font-size: 1.1rem;
-            }
+                    font-weight: 600;
+                    font-size: 1.1rem;
+                    color: #838788;
+                    position: relative;
+                    left: 0;
+                }
                 
-            .icon {
-                color: #57565c;
-                height: 1.3rem;
-                position: absolute;
-                left: 1.5rem;
-                top: 1.1rem;
-            }
+                input,
+                textarea {
+                    font-family: 'Quicksand', sans-serif;
+                    color: #212529;
+                    font-size: 1.1rem;
+                }
+                
+                .icon {
+                    color: #57565c;
+                    height: 1.3rem;
+                    position: absolute;
+                    left: 1.5rem;
+                    top: 1.1rem;
+                }
+                
+                .btn.btn-primary {
+                    font-family: 'Quicksand', sans-serif;
+                    font-weight: bold;
+                    height: 2.5rem;
+                    line-height: 2.5rem;
+                    padding: 0 3rem;
+                    border: 0;
+                    border-radius: 3rem;
+                    background-color:#3fa9e4;
+                    background-size: 300% 100%;
+                    transition: all 0.3s ease-in-out;
+                    margin-top: 20px;
+                }
             
-            .btn.btn-primary {
-                font-family: 'Quicksand', sans-serif;
-                font-weight: bold;
-                height: 2.5rem;
-                line-height: 2.5rem;
-                padding: 0 3rem;
-                border: 0;
-                border-radius: 3rem;
-            background-color:#3fa9e4;
-            background-size: 300% 100%;
-            transition: all 0.3s ease-in-out;
-            margin-top: 20px;
-        }
-        
-        .btn.btn-primary:hover:enabled {
-            box-shadow: 0 0.5em 0.5em -0.4em #3fa9e4;
-            background-size: 100% 100%;
-            transform: translateY(-0.15em);
+                .btn.btn-primary:hover:enabled {
+                    box-shadow: 0 0.5em 0.5em -0.4em #3fa9e4;
+                    background-size: 100% 100%;
+                    transform: translateY(-0.15em);
+                }
+
+                .messageSuccess {
+                    margin: 2.5rem;
+                    font-size: 1.2rem;
+                    font-weight: bold;
                 }
             }
             .booking{
