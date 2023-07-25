@@ -125,7 +125,7 @@ export default {
 </template>
 
 
-<style lang="scss" >
+<style lang="scss" scoped>
 .advanced{
   h3{
     margin-top: 80px;
