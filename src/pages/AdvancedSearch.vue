@@ -19,21 +19,44 @@ export default {
     searchApartments() {
       const requestData = {
         input: store.inputText,
-        radius: this.radius,
-        services: []
+        radius: store.rangeValue,
+        services: store.servicesToSearch
       };
 
-      console.log('requestData:', requestData);
+      console.log('requestData:', requestData.radius);
 
       axios.post(store.apiUrl + 'search', requestData)
         .then(response => {
           this.arrSearch = response.data.apartments;
           console.log(this.arrSearch); 
       })
+    },
+    refreshSearch(id){
+      if(store.servicesToSearch.includes(id)){
+        store.servicesToSearch.splice(store.servicesToSearch.indexOf(id), 1);
+      }else{
+        store.servicesToSearch.push(id)
+      }
+      this.searchApartments();
     }
   },
   mounted() {
+    store.servicesToSearch = [];
+    store.rangeValue = 20;
     this.searchApartments();
+
+    var rangeSlider = document.getElementById("rs-range-line");
+    var rangeBullet = document.getElementById("rs-bullet");
+
+    console.log(rangeSlider, rangeBullet)
+
+    rangeSlider.addEventListener("input", showSliderValue, false);
+
+    function showSliderValue() {
+      rangeBullet.innerHTML = rangeSlider.value;
+      // var bulletPosition = (rangeSlider.value /rangeSlider.max);
+      rangeBullet.style.left = (bulletPosition * 578) + "px";
+    }
   }
 }
 
@@ -42,10 +65,43 @@ export default {
 
 <template>
 
-  <Header/>
+  <Header class="header-bg"/>
 
+  <div class="container advanced">
   <h3>Risultati per: <span class="">{{ store.inputText  }}</span></h3>
 
+  
+  <form action="" class="d-flex">
+
+    <div class="mb-5">
+                <h5 class="mb-3">FILTRI</h5>
+
+                <!-- INPUT RANGE -->
+                <div class="range-slider">
+                  <span id="rs-bullet" class="rs-label">{{ store.rangeValue }}</span>
+                  <input id="rs-range-line" class="rs-range" type="range" v-model="store.rangeValue"  min="0" max="200" step="10" @change="searchApartments()">
+                  
+                </div>
+                
+                <div class="box-minmax">
+                  <span>0</span><span>200</span>
+                </div>
+
+                <div class="d-grid gap-2">
+                  <!-- Checkboxes -->
+                  <div class="d-flex flex-wrap mt-4">
+                  
+                  <div class="form-check" v-for=" service in store.arrServices" :key="service.id">
+                    <input class="form-check-input" type="checkbox" value="service.id" id="jobTitleCheckbox1" @click="refreshSearch(service.id)">
+                    <label class="form-check-label d-flex" for="jobTitleCheckbox1">{{service.name}} <span class="ms-auto"></span></label>
+                  </div>
+
+                </div>
+              </div>
+
+                
+              </div>
+  </form>
   <!-- Cards container -->
   <div class="container-card d-flex flex-wrap justify-content-center">
 
@@ -65,16 +121,27 @@ export default {
     </div>
 
 </div>
-
+</div>
 </template>
 
 
 <style lang="scss" >
+.advanced{
+  h3{
+    margin-top: 80px;
+  }
+  .form-check{
+    margin-right: 40px;
+    .ms-auto{
+      margin-left: 5px !important;
+    }
+  }
+}
 .container-card{
             width: 100%;
             height: 100%;
             .boolbnb-card{
-                flex-basis: 20%;
+                flex-basis: 30%;
                 margin: 10px 20px;
                 img{
                     width: 100%;
@@ -88,5 +155,104 @@ export default {
                 }
             }
         }
+
+
+        .box-minmax{
+  margin-top: 10px;
+  width: 608px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  color: black;
+  span:first-child{
+    margin-left: 10px;
+  }
+}
+
+.rs-range {
+    margin-top: 29px;
+    width: 600px;
+    -webkit-appearance: none;
+    &:focus {
+        outline: none;
+    }
+    &::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 1px;
+        cursor: pointer;
+        box-shadow: none;
+        background: #3fa9e4;
+        border-radius: 0px;
+        border: 0px solid #010101;
+    }
+    &::-moz-range-track {
+        width: 100%;
+        height: 1px;
+        cursor: pointer;
+        box-shadow: none;
+        background: #3fa9e4;
+        border-radius: 0px;
+        border: 0px solid #010101;
+    }
+  
+    &::-webkit-slider-thumb {
+        box-shadow: none;
+        border: 0px solid #ffffff;
+        box-shadow: 0px 10px 10px rgba(0,0,0,0.25);
+        height: 42px;
+        width: 22px;
+        border-radius: 22px;
+        background: #3fa9e4;
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -20px;
+    }
+  &::-moz-range-thumb{
+        box-shadow: none;
+        border: 0px solid #3fa9e4;
+        box-shadow: 0px 10px 10px rgba(0,0,0,0.25);
+        height: 42px;
+        width: 22px;
+        border-radius: 22px;
+        background: #3fa9e4;
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -20px;
+  }
+  &::-moz-focus-outer {
+    border: 0;
+    }
+}
+.rs-label {
+    
+    position: relative;
+    transform-origin: center center;
+    display: block;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border-radius: 50%;
+    line-height: 50px;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 5px;
+    box-sizing: border-box;
+    border: 2px solid #3fa9e4;
+    margin-top: 10px;
+    left: attr(value);
+    color: #3fa9e4;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 20px;
+    &::after {
+        content: "KM";
+        display: block;
+        font-size: 15px;
+        letter-spacing: 0.07em;
+        margin-top: -2px;
+    }
+    
+}
 </style>
 

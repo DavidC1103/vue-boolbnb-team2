@@ -23,7 +23,7 @@ export default{
     },
     
      mounted(){
-         this.detailApi();
+        this.detailApi();
      }
 
 }
@@ -98,6 +98,8 @@ export default{
                     </li>
                     </ul>
                 </div>
+
+                <div id="map" style="width: 400px; height: 300px"></div>
 
                 
 
