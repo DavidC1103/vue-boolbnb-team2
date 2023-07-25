@@ -11,6 +11,9 @@ export default{
         return{
             store,
             apartment : [],
+            isValidUserEmail : false,
+            isValidUserName : false,
+            isValidUserLastname : false
         }
     },
     methods:{
@@ -20,8 +23,9 @@ export default{
                         this.apartment = this.apartment[0]
             });
         },
-        sendMessage(id) {
 
+        // Funzione per inviare messaggi
+        sendMessage(id) {
             store.messageForm.apartment_id = id;
 
             axios.post(store.apiUrl + 'message', store.messageForm).then(response=>{
@@ -29,8 +33,68 @@ export default{
             })
 
             console.warn(store.messageForm);
+        },
+
+        // Validare il form di invio dei messaggi
+        validateForm(){
+            
+            if (this.isValidUserEmail && this.isValidUserName && this.isValidUserLastname && store.messageForm.text) {
+                return false;
+                
+            } else {
+                return true;
+            }
+        },
+
+        // Validare i campi Nome e Cognome del form messaggi
+        validateUserInput(id) {
+            const inputValue = document.getElementById(id).value;
+    
+            const regex = /^[a-zA-Z\s]{2,}$/;
+    
+            if (regex.test(inputValue)) {
+                document.getElementById(id).classList.add('is-valid');
+                document.getElementById(id).classList.remove('is-invalid');
+                if(id === 'sender_name') this.isValidUserName = true;
+                if(id === 'sender_lastname') this.isValidUserLastname = true;
+                console.log('isValidUserName', this.isValidUserName);
+                console.log('isValidUserLastname', this.isValidUserLastname);
+            } else {
+                document.getElementById(id).classList.add('is-invalid');
+                document.getElementById(id).classList.remove('is-valid');
+                if(id === 'sender_name') this.isValidUserName = false;
+                if(id === 'sender_lastname') this.isValidUserLastname = false;
+            }
+        },
+
+        // Validare il campo Messaggio del form messaggi
+        validateUserMessage(id){
+            if(store.messageForm.text.length >= 3){
+                document.getElementById(id).classList.add('is-valid');
+                document.getElementById(id).classList.remove('is-invalid');
+            } else {
+                document.getElementById(id).classList.add('is-invalid');
+                document.getElementById(id).classList.remove('is-valid');
+            }
+        },
+
+
+        // Validare il campo Email del form messaggi
+        validateUserEmail(id){
+            const validRegex = /^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]{2,})+$/;
+            if(store.messageForm.sender_email.match(validRegex)){
+                document.getElementById(id).classList.add('is-valid');
+                document.getElementById(id).classList.remove('is-invalid');
+                this.isValidUserEmail = true;
+                console.log('isValidUserEmail', this.isValidUserEmail);
+            } else {
+                document.getElementById(id).classList.add('is-invalid');
+                document.getElementById(id).classList.remove('is-valid');
+                this.isValidUserEmail = false;
+            }   
         }
     },
+
     
      mounted(){
         this.detailApi();
@@ -127,7 +191,7 @@ export default{
                                 <label for="sender_name" class="d-block">
                                     <i class="icon" data-feather="user"></i>
                                 </label>
-                                <input v-model="store.messageForm.sender_name" type="text" id="sender_name" class="form-control form-control-lg thick" placeholder="Nome" name="sender_name">
+                                <input v-model="store.messageForm.sender_name" type="text" id="sender_name" class="form-control form-control-lg thick" placeholder="Nome" name="sender_name" @keyup="validateUserInput('sender_name')" autocomplete="off">
                             </div>
 
                             <!-- Lastname -->
@@ -135,7 +199,7 @@ export default{
                                 <label for="sender_lastname" class="d-block">
                                     <i class="icon" data-feather="user"></i>
                                 </label>
-                                <input v-model="store.messageForm.sender_lastname" type="text" id="sender_lastname" class="form-control form-control-lg thick" placeholder="Cognome" name="sender_lastname">
+                                <input v-model="store.messageForm.sender_lastname" type="text" id="sender_lastname" class="form-control form-control-lg thick" placeholder="Cognome" name="sender_lastname" @keyup="validateUserInput('sender_lastname')" autocomplete="off">
                             </div>
 
                             <!-- E-mail -->
@@ -143,17 +207,17 @@ export default{
                                 <label for="sender_email" class="d-block">
                                     <i class="icon" data-feather="mail"></i>
                                 </label>
-                                <input v-model="store.messageForm.sender_email" type="email" id="sender_email" name="sender_email" class="form-control form-control-lg thick" placeholder="E-mail">
+                                <input v-model="store.messageForm.sender_email" type="email" id="sender_email" name="sender_email" class="form-control form-control-lg thick" placeholder="E-mail" @keyup="validateUserEmail('sender_email')" autocomplete="off">
                             </div>
 
                             <!-- Message -->
                             <div class="form-group message">
-                                <textarea v-model="store.messageForm.text" id="text" name="text" class="form-control form-control-lg" rows="7" placeholder="Messaggio"></textarea>
+                                <textarea v-model="store.messageForm.text" id="text" name="text" class="form-control form-control-lg" rows="7" placeholder="Messaggio" @keyup="validateUserMessage('text')"></textarea>
                             </div>
                         
                             <!-- Submit btn -->
                             <div class="text-center">
-                                <button class="btn btn-primary" @click="sendMessage(apartment.id)" tabIndex="-1">Invia messaggio</button>
+                                <button class="btn btn-primary" @click="sendMessage(apartment.id)" tabIndex="-1" :disabled="validateForm()">Invia messaggio</button>
                             </div>
 	                </form>
                 </div>
