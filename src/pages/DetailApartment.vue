@@ -203,6 +203,13 @@
                             <h5>{{ apartment.user.name }}</h5>
                         </div>
                     </div>
+                </div>
+                <div class="description-general my-3">
+                    <div class="price text-center">
+                        <span>a partire da <strong>{{ apartment.price }}</strong> &euro; a notte</span>
+                    </div>
+                </div>
+                <div class="description-general">
     
                     <div class="box-image">
                         <img :src="store.imageUrl + apartment.cover_image" alt="">
@@ -233,9 +240,8 @@
                             <h3>{{ apartment.n_bathrooms }}</h3>
                         </div>
                     </div>
-
                 </div>
-
+                
 
                 <div class="services d-flex">
                     <span>Servizi disponibili:</span>
@@ -382,6 +388,10 @@
                         font-size: 1.4rem;
                         font-weight: 400;
                     }
+                }
+
+                .price{
+                    font-size: 1.5rem;
                 }
             }
 
