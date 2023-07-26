@@ -2,9 +2,13 @@
 import { store } from '../data/store';
 import axios from 'axios';
 import Header from '../components/Header.vue';
+import _card from '../components/partials/_card.vue';
 
 export default {
-  components: { Header },
+  components: { 
+    Header,
+    _card
+  },
   name: 'AdvancedSearch',
   data() {
     return {
@@ -127,7 +131,7 @@ export default {
     <div class="container-card d-flex flex-wrap justify-content-center">
 
       <!-- Single card -->
-      <div
+      <!-- <div
         class="boolbnb-card active reveal"
         v-for="(apartment, index) in arrSearch"
         :key="index"
@@ -139,9 +143,21 @@ export default {
           <p>{{ apartment.address }}</p>
           <h6><strong>{{ apartment.price }} &euro;</strong> a notte</h6>
          
-      </div>
+      </div> -->
 
+      <card 
+        class="boolbnb-card active reveal"
+        v-for="(apartment, index) in arrSearch"
+        :key="index"
+        :class="{'fade-left': inSequence(1, index + 1, 3), 'fade-top': inSequence(2, index + 1, 3), 'fade-right': inSequence(3, index + 1, 3)}"
+        :img="'http://127.0.0.1:8000/storage/' + apartment.img"
+        :title="apartment.title"
+        :address="apartment.address"
+        :price="apartment.price"
+      />
+      
     </div>
+    <!-- @click="$router.push('/detail-apartment/' + apartment.slug)" -->
   </div>
 </template>
 
