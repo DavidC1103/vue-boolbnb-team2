@@ -109,7 +109,8 @@ export default {
     <div
         class="boolbnb-card"
         v-for="apartment in arrSearch"
-        :key="apartment.id">
+        :key="apartment.id"
+        @click="$router.push('/detail-apartment/' + apartment.slug)">
 
         <img :src=" 'http://127.0.0.1:8000/storage/' +  apartment.cover_image ">
         <h3>{{ apartment.title }}</h3>
