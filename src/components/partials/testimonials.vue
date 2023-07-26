@@ -35,7 +35,7 @@ export default {
     :loop="true"
     :autoplay="{
       delay: 3500,
-      disableOnInteraction: false,
+      disableOnInteraction: true,
     }"
     :pagination="{
       clickable: true,

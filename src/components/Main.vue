@@ -2,6 +2,7 @@
 import testimonials from './partials/testimonials.vue';
 import accordion from './partials/accordion.vue';
 import popularSearch from "./partials/_popularSearch.vue";
+import partner from "./partials/_partner.vue";
 import { store } from '../data/store';
 import axios from 'axios';
 
@@ -12,6 +13,7 @@ export default{
         testimonials,
         accordion,
         popularSearch,
+        partner,
         store
 
     },
@@ -86,6 +88,7 @@ export default{
     <popularSearch/>
     <testimonials/>
     <accordion/>
+    <partner/>
 </template>
 
 <style lang="scss">
