@@ -99,52 +99,38 @@ export default {
     <form action="" class="d-flex">
 
       <div class="mb-5">
-                  <h5 class="mb-3">FILTRI</h5>
+          <h5 class="mb-3">FILTRI</h5>
 
-                  <!-- INPUT RANGE -->
-                  <div class="range-slider">
-                    <span id="rs-bullet" class="rs-label">{{ store.rangeValue }}</span>
-                    <input id="rs-range-line" class="rs-range" type="range" v-model="store.rangeValue"  min="0" max="200" step="10" @change="searchApartments()">
-                    
-                  </div>
+          <!-- INPUT RANGE -->
+          <div class="range-slider">
+            <span id="rs-bullet" class="rs-label">{{ store.rangeValue }}</span>
+            <input id="rs-range-line" class="rs-range" type="range" v-model="store.rangeValue"  min="0" max="200" step="10" @change="searchApartments()">
+            
+          </div>
+          
+          <div class="box-minmax">
+            <span>0</span><span>200</span>
+          </div>
+
+          <div class="d-grid gap-2">
+            <!-- Checkboxes -->
+            <div class="d-flex flex-wrap mt-4">
+            
+            <div class="form-check" v-for=" service in store.arrServices" :key="service.id">
+              <input class="form-check-input" type="checkbox" value="service.id" id="jobTitleCheckbox1" @click="refreshSearch(service.id)">
+              <label class="form-check-label d-flex" for="jobTitleCheckbox1">{{service.name}} <span class="ms-auto"></span></label>
+            </div>
+
+          </div>
+        </div>
                   
-                  <div class="box-minmax">
-                    <span>0</span><span>200</span>
-                  </div>
-
-                  <div class="d-grid gap-2">
-                    <!-- Checkboxes -->
-                    <div class="d-flex flex-wrap mt-4">
-                    
-                    <div class="form-check" v-for=" service in store.arrServices" :key="service.id">
-                      <input class="form-check-input" type="checkbox" value="service.id" id="jobTitleCheckbox1" @click="refreshSearch(service.id)">
-                      <label class="form-check-label d-flex" for="jobTitleCheckbox1">{{service.name}} <span class="ms-auto"></span></label>
-                    </div>
-
-                  </div>
-                </div>
-
-                  
-                </div>
+      </div>
     </form>
+
     <!-- Cards container -->
-    <div class="container-card d-flex flex-wrap justify-content-center">
+    <div class="container-card d-flex flex-wrap justify-content-center pb-5">
 
-      <!-- Single card -->
-      <!-- <div
-        class="boolbnb-card active reveal"
-        v-for="(apartment, index) in arrSearch"
-        :key="index"
-        :class="{'fade-left': inSequence(1, index + 1, 3), 'fade-top': inSequence(2, index + 1, 3), 'fade-right': inSequence(3, index + 1, 3)}"
-        @click="$router.push('/detail-apartment/' + apartment.slug)">
-
-          <img :src=" 'http://127.0.0.1:8000/storage/' +  apartment.cover_image ">
-          <h3>{{ apartment.title }}</h3>
-          <p>{{ apartment.address }}</p>
-          <h6><strong>{{ apartment.price }} &euro;</strong> a notte</h6>
-         
-      </div> -->
-
+    
       <CardItem
         class="boolbnb-card active reveal"
         v-for="(apartment, index) in arrSearch"
@@ -176,20 +162,6 @@ export default {
 .container-card{
   width: 100%;
   height: 100%;
-  .boolbnb-card{
-    flex-basis: 30%;
-    margin: 10px 20px;
-    img{
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-
-    p{
-      color: gray;
-    }
-  }
 }
 
 
