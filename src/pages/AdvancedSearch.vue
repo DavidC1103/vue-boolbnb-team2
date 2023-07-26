@@ -23,7 +23,7 @@ export default {
         services: store.servicesToSearch
       };
 
-      console.log('requestData:', requestData.radius);
+      // console.log('requestData:', requestData.radius);
 
       axios.post(store.apiUrl + 'search', requestData)
         .then(response => {
@@ -38,6 +38,29 @@ export default {
         store.servicesToSearch.push(id)
       }
       this.searchApartments();
+    },
+    inSequence(a, b, c) {
+      let d = b - a;
+      if (d == 0) {
+        return 1;
+      }
+      if (d < 0) {
+        if (c >= 0) {
+          return 0;
+        }
+        if (d % c == 0) {
+          return 1;
+        }
+        return 0;
+      } else {
+        if (c <= 0) {
+          return 0;
+        }
+        if (d % c == 0) {
+          return 1;
+        }
+        return 0;
+      }
     }
   },
   mounted() {
@@ -59,7 +82,6 @@ export default {
     }
   }
 }
-
 </script>
 
 
@@ -68,60 +90,60 @@ export default {
   <Header class="header-bg"/>
 
   <div class="container advanced">
-  <h3>Risultati per: <span class="">{{ store.inputText  }}</span></h3>
+    <h3>Risultati per: <span class="">{{ store.inputText  }}</span></h3>
 
-  
-  <form action="" class="d-flex">
+    <form action="" class="d-flex">
 
-    <div class="mb-5">
-                <h5 class="mb-3">FILTRI</h5>
+      <div class="mb-5">
+                  <h5 class="mb-3">FILTRI</h5>
 
-                <!-- INPUT RANGE -->
-                <div class="range-slider">
-                  <span id="rs-bullet" class="rs-label">{{ store.rangeValue }}</span>
-                  <input id="rs-range-line" class="rs-range" type="range" v-model="store.rangeValue"  min="0" max="200" step="10" @change="searchApartments()">
+                  <!-- INPUT RANGE -->
+                  <div class="range-slider">
+                    <span id="rs-bullet" class="rs-label">{{ store.rangeValue }}</span>
+                    <input id="rs-range-line" class="rs-range" type="range" v-model="store.rangeValue"  min="0" max="200" step="10" @change="searchApartments()">
+                    
+                  </div>
                   
-                </div>
-                
-                <div class="box-minmax">
-                  <span>0</span><span>200</span>
-                </div>
-
-                <div class="d-grid gap-2">
-                  <!-- Checkboxes -->
-                  <div class="d-flex flex-wrap mt-4">
-                  
-                  <div class="form-check" v-for=" service in store.arrServices" :key="service.id">
-                    <input class="form-check-input" type="checkbox" value="service.id" id="jobTitleCheckbox1" @click="refreshSearch(service.id)">
-                    <label class="form-check-label d-flex" for="jobTitleCheckbox1">{{service.name}} <span class="ms-auto"></span></label>
+                  <div class="box-minmax">
+                    <span>0</span><span>200</span>
                   </div>
 
+                  <div class="d-grid gap-2">
+                    <!-- Checkboxes -->
+                    <div class="d-flex flex-wrap mt-4">
+                    
+                    <div class="form-check" v-for=" service in store.arrServices" :key="service.id">
+                      <input class="form-check-input" type="checkbox" value="service.id" id="jobTitleCheckbox1" @click="refreshSearch(service.id)">
+                      <label class="form-check-label d-flex" for="jobTitleCheckbox1">{{service.name}} <span class="ms-auto"></span></label>
+                    </div>
+
+                  </div>
                 </div>
-              </div>
 
-                
-              </div>
-  </form>
-  <!-- Cards container -->
-  <div class="container-card d-flex flex-wrap justify-content-center">
+                  
+                </div>
+    </form>
+    <!-- Cards container -->
+    <div class="container-card d-flex flex-wrap justify-content-center">
 
-<!-- Single card -->
-    <div
-        class="boolbnb-card"
-        v-for="apartment in arrSearch"
-        :key="apartment.id">
+      <!-- Single card -->
+      <div
+        class="boolbnb-card active reveal"
+        v-for="(apartment, index) in arrSearch"
+        :key="index"
+        :class="{'fade-left': inSequence(1, index + 1, 3), 'fade-top': inSequence(2, index + 1, 3), 'fade-right': inSequence(3, index + 1, 3)}">
 
-        <img :src=" 'http://127.0.0.1:8000/storage/' +  apartment.cover_image ">
-        <h3>{{ apartment.title }}</h3>
-        <p>{{ apartment.address }}</p>
-        <h6><strong>{{ apartment.price }} &euro;</strong> a notte</h6>
+          <img :src=" 'http://127.0.0.1:8000/storage/' +  apartment.cover_image ">
+          <h3>{{ apartment.title }}</h3>
+          <p>{{ apartment.address }}</p>
+          <h6><strong>{{ apartment.price }} &euro;</strong> a notte</h6>
 
-        <span><router-link :to="{name:'detailApartment', params:{slug:apartment.slug}}">Dettaglio</router-link></span>
-        
+          <span><router-link :to="{name:'detailApartment', params:{slug:apartment.slug}}">Dettaglio</router-link></span>
+          
+      </div>
+
     </div>
-
-</div>
-</div>
+  </div>
 </template>
 
 
@@ -138,26 +160,26 @@ export default {
   }
 }
 .container-card{
-            width: 100%;
-            height: 100%;
-            .boolbnb-card{
-                flex-basis: 30%;
-                margin: 10px 20px;
-                img{
-                    width: 100%;
-                    height: 250px;
-                    object-fit: cover;
-                    border-radius: 10px;
-                }
+  width: 100%;
+  height: 100%;
+  .boolbnb-card{
+    flex-basis: 30%;
+    margin: 10px 20px;
+    img{
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
 
-                p{
-                    color: gray;
-                }
-            }
-        }
+    p{
+      color: gray;
+    }
+  }
+}
 
 
-        .box-minmax{
+.box-minmax{
   margin-top: 10px;
   width: 608px;
   display: flex;
@@ -170,89 +192,89 @@ export default {
 }
 
 .rs-range {
-    margin-top: 29px;
-    width: 600px;
+  margin-top: 29px;
+  width: 600px;
+  appearance: none;
+  -webkit-appearance: none;
+  &:focus {
+    outline: none;
+  }
+  &::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 1px;
+    cursor: pointer;
+    box-shadow: none;
+    background: #3fa9e4;
+    border-radius: 0px;
+    border: 0px solid #010101;
+  }
+  &::-moz-range-track {
+    width: 100%;
+    height: 1px;
+    cursor: pointer;
+    box-shadow: none;
+    background: #3fa9e4;
+    border-radius: 0px;
+    border: 0px solid #010101;
+  }
+
+  &::-webkit-slider-thumb {
+    box-shadow: none;
+    border: 0px solid #ffffff;
+    box-shadow: 0px 10px 10px rgba(0,0,0,0.25);
+    height: 42px;
+    width: 22px;
+    border-radius: 22px;
+    background: #3fa9e4;
+    cursor: pointer;
     -webkit-appearance: none;
-    &:focus {
-        outline: none;
-    }
-    &::-webkit-slider-runnable-track {
-        width: 100%;
-        height: 1px;
-        cursor: pointer;
-        box-shadow: none;
-        background: #3fa9e4;
-        border-radius: 0px;
-        border: 0px solid #010101;
-    }
-    &::-moz-range-track {
-        width: 100%;
-        height: 1px;
-        cursor: pointer;
-        box-shadow: none;
-        background: #3fa9e4;
-        border-radius: 0px;
-        border: 0px solid #010101;
-    }
-  
-    &::-webkit-slider-thumb {
-        box-shadow: none;
-        border: 0px solid #ffffff;
-        box-shadow: 0px 10px 10px rgba(0,0,0,0.25);
-        height: 42px;
-        width: 22px;
-        border-radius: 22px;
-        background: #3fa9e4;
-        cursor: pointer;
-        -webkit-appearance: none;
-        margin-top: -20px;
-    }
+    margin-top: -20px;
+  }
   &::-moz-range-thumb{
-        box-shadow: none;
-        border: 0px solid #3fa9e4;
-        box-shadow: 0px 10px 10px rgba(0,0,0,0.25);
-        height: 42px;
-        width: 22px;
-        border-radius: 22px;
-        background: #3fa9e4;
-        cursor: pointer;
-        -webkit-appearance: none;
-        margin-top: -20px;
+    box-shadow: none;
+    border: 0px solid #3fa9e4;
+    box-shadow: 0px 10px 10px rgba(0,0,0,0.25);
+    height: 42px;
+    width: 22px;
+    border-radius: 22px;
+    background: #3fa9e4;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    margin-top: -20px;
   }
   &::-moz-focus-outer {
     border: 0;
-    }
+  }
 }
 .rs-label {
-    
-    position: relative;
-    transform-origin: center center;
+  position: relative;
+  transform-origin: center center;
+  display: block;
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  border-radius: 50%;
+  line-height: 50px;
+  text-align: center;
+  font-weight: bold;
+  padding-top: 5px;
+  box-sizing: border-box;
+  border: 2px solid #3fa9e4;
+  margin-top: 10px;
+  left: attr(value);
+  color: #3fa9e4;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 20px;
+  &::after {
+    content: "KM";
     display: block;
-    width: 50px;
-    height: 50px;
-    background: transparent;
-    border-radius: 50%;
-    line-height: 50px;
-    text-align: center;
-    font-weight: bold;
-    padding-top: 5px;
-    box-sizing: border-box;
-    border: 2px solid #3fa9e4;
-    margin-top: 10px;
-    left: attr(value);
-    color: #3fa9e4;
-    font-style: normal;
-    font-weight: normal;
-    line-height: normal;
-    font-size: 20px;
-    &::after {
-        content: "KM";
-        display: block;
-        font-size: 15px;
-        letter-spacing: 0.07em;
-        margin-top: -2px;
-    }
-    
+    font-size: 15px;
+    letter-spacing: 0.07em;
+    margin-top: -2px;
+  } 
 }
 </style>
 

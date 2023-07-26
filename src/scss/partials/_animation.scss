@@ -16,6 +16,9 @@
 .active.fade-right {
     animation: fade-right 1s ease-in;
 }
+.active.fade-top {
+    animation: fade-top 1s ease-in;
+}
 @keyframes fade-left {
     0% {
       transform: translateX(-100px);
@@ -34,6 +37,17 @@
     }
     100% {
       transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-top {
+    0% {
+      transform: translateY(75px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
       opacity: 1;
     }
   }
