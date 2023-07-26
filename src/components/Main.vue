@@ -48,7 +48,8 @@ export default{
                 <div
                     class="boolbnb-card active reveal fade-left"
                     v-for="apartment in store.arrApartments"
-                    :key="apartment.id">
+                    :key="apartment.id"
+                    @click="$router.push('/detail-apartment/' + apartment.slug)">
 
                     <img :src=" 'http://127.0.0.1:8000/storage/' +  apartment.cover_image ">
                     <div class="description-card">

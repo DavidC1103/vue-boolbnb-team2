@@ -131,15 +131,14 @@ export default {
         class="boolbnb-card active reveal"
         v-for="(apartment, index) in arrSearch"
         :key="index"
-        :class="{'fade-left': inSequence(1, index + 1, 3), 'fade-top': inSequence(2, index + 1, 3), 'fade-right': inSequence(3, index + 1, 3)}">
+        :class="{'fade-left': inSequence(1, index + 1, 3), 'fade-top': inSequence(2, index + 1, 3), 'fade-right': inSequence(3, index + 1, 3)}"
+        @click="$router.push('/detail-apartment/' + apartment.slug)">
 
           <img :src=" 'http://127.0.0.1:8000/storage/' +  apartment.cover_image ">
           <h3>{{ apartment.title }}</h3>
           <p>{{ apartment.address }}</p>
           <h6><strong>{{ apartment.price }} &euro;</strong> a notte</h6>
-
-          <span><router-link :to="{name:'detailApartment', params:{slug:apartment.slug}}">Dettaglio</router-link></span>
-          
+         
       </div>
 
     </div>
