@@ -3,6 +3,7 @@ import Home from "./pages/Home.vue";
 import Apartments from "./pages/Apartments.vue";
 import AdvancedSearch from "./pages/AdvancedSearch.vue";
 import DetailApartment from "./pages/DetailApartment.vue";
+import AboutUs from "./pages/AboutUs.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -28,6 +29,11 @@ const router = createRouter({
         path: '/detail-apartment/:slug',
         name: 'detailApartment',
         component: DetailApartment    // anche questo va scritto dopo aver creato il file Home.vue
+      },
+      {
+        path: '/about-us',
+        name: 'about-us',
+        component: AboutUs    // anche questo va scritto dopo aver creato il file Home.vue
       },
 
   ]
