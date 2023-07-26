@@ -4,7 +4,7 @@
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { Navigation } from 'swiper/modules';
+import { Navigation, Autoplay } from 'swiper/modules';
 
 
 export default {
@@ -20,7 +20,7 @@ export default {
       },
       setup(){
         return {
-          modules: [ Navigation ]
+          modules: [ Navigation, Autoplay ]
         };
       },
 }
@@ -29,11 +29,19 @@ export default {
 
 <template>
 
-  <h2>Città popolari </h2>
+  <h2 class="text-center">Città popolari </h2>
 
+  <div class="container-fluid">
+
+  
 <swiper
-    :slidesPerView="5"
-    :spaceBetween="30"
+    :slidesPerView="4"
+    :spaceBetween="-360"
+    :loop="true"
+    :autoplay="{
+      delay: 1500,
+      disableOnInteraction: true,
+    }"
     :pagination="{
       clickable: true,
     }"
@@ -41,11 +49,11 @@ export default {
     class="mySwiper"
   >
     <!-- 1 -->
-    <swiper-slide class="first">
+    <swiper-slide>
       <div class="card-popular-search">
         <img src="../../assets/popularSearch/roma.jpg" alt="">
-        <h3>Roma</h3>
       </div>
+      <h3>Roma</h3>
     </swiper-slide>
 
     <!-- 2 -->
@@ -120,13 +128,24 @@ export default {
       </div>
     </swiper-slide>
 
-</swiper>
+    <!-- <swiper-slide>
+      <div class="card-popular-search">
+        <img src="" alt="">
+      
+      </div>
+    </swiper-slide> -->
+
+  </swiper>
+</div>
 
 </template>
 
 
 
 <style lang="scss" scoped>
+
+
+
 h3{
   font-size: 1.5rem;
   font-weight: 700;
@@ -134,31 +153,28 @@ h3{
   padding-top: 20px;
 }
 h2{
-  margin-left: 250px;
+  font-size: 2.5rem;
   margin-top: 50px;
   margin-bottom: 50px;
 }
 
-card-popular-search{
-  width: 300px;
-  background-color: red;
+.card-popular-search{
+  width: 360px;
   border-radius: 20px;
   overflow: hidden;
+  img{
+    width: 100%;
+    border-radius: 20px;
+    cursor: pointer ;
+    &:hover {
+    filter: saturate(150%);
+    
+    }
+  }
 }
 
 .first{
   margin-left: 250px;
 }
-.swiper-slide{
-  width: 300px;
-  cursor: pointer;
-  &:hover img{
-    filter: saturate(150%);
-    
-  }
-  img{
-    width: 100%;
-    border-radius: 20px;
-  }
-}
+
 </style>
