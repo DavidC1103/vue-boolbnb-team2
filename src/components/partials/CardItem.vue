@@ -8,7 +8,7 @@ export default {
         img : String,
         title : String,
         address: String,
-        price : Number
+        price : String
     }
 }
 </script>

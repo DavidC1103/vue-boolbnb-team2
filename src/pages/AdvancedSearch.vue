@@ -150,14 +150,13 @@ export default {
         v-for="(apartment, index) in arrSearch"
         :key="index"
         :class="{'fade-left': inSequence(1, index + 1, 3), 'fade-top': inSequence(2, index + 1, 3), 'fade-right': inSequence(3, index + 1, 3)}"
-        :img="'http://127.0.0.1:8000/storage/' + apartment.img"
+        :img="'http://127.0.0.1:8000/storage/' + apartment.cover_image"
         :title="apartment.title"
         :address="apartment.address"
         :price="apartment.price"
       />
       
     </div>
-    <!-- @click="$router.push('/detail-apartment/' + apartment.slug)" -->
   </div>
 </template>
 
