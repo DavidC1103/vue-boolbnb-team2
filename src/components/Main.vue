@@ -76,9 +76,6 @@ export default{
                         </div>
                         <h5><strong>&euro; {{ apartment.price }}</strong><span>/ notte</span></h5>
                     </div>
-
-                    
-                    <!-- <router-link :to="{name:'detailApartment', params:{slug:apartment.slug}}">Dettaglio</router-link> -->
                 </div>
                 
                 
