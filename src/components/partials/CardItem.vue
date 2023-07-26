@@ -2,7 +2,7 @@
 import { store } from '../../data/store';
 
 export default {
-    name: 'card',
+    name: 'CardItem',
 
     props:{
         img : String,

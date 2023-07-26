@@ -2,12 +2,12 @@
 import { store } from '../data/store';
 import axios from 'axios';
 import Header from '../components/Header.vue';
-import _card from '../components/partials/_card.vue';
+import CardItem from '../components/partials/CardItem.vue';
 
 export default {
   components: { 
     Header,
-    _card
+    CardItem
   },
   name: 'AdvancedSearch',
   data() {
@@ -145,7 +145,7 @@ export default {
          
       </div> -->
 
-      <card 
+      <CardItem
         class="boolbnb-card active reveal"
         v-for="(apartment, index) in arrSearch"
         :key="index"
