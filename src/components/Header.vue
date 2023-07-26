@@ -42,9 +42,8 @@ import jumbotron from './partials/jumbotron.vue'
                         <div class="d-flex mb-0 mt-4">
                             <ul class="navbar-menu d-flex">
                                 <li class="nav-link"><router-link :to='{ name: "home"}'>Home</router-link></li>
-                                <li class="nav-link ps-4"><router-link :to='{ name: "apartments"}'>Immobili</router-link></li>
-                                <li class="nav-link ps-4"><a href="">Contatti</a></li>
-                                <li class="nav-link ps-4"><a href="">About Us</a></li>
+                                <li class="nav-link ps-4"><router-link :to='{ name: "advanced-search"}'>Ricerca Avanzata</router-link></li>
+                                <li class="nav-link ps-4"><router-link :to='{ name: "about-us"}'>Chi siamo</router-link></li>
                             </ul>
                         </div>
     
