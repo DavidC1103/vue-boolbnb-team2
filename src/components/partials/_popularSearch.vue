@@ -144,10 +144,7 @@ export default {
 
 <style lang="scss" scoped>
 
-.cont{
-  max-width: 1800px;
-  margin-left: 300px;
-}
+
 
 h3{
   font-size: 1.5rem;
