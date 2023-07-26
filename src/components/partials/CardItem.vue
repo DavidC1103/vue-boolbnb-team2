@@ -49,6 +49,7 @@ export default {
         .description-card{
             h3{
                 padding: 20px;
+                font-size: 22px
             }
             p{
                 color: gray;
@@ -56,7 +57,7 @@ export default {
                 padding: 0 20px 20px 20px;
             }
             h5{
-                padding: 20px 20px 0 20px;
+                padding: 20px;
                 span{
                     font-size: 16px;
                     color:gray;
