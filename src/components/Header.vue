@@ -18,9 +18,9 @@ import jumbotron from './partials/jumbotron.vue'
 
 <template>
 
-    <header>
+    <header id="nav" class="container-fluid">
 
-        <div class="wrapper">
+        <div class="wrapper d-flex justify-content-sm-between">
 
             <nav>
 
@@ -29,16 +29,16 @@ import jumbotron from './partials/jumbotron.vue'
                 </div>
                 
                 <div class="menu-center d-none d-md-block">
-                    <ul class="navbar-menu">
-                        <li class="nav-link"><router-link :to='{ name: "home"}'>Home</router-link></li>
-                        <li class="nav-link ps-4"><router-link :to='{ name: "advanced-search"}'>Ricerca Avanzata</router-link></li>
-                        <li class="nav-link ps-4"><router-link :to='{ name: "about-us"}'>Chi siamo</router-link></li>
+                    <ul>
+                        <li class="item-link"><router-link :to='{ name: "home"}'>Home</router-link></li>
+                        <li class="item-link ps-4"><router-link :to='{ name: "advanced-search"}'>Ricerca Avanzata</router-link></li>
+                        <li class="item-link ps-4"><router-link :to='{ name: "about-us"}'>Chi siamo</router-link></li>
                     </ul>
                 </div>
                 
                 <div class="right-menu d-none d-md-block">
-                    <ul class="navbar-menu">
-                        <li class="nav-link ps-4"> <a href="http://127.0.0.1:8000/login-register">Login</a> <span>|</span> <a href="http://127.0.0.1:8000/login-register">Registrati</a> <i class="fa-solid fa-globe"></i></li>
+                    <ul>
+                        <li class="item-link ps-4"> <a href="http://127.0.0.1:8000/login-register">Login</a> <span>|</span> <a href="http://127.0.0.1:8000/login-register">Registrati</a> <i class="fa-solid fa-globe"></i></li>
                     </ul>
                 </div>
 
@@ -101,11 +101,12 @@ header {
                 display: flex;
                 align-items: center;
                 height: 100%;
-                .navbar-menu{
+                ul{
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     height: 100%;
+                    padding-left: 0 !important;
                     //debug
                     border: 1px solid green;
                     li{
@@ -148,11 +149,12 @@ header {
                 display: flex;
                 align-items: center;
                 height: 100%;
-                .navbar-menu{
+                ul{
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     height: 100%;
+                    padding-left: 0 !important;
                     //debug
                     border: 1px solid blue;
                     li{
@@ -197,7 +199,7 @@ header {
 //
 // TODO: SISTEMARE COLORI CON VARIABILI SETTATE DA MARCOCNC
 //
-.nav-link{
+.item-link{
     &:hover{
         cursor: pointer;
     }
