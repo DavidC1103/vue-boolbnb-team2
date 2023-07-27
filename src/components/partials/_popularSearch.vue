@@ -1,6 +1,6 @@
 
 <script>
-
+import { store } from '../../data/store';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -17,6 +17,7 @@ export default {
         },
         data(){
           return{
+            store,
             cities: [
               {
                 id: 1,
@@ -90,6 +91,11 @@ export default {
       methods:{
         getImage(img){
             return new URL(img, import.meta.url).href;
+        },
+
+        citytoSearch(cityName){
+          store.inputText = cityName;
+          this.$router.push({ name: "advanced-search", query: { city: cityName } });
         }
       }
 }
@@ -103,106 +109,29 @@ export default {
   <div class="container-fluid">
 
   
-<swiper
-    :slidesPerView= "4"
-    :spaceBetween="-360"
-    :loop="true"
-    :pagination="{
-      clickable: true,
-    }"
-    :modules="modules"
-    class="mySwiper"
-  >
-    
-    <swiper-slide class="linear" v-for="city in cities" :key="city.id">
-      <div class="card-popular-search">
-        <img :src="getImage(`../../assets/popularSearch/${city.image}`)" alt="">
-      </div>
-      <h3 >{{ city.name }}</h3>
-    </swiper-slide>
+    <swiper
+      :slidesPerView= "4"
+      :spaceBetween="-360"
+      :loop="true"
+      :pagination="{
+        clickable: true,
+      }"
+      :modules="modules"
+      class="mySwiper"
+    >
+      
+      <swiper-slide class="linear" 
+      v-for="city in cities" 
+      :key="city.id"
+      @click="citytoSearch(city.name)">
+        <div class="card-popular-search">
+          <img :src="getImage(`../../assets/popularSearch/${city.image}`)" alt="">
+        </div>
+        <h3 >{{ city.name }}</h3>
+      </swiper-slide>
 
-<!--     
-    <swiper-slide class="linear">
-      <div class="card-popular-search">
-        <img src="../../assets/popularSearch/firenze.jpg" alt="">
-        <h3>Firenze</h3>
-      </div>
-    </swiper-slide>
-    
-    
-    <swiper-slide class="linear">
-      <div class="card-popular-search">
-        <img src="../../assets/popularSearch/venezia.jpg" alt="">
-        <h3>Venezia</h3>
-      </div>
-    </swiper-slide>
-
-    <swiper-slide class="linear">
-      <div class="card-popular-search">
-        <img src="../../assets/popularSearch/napoli.jpg" alt="">
-        <h3>Napoli</h3>
-      </div>
-    </swiper-slide>
-    
-    <swiper-slide class="linear">
-      <div class="card-popular-search">
-        <img src="../../assets/popularSearch/bologna.jpg" alt="">
-        <h3>Bologna</h3>
-      </div>
-    </swiper-slide>
-
-    <swiper-slide class="linear">
-      <div class="card-popular-search">
-        <img src="../../assets/popularSearch/padova.jpg" alt="">
-        <h3>Padova</h3>
-      </div>
-    </swiper-slide>
-    
-    <swiper-slide class="linear">
-      <div class="card-popular-search">
-        <img src="../../assets/popularSearch/milano.jpg" alt="">
-        <h3>Milano</h3>
-      </div>
-    </swiper-slide>
-
-    <swiper-slide class="linear">
-      <div class="card-popular-search">
-        <img src="../../assets/popularSearch/torino.jpg" alt="">
-        <h3>Torino</h3>
-      </div>
-    </swiper-slide>
-    
-    <swiper-slide class="linear">
-      <div class="card-popular-search">
-        <img src="../../assets/popularSearch/genova.jpg" alt="">
-        <h3>Genova</h3>
-      </div>
-    </swiper-slide>
-
-    <swiper-slide class="linear">
-      <div class="card-popular-search">
-        <img src="../../assets/popularSearch/brescia.jpg" alt="">
-        <h3>Brescia</h3>
-      </div>
-    </swiper-slide>
-
-    <swiper-slide class="linear">
-      <div class="card-popular-search">
-        <img src="../../assets/popularSearch/bari.jpg" alt="">
-        <h3>Bari</h3>
-      </div>
-    </swiper-slide>
-
-    <swiper-slide class="linear">
-      <div class="card-popular-search">
-        <img src="../../assets/popularSearch/rimini.jpg" alt="">
-        <h3>Rimini</h3>
-      </div>
-    </swiper-slide> -->
-
-
-  </swiper>
-</div>
+    </swiper>
+  </div>
 
 </template>
 
