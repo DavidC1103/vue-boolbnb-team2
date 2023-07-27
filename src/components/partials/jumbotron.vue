@@ -30,7 +30,6 @@ export default {
         </div>
         <div class="jumbo-faded"></div>
     </div>
-  
 </template>
 
 <style lang="scss">
@@ -51,7 +50,7 @@ export default {
             font-weight: bold;
             margin-bottom: 60px;
             padding-top: 20px;
-						font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+			font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         }
         h2{
             font-size: 1.4rem;
@@ -91,7 +90,9 @@ export default {
 	padding-top: 25%;
 	.layer{
 		width: 70%;
-		display: none;
+		// display: none;
+		// debug
+		border: 1px solid red;
 		h1{
 			font-size: 1.6rem;
 		}
