@@ -205,12 +205,16 @@ export default{
     flex-basis: 70% !important;
 
     img{
-        height: 150px;
+        height: 160px !important;
     }
     .description-card{
         h3{
             font-size: 1rem;
             margin-bottom: 0px;
+            padding: 8px 20px !important;
+        }
+        h5{
+            font-size: 1.2rem;
             padding: 8px 20px !important;
         }
     }
@@ -221,6 +225,7 @@ export default{
             width: 15px !important;
         }
         div{
+            margin-right: 12px !important;
             span{
                 font-size: 0.8rem;
             }
@@ -229,6 +234,7 @@ export default{
 
 }
 }
+
 
 
 </style>

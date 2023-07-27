@@ -183,7 +183,7 @@ details[open] .faq__summary:after {
 }
 
 .faq__summary {
-    font-size: 1.4rem; 
+    font-size: 1.3rem; 
 }
 
 .faq__summary:focus {
@@ -213,10 +213,10 @@ details[open] .faq__summary:after {
 	width: 80%;
   padding: 25px 12.5px;
   .faq__heading{
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
   .faq__summary{
-    font-size: 1.2rem;
+    font-size: 0.8rem;
   }
 }
 }

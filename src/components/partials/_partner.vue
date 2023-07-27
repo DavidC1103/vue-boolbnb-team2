@@ -157,4 +157,33 @@ export default {
   }
 
 
+  @media (min-width: 0 ) and (max-width: 575px){
+
+    .bg-partner{
+  background-color: #f7f7f7;
+  padding-bottom: 40px;
+  .partner-container{
+    max-width: 1000px;
+    margin: 0 auto;
+    cursor: grab;
+
+    h2{
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+    .box-partner{
+      height: 60px;
+      margin-right: 0px;
+      //  background-color: red;
+      //  border: 1px solid black;
+       img{
+        height: 60px;
+        
+       }
+      }
+    }
+  }
+
+}
+
 </style>

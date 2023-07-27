@@ -50,12 +50,12 @@ export default {
         <div class="box-image">
           <img src="../../assets/testimonials/new-martina.jpg" />
         </div>
-  
         <div class="description">
           <img src="../../assets/testimonials/quote.png" alt="">
           <p>Ho trovato una bella stanza e la mia prenotazione è stata accettata pochi minuti dopo averla inviata.</p>
-          <p>- New Martina, Napoli</p>
+          <p class="last">- New Martina, Napoli</p>
         </div>
+  
     </div> 
   </swiper-slide>
 
@@ -70,7 +70,7 @@ export default {
         <div class="description">
           <img src="../../assets/testimonials/quote.png" alt="">
           <p>Prenota anche tu su BoolBnB!</p>
-          <p>- Victor, Napoli</p>
+          <p class="last">- Victor, Napoli</p>
         </div>
     </div> 
     
@@ -87,7 +87,7 @@ export default {
         <div class="description">
           <img src="../../assets/testimonials/quote.png" alt="">
           <p>modalità di prenotazione molto chiara e veloce, approvato!</p>
-          <p>- Lorenzo, Roma</p>
+          <p class="last">- Lorenzo, Roma</p>
         </div>
     </div> 
     
@@ -133,4 +133,44 @@ export default {
     }
   }
 }
+
+@media (min-width: 0 ) and (max-width: 575px){
+
+  .background-testimonials{
+  height: 10%;
+  background-color: #f7f7f7;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  .box-image{
+    width: 70%;
+    margin-right: 0px;
+    img{
+      width: 100%;
+    }
+  }
+  .description{
+    width: 70%;
+    padding-bottom: 50px;
+
+    img{
+      width: 18px;
+    }
+    p{
+      padding-top: 10px;
+      font-size: 1rem;
+      font-weight: 500;
+      &:last-of-type{
+        font-size: 0.6rem;
+        padding-bottom: 20px;
+      }
+    }
+  }
+}
+}
+
+.xsm-none{
+  display: none;
+}
+
 </style>
