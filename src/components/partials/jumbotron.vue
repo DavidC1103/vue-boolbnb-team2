@@ -12,7 +12,7 @@ export default {
 		methods:{
 			getResult(city){
 				store.inputText = city;
-				$router.push('/advanced-search');
+				this.$router.push({ name: "advanced-search", query: { city: city } });
 			}
 		}
 }
@@ -25,12 +25,11 @@ export default {
             <div class="search">
                 <input id='search-btn' type='checkbox'/>
                 <label for='search-btn'>Show search bar</label>
-                <input @keyup.enter="$router.push('/advanced-search') " v-model="store.inputText" id='search-bar' type='text' placeholder='Cerca località'/>
+                <input @keyup.enter="getResult(store.inputText)" v-model="store.inputText" id='search-bar' type='text' placeholder='Inserisci indirizzo'/>      
             </div>
         </div>
         <div class="jumbo-faded"></div>
     </div>
-  
 </template>
 
 <style lang="scss">
@@ -51,7 +50,7 @@ export default {
             font-weight: bold;
             margin-bottom: 60px;
             padding-top: 20px;
-						font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+			font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         }
         h2{
             font-size: 1.4rem;
@@ -91,7 +90,9 @@ export default {
 	padding-top: 25%;
 	.layer{
 		width: 70%;
-		display: none;
+		// display: none;
+		// debug
+		// border: 1px solid red;
 		h1{
 			font-size: 1.6rem;
 		}

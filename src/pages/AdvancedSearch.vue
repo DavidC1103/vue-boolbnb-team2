@@ -140,6 +140,7 @@ export default {
         :title="apartment.title"
         :address="apartment.address"
         :price="apartment.price"
+        @click="$router.push('/detail-apartment/' + apartment.slug)"
       />
       
     </div>
