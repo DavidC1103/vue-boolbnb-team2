@@ -22,7 +22,58 @@ export default {
       },
       setup(){
         return {
-          modules: [ Navigation, Autoplay, Virtual ]
+          modules: [ Navigation, Autoplay, Virtual ],
+
+          cities: [
+            {
+              name: 'Roma',
+              image: 'roma.jpg'
+            },
+            {
+              name: 'Firenze',
+              image: 'firenze.jpg'
+            },
+            {
+              name: 'Venezia',
+              image: 'venezia.jpg'
+            },
+            {
+              name: 'Napoli',
+              image: 'napoli.jpg'
+            },
+            {
+              name: 'Bologna',
+              image: 'bologna.jpg'
+            },
+            {
+              name: 'Padova',
+              image: 'padova.jpg'
+            },
+            {
+              name: 'Milano',
+              image: 'milano.jpg'
+            },
+            {
+              name: 'Torino',
+              image: 'torino.jpg'
+            },
+            {
+              name: 'Genova',
+              image: 'genova.jpg'
+            },
+            {
+              name: 'Brescia',
+              image: 'brescia.jpg'
+            },
+            {
+              name: 'Bari',
+              image: 'bari.jpg'
+            },
+            {
+              name: 'Rimini',
+              image: 'rimini.jpg'
+            },
+          ]
         };
       },
 }
@@ -51,7 +102,7 @@ export default {
       <div class="card-popular-search">
         <img src="../../assets/popularSearch/roma.jpg" alt="">
       </div>
-      <h3>Roma</h3>
+      <h3 >Roma</h3>
     </swiper-slide>
 
     <!-- 2 -->
