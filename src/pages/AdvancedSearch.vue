@@ -71,7 +71,6 @@ export default {
     store.servicesToSearch = [];
     store.rangeValue = 20;
     this.searchApartments();
-    store.cityClicked = this.$route.query.city;
 
     var rangeSlider = document.getElementById("rs-range-line");
     var rangeBullet = document.getElementById("rs-bullet");
