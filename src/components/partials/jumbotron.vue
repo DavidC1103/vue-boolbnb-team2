@@ -92,7 +92,7 @@ export default {
 		width: 70%;
 		// display: none;
 		// debug
-		border: 1px solid red;
+		// border: 1px solid red;
 		h1{
 			font-size: 1.6rem;
 		}

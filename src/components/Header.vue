@@ -78,7 +78,7 @@ header {
         width: 100%;
         height: 100%;
         //debug
-        border: 1px solid red;
+        // border: 1px solid red;
         nav {
             display: flex;
             justify-content: space-between;
@@ -86,13 +86,13 @@ header {
             width: 100%;
             height: 100%;
             //debug
-            border: 2px solid purple;
+            // border: 2px solid purple;
             .logo-mixin {
                 display: flex;
                 align-items: center;
                 height: 100%;
                 //debug
-                border: 1px solid gold;
+                // border: 1px solid gold;
                 img{
                     width: 120px;
                 }
@@ -108,7 +108,7 @@ header {
                     height: 100%;
                     padding-left: 0 !important;
                     //debug
-                    border: 1px solid green;
+                    // border: 1px solid green;
                     li{
                         // display: flex;
                         // justify-content: center;
@@ -117,7 +117,7 @@ header {
                         // height: 100%;
                         list-style: none;
                         //debug
-                        border: 1px solid black;
+                        // border: 1px solid black;
                         i{
                             color: white;
                         }
@@ -156,7 +156,7 @@ header {
                     height: 100%;
                     padding-left: 0 !important;
                     //debug
-                    border: 1px solid blue;
+                    // border: 1px solid blue;
                     li{
                         // display: flex;
                         // justify-content: center;
@@ -165,7 +165,7 @@ header {
                         // height: 100%;
                         list-style: none;
                         //debug
-                        border: 1px solid black;
+                        // border: 1px solid black;
                         i{
                             color: white;
                         }
@@ -254,7 +254,7 @@ header {
             // background-color: #FDE74C;
             .logo-mixin{
                 //debug
-                border: 1px solid green;
+                // border: 1px solid green;
                 .logo {
                     display: flex;
                     align-self: flex-end;
