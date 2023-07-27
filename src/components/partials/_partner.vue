@@ -140,6 +140,9 @@ export default {
     margin: 0 auto;
     cursor: grab;
 
+    h2{
+      padding-top: 40px;
+    }
     .box-partner{
       height: 200px;
       margin-right: 0px;

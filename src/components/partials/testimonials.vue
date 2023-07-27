@@ -100,6 +100,12 @@ export default {
 
 
 <style lang="scss" scoped>
+
+.swiper{
+  margin-bottom: 100px;
+}
+
+
 .background-testimonials{
   height: 100%;
   background-color: #f7f7f7;

@@ -69,6 +69,7 @@ header{
     top: 0;
     width: 100%;
     height: 80px;
+    transition: all 0.3s ease;
     //debug
     // background-color: lightcoral;
     nav{

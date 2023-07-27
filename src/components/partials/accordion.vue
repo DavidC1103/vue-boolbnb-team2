@@ -94,7 +94,7 @@ html {
     font-family: 'Kumbh Sans', sans-serif;
     font-weight: 400;
     justify-content: center;
-    margin-bottom: 110px;
+    margin-bottom: 100px;
 }
 
 .faq { 
