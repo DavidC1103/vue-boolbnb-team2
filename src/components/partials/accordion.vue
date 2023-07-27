@@ -207,4 +207,17 @@ details[open] .faq__summary:after {
   color: hsl(240, 6%, 50%);
 }
 
+@media (min-width: 0 ) and (max-width: 575px){
+
+.faq{
+	width: 80%;
+  padding: 25px 12.5px;
+  .faq__heading{
+    font-size: 2rem;
+  }
+  .faq__summary{
+    font-size: 1.2rem;
+  }
+}
+}
 </style>

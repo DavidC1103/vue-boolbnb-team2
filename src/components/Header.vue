@@ -29,7 +29,8 @@ import jumbotron from './partials/jumbotron.vue'
                         </label>
                         <ul class="menu__box">
                             <li><a class="menu__item" href="#evidenza">In Evidenza</a></li>
-                            <li><a class="menu__item" href="#">Appartamenti</a></li>
+                            <li><a class="menu__item" href="#">Ricerca Avanzata</a></li>
+                            <li><a class="menu__item" href="#">Login</a></li>
                         </ul>
                     </div>
                     
@@ -49,7 +50,7 @@ import jumbotron from './partials/jumbotron.vue'
     
                         <div class="d-flex mb-0 navbar-menu mt-4 me-5">
                             <ul class="d-flex">
-                                <li class="nav-link ps-4"><a href="http://127.0.0.1:8000/login">Login</a><span>|</span><a href="http://127.0.0.1:8000/register">Registrati</a><i class="fa-solid fa-globe"></i></li>
+                                <li class="nav-link ps-4"><a href="http://127.0.0.1:8000/login-register">Login</a><span>|</span><a href="http://127.0.0.1:8000/login-register">Registrati</a><i class="fa-solid fa-globe"></i></li>
                             </ul>
                         </div>
                     </div>
@@ -137,5 +138,23 @@ header{
 
 .shadow-header{
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+// MEDIA QUERIES
+
+@media (min-width: 0 ) and (max-width: 575px){
+
+.menu__box{
+    width: 180px !important;
+    background-color: #3fa9e4 !important;
+    .menu__item{
+        font-size: 16px !important;
+    }
+    li{
+        a{
+            color: #ffffff;
+        }
+    }
+}
 }
 </style>

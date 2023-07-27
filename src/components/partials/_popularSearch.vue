@@ -38,7 +38,7 @@ export default {
   
 <swiper
     :slidesPerView= "4"
-    :spaceBetween="-360"
+    :spaceBetween="-610"
     :loop="true"
     :pagination="{
       clickable: true,
@@ -167,7 +167,7 @@ h2{
 }
 
 .card-popular-search{
-  width: 360px;
+  width: 300px;
   border-radius: 20px;
   overflow: hidden;
   img{
