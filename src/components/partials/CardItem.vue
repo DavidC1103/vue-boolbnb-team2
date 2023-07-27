@@ -40,11 +40,58 @@ export default {
         margin: 20px 20px;
         box-shadow: rgba(200, 200, 200, 0.5) 0px 0px 0.5rem 0px;
         overflow: hidden;
+        &:hover {
+            box-shadow: 0 0.5em 0.5em -0.4em rgba(200, 200, 200, 0.5);
+            background-size: 100% 100%;
+            transform: translateY(-0.15em);
+        }
+
+        &:nth-child(3n+2){
+            animation: fade-top 1s ease-in;
+
+            @keyframes fade-top {
+                    0% {
+                    transform: translateY(100px);
+                    opacity: 0;
+                    }
+                    100% {
+                    transform: translateY(0);
+                    opacity: 1;
+                    }
+                }
+        }
+
+        &:nth-child(3n+3){
+            animation: fade-right 1s ease-in;
+
+            @keyframes fade-right {
+                0% {
+                transform: translateX(100px);
+                opacity: 0;
+                }
+                100% {
+                transform: translateX(0);
+                opacity: 1;
+                }
+            }
+        }
+
+        &:hover{
+            cursor: pointer;
+        }
+
+        &:hover img{
+            width: 103%;
+            filter: opacity(100%);;
+        }
+        
         img{
-        width: 100%;
-        height: 250px;
-        object-fit: cover;
-        border-radius: 10px;
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: 1s ease;  
+            filter: opacity(80%);
         }
         .description-card{
             h3{

@@ -78,8 +78,6 @@ export default{
                     </div>
                 </div>
                 
-                
-                
             </div>
 
     </main>
