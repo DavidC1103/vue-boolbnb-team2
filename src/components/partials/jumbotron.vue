@@ -27,15 +27,6 @@ export default {
                 <label for='search-btn'>Show search bar</label>
                 <input @keyup.enter="$router.push('/advanced-search') " v-model="store.inputText" id='search-bar' type='text' placeholder='Inserisci indirizzo'/>
             </div>
-            <h2>Ricerche popolari</h2>
-            <div class="links-ricerche">
-                <a @click="getResult('Roma')" href="#">Roma, </a>
-                <a href="#">Napoli, </a>
-                <a href="#">Palermo, </a>
-                <a href="#">Milano, </a> 
-                <a href="#">Bologna, </a>
-                <a href="#">Torino</a>
-            </div>
         </div>
         <div class="jumbo-faded"></div>
     </div>
@@ -80,10 +71,11 @@ export default {
             display: flex;
             align-items: center;
             justify-content: center;
+						padding-bottom: 60px;
         }
     }
     .jumbo-faded{
-        height: 7rem;
+        height: 9rem;
         background-image: linear-gradient(180deg, transparent, rgba(202, 202, 202, 0.61),#fff);
     }
 }

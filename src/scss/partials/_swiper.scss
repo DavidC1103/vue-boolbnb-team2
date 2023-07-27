@@ -13,6 +13,19 @@
 }
 
 .swiper-button-prev, .swiper-button-next{
-  display: none;
+  display: none !important;
 }
 
+
+
+
+
+@keyframes motion-navigation{
+
+  0%{
+    transform: translateX(0);
+  }
+  100%{
+    transform: translateX(calc(300% - 200px));
+  }
+}

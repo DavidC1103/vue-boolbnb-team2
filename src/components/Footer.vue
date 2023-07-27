@@ -123,7 +123,7 @@ export default {
 
     <!-- footer copy right section start -->
     <section id="copy-right">
-      <div class="copy-right-sec"><i class="fa-solid fa-copyright"></i> <i>BOOLBNB</i> 2023 Powerd By <a href="https://boolean.careers/">Boolean Careers</a> 
+      <div class="copy-right-sec"><i class="fa-solid fa-copyright"></i> <i>BOOLBNB</i> 2023 Powerd By <a href="https://boolean.careers/">Team 2</a> 
       </div>
     </section>
     <!-- footer copy right section end -->

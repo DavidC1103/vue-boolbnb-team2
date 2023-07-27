@@ -1,7 +1,7 @@
 window.addEventListener('scroll', () =>{
     const navScroll = document.getElementById('nav')
 
-            if(window.scrollY >= 600){
+            if(window.scrollY >= 180){
                 navScroll.classList.add('header-bg')
                 navScroll.classList.add('shadow-header')
             }else{

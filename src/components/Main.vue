@@ -96,7 +96,7 @@ export default{
 @use '../scss/main.scss' as *;
 
     .ps-container{
-        width: 1600px;
+        max-width: 1600px;
         margin: 0 auto;
         h1{
             margin-left: 40px;
@@ -115,6 +115,11 @@ export default{
                 margin: 20px 20px;
                 box-shadow: rgba(200, 200, 200, 0.5) 0px 0px 0.5rem 0px;
                 overflow: hidden;
+                &:hover {
+                    box-shadow: 0 0.5em 0.5em -0.4em rgba(200, 200, 200, 0.5);
+                    background-size: 100% 100%;
+                    transform: translateY(-0.15em);
+                }
 
                 &:nth-child(3n+2){
                     animation: fade-top 1s ease-in;
