@@ -228,7 +228,7 @@ header {
 
 //////////////////////// MEDIA QUERIES /////////////////////////
 
-@media (min-width: 0 ) and (max-width: 575px){
+@media (min-width: 0 ) and (max-width: 577px){
 
     header {
         width: 90%;
@@ -263,13 +263,6 @@ header {
                 }
             }
         }
-    }
-
-
-
-    .hamburger-menu{
-        //debug
-        // border: 1px solid gold;
     }
 }
 </style>
