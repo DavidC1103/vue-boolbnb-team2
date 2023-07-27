@@ -25,7 +25,7 @@ export default {
             <div class="search">
                 <input id='search-btn' type='checkbox'/>
                 <label for='search-btn'>Show search bar</label>
-                <input @keyup.enter="getResult(store.inputText)" v-model="store.inputText" id='search-bar' type='text' placeholder='Inserisci indirizzo'/>
+                <input @keyup.enter="getResult(store.inputText)" v-model="store.inputText" id='search-bar' type='text' placeholder='Inserisci indirizzo'/>      
             </div>
         </div>
         <div class="jumbo-faded"></div>
@@ -43,13 +43,13 @@ export default {
     padding-top: 180px;
     .layer{
         margin: 0 auto;
-        background: rgba(0,0,0,0.57);
+        background: rgba(0,0,0,0.40);
         border-radius: 8px;
         width: 900px;
         h1{
-            font-size: 3.8rem;
+            font-size: 3.4rem;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 60px;
             padding-top: 20px;
 						font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         }
@@ -75,16 +75,35 @@ export default {
         }
     }
     .jumbo-faded{
-        height: 9rem;
+        height: 13rem;
         background-image: linear-gradient(180deg, transparent, rgba(202, 202, 202, 0.61),#fff);
     }
+}
+
+@media (min-width: 0 ) and (max-width: 575px){
+
+	.jumbo{
+		display: block !important;
+	}
+
+.boolbnb-jumbotron{
+	height: 60vh;
+	padding-top: 25%;
+	.layer{
+		width: 70%;
+		display: none;
+		h1{
+			font-size: 1.6rem;
+		}
+	}
+}
 }
 
 // SEARCH CUSTOM
 $btn-d: 5em;
 $txt-w: 4*$btn-d;
 $txt-h: .65*$btn-d;
-$txt-c: #ffeacc;
+$txt-c: #ffffff;
 $mag-d: .5*$txt-h;
 $mag-f: .125;
 $mag-w: $mag-f*$mag-d;
@@ -155,16 +174,15 @@ $t: .65s;
 	width: $txt-w; height: $txt-h;
 	border-radius: $txt-h;
 	transform: translate(var(--pos, .5*$txt-w));
-	background: #3f324d;
+	background: #0a0f59;
 	--cp: inset(-2em var(--pos, 100%) -2em -2em);
 	-webkit-clip-path: var(--cp);
 					clip-path: var(--cp);
-	color: #fff;
+	color: #ffffff;
 	font: 1em century gothic, verdana, arial, sans-serif;
 	transition: $t;
 	
 	&::placeholder {
-		opacity: .5;
 		color: inherit;
 		font-size: .875em;
 		letter-spacing: 1px;
@@ -175,7 +193,7 @@ $t: .65s;
 		outline: none;
 		box-shadow: 0 0 1.5em $txt-c, 0 1.25em 1.5em rgba(#000, .2);
 		background: $txt-c;
-		color: #000;
+		color: #0a0f59;
 	}
 }
 </style>

@@ -109,6 +109,7 @@ export default {
   <div class="container-fluid">
 
   
+
     <swiper
       :slidesPerView= "4"
       :spaceBetween="-360"
@@ -132,6 +133,7 @@ export default {
 
     </swiper>
   </div>
+
 
 </template>
 
@@ -163,7 +165,7 @@ h2{
 }
 
 .card-popular-search{
-  width: 360px;
+  width: 300px;
   border-radius: 20px;
   overflow: hidden;
   img{
