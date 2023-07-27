@@ -17,65 +17,81 @@ export default {
         },
         data(){
           return{
-      
+            cities: [
+              {
+                id: 1,
+                name: 'Roma',
+                image: 'roma.jpg'
+              },
+              {
+                id: 2,
+                name: 'Firenze',
+                image: 'firenze.jpg'
+              },
+              {
+                id: 3,
+                name: 'Venezia',
+                image: 'venezia.jpg'
+              },
+              {
+                id: 4,
+                name: 'Napoli',
+                image: 'napoli.jpg'
+              },
+              {
+                id: 5,
+                name: 'Bologna',
+                image: 'bologna.jpg'
+              },
+              {
+                id: 6,
+                name: 'Padova',
+                image: 'padova.jpg'
+              },
+              {
+                id: 7,
+                name: 'Milano',
+                image: 'milano.jpg'
+              },
+              {
+                id: 8,
+                name: 'Torino',
+                image: 'torino.jpg'
+              },
+              {
+                id: 9,
+                name: 'Genova',
+                image: 'genova.jpg'
+              },
+              {
+                id: 10,
+                name: 'Brescia',
+                image: 'brescia.jpg'
+              },
+              {
+                id: 11,
+                name: 'Bari',
+                image: 'bari.jpg'
+              },
+              {
+                id: 12,
+                name: 'Rimini',
+                image: 'rimini.jpg'
+              },
+            ]
           }
       },
       setup(){
         return {
           modules: [ Navigation, Autoplay, Virtual ],
-
-          cities: [
-            {
-              name: 'Roma',
-              image: 'roma.jpg'
-            },
-            {
-              name: 'Firenze',
-              image: 'firenze.jpg'
-            },
-            {
-              name: 'Venezia',
-              image: 'venezia.jpg'
-            },
-            {
-              name: 'Napoli',
-              image: 'napoli.jpg'
-            },
-            {
-              name: 'Bologna',
-              image: 'bologna.jpg'
-            },
-            {
-              name: 'Padova',
-              image: 'padova.jpg'
-            },
-            {
-              name: 'Milano',
-              image: 'milano.jpg'
-            },
-            {
-              name: 'Torino',
-              image: 'torino.jpg'
-            },
-            {
-              name: 'Genova',
-              image: 'genova.jpg'
-            },
-            {
-              name: 'Brescia',
-              image: 'brescia.jpg'
-            },
-            {
-              name: 'Bari',
-              image: 'bari.jpg'
-            },
-            {
-              name: 'Rimini',
-              image: 'rimini.jpg'
-            },
-          ]
         };
       },
+
+      methods:{
+        getImage(img){
+            return new URL(img, import.meta.url).href;
+        }
+      }
 }
 </script>
 
@@ -97,15 +113,15 @@ export default {
     :modules="modules"
     class="mySwiper"
   >
-    <!-- 1 -->
-    <swiper-slide class="linear">
+    
+    <swiper-slide class="linear" v-for="city in cities" :key="city.id">
       <div class="card-popular-search">
-        <img src="../../assets/popularSearch/roma.jpg" alt="">
+        <img :src="getImage(`../../assets/popularSearch/${city.image}`)" alt="">
       </div>
-      <h3 >Roma</h3>
+      <h3 >{{ city.name }}</h3>
     </swiper-slide>
 
-    <!-- 2 -->
+<!--     
     <swiper-slide class="linear">
       <div class="card-popular-search">
         <img src="../../assets/popularSearch/firenze.jpg" alt="">
@@ -113,7 +129,7 @@ export default {
       </div>
     </swiper-slide>
     
-    <!-- 3 -->
+    
     <swiper-slide class="linear">
       <div class="card-popular-search">
         <img src="../../assets/popularSearch/venezia.jpg" alt="">
@@ -121,7 +137,6 @@ export default {
       </div>
     </swiper-slide>
 
-    <!-- 4 -->
     <swiper-slide class="linear">
       <div class="card-popular-search">
         <img src="../../assets/popularSearch/napoli.jpg" alt="">
@@ -129,7 +144,6 @@ export default {
       </div>
     </swiper-slide>
     
-    <!-- 5 -->
     <swiper-slide class="linear">
       <div class="card-popular-search">
         <img src="../../assets/popularSearch/bologna.jpg" alt="">
@@ -137,7 +151,6 @@ export default {
       </div>
     </swiper-slide>
 
-    <!-- 6 -->
     <swiper-slide class="linear">
       <div class="card-popular-search">
         <img src="../../assets/popularSearch/padova.jpg" alt="">
@@ -145,7 +158,6 @@ export default {
       </div>
     </swiper-slide>
     
-    <!-- 7 -->
     <swiper-slide class="linear">
       <div class="card-popular-search">
         <img src="../../assets/popularSearch/milano.jpg" alt="">
@@ -153,7 +165,6 @@ export default {
       </div>
     </swiper-slide>
 
-    <!-- 8 -->
     <swiper-slide class="linear">
       <div class="card-popular-search">
         <img src="../../assets/popularSearch/torino.jpg" alt="">
@@ -161,7 +172,6 @@ export default {
       </div>
     </swiper-slide>
     
-    <!-- 9 -->
     <swiper-slide class="linear">
       <div class="card-popular-search">
         <img src="../../assets/popularSearch/genova.jpg" alt="">
@@ -169,7 +179,6 @@ export default {
       </div>
     </swiper-slide>
 
-    <!-- 10 -->
     <swiper-slide class="linear">
       <div class="card-popular-search">
         <img src="../../assets/popularSearch/brescia.jpg" alt="">
@@ -189,7 +198,7 @@ export default {
         <img src="../../assets/popularSearch/rimini.jpg" alt="">
         <h3>Rimini</h3>
       </div>
-    </swiper-slide>
+    </swiper-slide> -->
 
 
   </swiper>
