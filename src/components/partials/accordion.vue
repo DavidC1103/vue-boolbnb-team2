@@ -148,7 +148,7 @@ html {
     
 .faq__summary:after {
     display: inline-block;
-    content: url("https://bobmatyas.github.io/fm-faq-accordion/images/icon-arrow-down.svg");
+    content: url("../../assets/accordion/arrow-down.png");
     background-repeat: no-repeat;
     background-position: right center;
     text-align: right;
@@ -160,7 +160,7 @@ details[open] .faq__summary:after {
     width: 18px;
     height: 10px;
     content: "";
-    background-image: url("https://bobmatyas.github.io/fm-faq-accordion/images/icon-arrow-down.svg");
+    background-image: url("../../assets/accordion/arrow-down.png");
     background-repeat: no-repeat;
     background-position: center right;
     transform:scaleY(-1);
@@ -215,8 +215,23 @@ details[open] .faq__summary:after {
   .faq__heading{
     font-size: 1.5rem;
   }
-  .faq__summary{
-    font-size: 0.8rem;
+  .faq__detail{
+    margin: 0px;
+    padding: 5px 0px 0px 0px;
+
+    .faq__summary{
+      font-size: 0.9rem;
+      .faq__question{
+        width: 95%;
+      }
+    }
+    .faq__text, .font{
+      font-size: 0.6rem;
+      padding-bottom: 5px;
+    }
+    .faq__text{
+      padding-top: 10px;
+    }
   }
 }
 }
