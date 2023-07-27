@@ -8,6 +8,7 @@ export const store = reactive({
   servicesToSearch: [],
   rangeValue: 20,
   inputText: '',
+  cityClicked: '',
   imageUrl: "http://127.0.0.1:8000/storage/",
   messageForm: {
     apartment_id: '',
