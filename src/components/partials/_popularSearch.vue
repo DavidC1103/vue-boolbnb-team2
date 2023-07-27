@@ -123,11 +123,11 @@ export default {
       <swiper-slide class="linear" 
       v-for="city in cities" 
       :key="city.id"
-      @click="citytoSearch(city.name)">
+      >
         <div class="card-popular-search">
           <img :src="getImage(`../../assets/popularSearch/${city.image}`)" alt="">
         </div>
-        <h3 >{{ city.name }}</h3>
+        <h3 @click="citytoSearch(city.name)">{{ city.name }}</h3>
       </swiper-slide>
 
     </swiper>
@@ -138,16 +138,23 @@ export default {
 
 
 <style lang="scss" scoped>
+@use '../../scss/partials/vars' as *;
 
-.swiper-slide{
-  cursor: grab;
-}
 
 h3{
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 1px;
   padding-top: 20px;
+  cursor: pointer;
+
+  &:hover{
+    color: $argentinian_blue;
+  }
+
+  &:active{
+    color: $maize_yellow;
+  }
 }
 h2{
   font-size: 2.5rem;
@@ -163,8 +170,8 @@ h2{
     width: 100%;
     border-radius: 20px;
     &:hover {
-    filter: saturate(150%);
-    
+      filter: saturate(150%);
+      cursor: grab;
     }
   }
 }
