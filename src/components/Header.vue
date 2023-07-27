@@ -25,7 +25,7 @@ import jumbotron from './partials/jumbotron.vue'
             <nav>
 
                 <div class="logo-mixin">
-                    <img class="logo" src="../assets/logo-boolbnb/1.png" alt="logo_boolbnb" >
+                    <img class="logo" src="../assets/logo-boolbnb/1.png" alt="logo_boolbnb" href="#">
                 </div>
                 
                 <div class="menu-center d-none d-md-block">
@@ -50,7 +50,7 @@ import jumbotron from './partials/jumbotron.vue'
                     <ul class="menu__box">
                         <li><a class="menu__item" href="#evidenza">In Evidenza</a></li>
                         <li><a class="menu__item" href="#">Ricerca Avanzata</a></li>
-                        <li><a class="menu__item" href="#">Login</a></li>
+                        <li><a class="menu__item" href="http://127.0.0.1:8000/login-register">Login</a></li>
                     </ul>
                 </div>
             </nav>

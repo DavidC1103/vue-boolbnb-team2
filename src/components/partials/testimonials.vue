@@ -8,6 +8,7 @@ import 'swiper/css/pagination';
 import { EffectFade, Navigation, Pagination, Autoplay } from 'swiper/modules';
 
 
+
 export default {
   name:'testimonials',
       components: {
@@ -16,7 +17,26 @@ export default {
         },
         data(){
           return{
-      
+            testimonials: [
+              {
+                id: 1,
+                name: '- New Martina, Napoli',
+                image: 'new-martina.jpg',
+                text: "Ho trovato una bella stanza e la mia prenotazione è stata accettata pochi minuti dopo averla inviata."
+              },
+              {
+                id: 2,
+                name: '- Lorenzo, Roma',
+                image: 'lorenzo.jpg',
+                text: "Modalità di prenotazione molto chiara e veloce, approvato!"
+              },
+              {
+                id: 3,
+                name: '- Victor, Napoli',
+                image: 'victor.jpg',
+                text: "Prenota anche tu su BoolBnB!"
+              }
+            ],
           }
       },
       setup(){
@@ -28,8 +48,8 @@ export default {
 </script>
 
 <template>
+  <div class="background-testimonials ">
 <swiper
-    :spaceBetween="30"
     :effect="'fade'"
     :navigation="true"
     :loop="true"
@@ -44,57 +64,24 @@ export default {
     class="mySwiper"
   >
   <!-- 1 -->
-  <swiper-slide>
-    <div class="background-testimonials d-flex align-items-center justify-content-center">
-      
+  <swiper-slide
+  v-for="testimonial in testimonials" 
+  :key="testimonial.id"
+  >
+      <div class="d-flex justify-content-center align-items-center">
         <div class="box-image">
-          <img src="../../assets/testimonials/new-martina.jpg" />
+          <img :src="'../../src/assets/testimonials/' + testimonial.image" alt="" />
         </div>
-        <div class="description">
+        <div class="description text-center">
           <img src="../../assets/testimonials/quote.png" alt="">
-          <p>Ho trovato una bella stanza e la mia prenotazione è stata accettata pochi minuti dopo averla inviata.</p>
-          <p class="last">- New Martina, Napoli</p>
+          <p>{{testimonial.text}}</p>
+          <p class="last">{{testimonial.name}}</p>
         </div>
-  
-    </div> 
+      </div>
   </swiper-slide>
-
-  <!-- 2 -->
-  <swiper-slide>
-    <div class="background-testimonials d-flex align-items-center justify-content-center">
-      
-        <div class="box-image">
-          <img src="../../assets/testimonials/victor.jpg" />
-        </div>
-  
-        <div class="description">
-          <img src="../../assets/testimonials/quote.png" alt="">
-          <p>Prenota anche tu su BoolBnB!</p>
-          <p class="last">- Victor, Napoli</p>
-        </div>
-    </div> 
     
-  </swiper-slide>
-
-  <!-- 3 -->
-  <swiper-slide>
-    <div class="background-testimonials d-flex align-items-center justify-content-center">
-      
-        <div class="box-image">
-          <img src="../../assets/testimonials/lorenzo.jpg" />
-        </div>
-  
-        <div class="description">
-          <img src="../../assets/testimonials/quote.png" alt="">
-          <p>modalità di prenotazione molto chiara e veloce, approvato!</p>
-          <p class="last">- Lorenzo, Roma</p>
-        </div>
-    </div> 
-    
-  </swiper-slide>
-
   </swiper>
-
+</div> 
 
 </template>
 
@@ -109,8 +96,10 @@ export default {
 .background-testimonials{
   height: 100%;
   background-color: #f7f7f7;
-  padding: 60px 0;
-  margin-top: 80px;
+  padding: 40px 0;
+  margin-top: 60px;
+  margin-bottom: 60px;
+
   .box-image{
     width: 600px;
     margin-right: 40px;
@@ -120,6 +109,7 @@ export default {
   }
   .description{
     width: 500px;
+    background-color: #f7f7f7;
     img{
       width: 40px;
     }
@@ -135,13 +125,20 @@ export default {
 }
 
 @media (min-width: 0 ) and (max-width: 575px){
+  
+  
 
+  .swiper{
+  margin-bottom: 5px !important;
+}
   .background-testimonials{
-  height: 10%;
+  height: 100%;
   background-color: #f7f7f7;
   flex-direction: column;
-  padding: 0;
-  margin: 0;
+  margin-top: 40px !important;
+  margin-bottom: 60px !important;
+  padding-bottom: 0px;
+  padding-top: 40px;
   .box-image{
     width: 70%;
     margin-right: 0px;
@@ -151,10 +148,14 @@ export default {
   }
   .description{
     width: 70%;
-    padding-bottom: 50px;
-
+    height: 100%;
+    padding-bottom: 30px;
+    font-style: italic;
+    font-family: 'Borel', cursive;
+    background-color: #f7f7f7;
     img{
       width: 18px;
+      padding-top: 10px;
     }
     p{
       padding-top: 10px;
@@ -162,10 +163,15 @@ export default {
       font-weight: 500;
       &:last-of-type{
         font-size: 0.6rem;
-        padding-bottom: 20px;
+        padding-bottom: 0px;
       }
     }
   }
+}
+.d-flex{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 }
 

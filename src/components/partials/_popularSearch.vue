@@ -78,7 +78,66 @@ export default {
                 name: 'Rimini',
                 image: 'rimini.jpg'
               },
-            ]
+              {
+                id: 13,
+                name: 'Palermo',
+                image: 'palermo.jpg'
+              },
+              {
+                id: 14,
+                name: 'Como',
+                image: 'como.jpg'
+              },
+            ],
+            swiperOptions: {
+          breakpoints: {       
+      320: {       
+         slidesPerView: 2,
+         spaceBetween: 220     
+      },
+      360: {       
+         slidesPerView: 2,
+         spaceBetween: 190     
+      },    
+      400: {       
+         slidesPerView: 2,
+         spaceBetween: 150     
+      },
+      450: {       
+         slidesPerView: 2,
+         spaceBetween: 100     
+      }, 
+      500: {       
+         slidesPerView: 2,
+         spaceBetween: 50     
+      },              
+      770: {       
+         slidesPerView: 2,       
+         spaceBetween: 50     
+      },   
+  
+      771: {       
+         slidesPerView: 4,       
+         spaceBetween: 30     
+      },
+      1300: {       
+         slidesPerView: 5,       
+         spaceBetween: 270    
+      },
+      1400: {       
+         slidesPerView: 5,       
+         spaceBetween: 190    
+      },
+      1600: {       
+         slidesPerView: 5,       
+         spaceBetween: 10     
+      },
+      1800: {       
+         slidesPerView: 7,       
+         spaceBetween: 290     
+      }  
+   }   
+        }
           }
       },
       setup(){
@@ -109,24 +168,25 @@ export default {
 
 
     <swiper
-      :slidesPerView= "4"
-      :spaceBetween="-360"
+      :slidesPerView= "2"
+      :spaceBetween="10"
       :loop="true"
       :pagination="{
         clickable: true,
       }"
+      :breakpoints="swiperOptions.breakpoints"
       :modules="modules"
       class="mySwiper"
     >
       
-      <swiper-slide class="linear" 
+      <swiper-slide 
       v-for="city in cities" 
       :key="city.id"
       >
-        <div class="card-popular-search">
+        <div class="card-popular-search" @click="citytoSearch(city.name)">
           <img :src="getImage(`../../assets/popularSearch/${city.image}`)" alt="">
+          <h3>{{ city.name }}</h3>
         </div>
-        <h3 @click="citytoSearch(city.name)">{{ city.name }}</h3>
       </swiper-slide>
 
     </swiper>
@@ -181,6 +241,7 @@ h2{
 h2{
     font-size: 1.6rem;
     margin: 20px 0px 25px 0px;
+    
   }
 
   .card-popular-search{
@@ -196,33 +257,17 @@ h2{
     }
   }
 }
-}
 
-.xsm-none{
-    display: none;
-}
-
-.swiper-slide{
-  margin-right: 500px;
-}
-
-@media (min-width: 330px ) and (max-width: 360px){
-
-.swiper-slide{
-    margin-right: 10px !important;
-    
-}
 }
 
 
 
-
-
+// ARROWS ANIMATION
 .arrows {
 	width: 60px;
 	height: 72px;
 	position: absolute;
-	left: 88%;
+	left: 80%;
 	margin-left: -30px;
 	bottom: 50%;
   transform: rotate(270deg);
