@@ -4,9 +4,8 @@ import { store } from '../../data/store';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import 'swiper/css/virtual';
 
-import { Navigation, Autoplay, Virtual } from 'swiper/modules';
+import { Navigation, Autoplay } from 'swiper/modules';
 
 
 export default {
@@ -84,7 +83,7 @@ export default {
       },
       setup(){
         return {
-          modules: [ Navigation, Autoplay, Virtual ],
+          modules: [ Navigation, Autoplay],
         };
       },
 
@@ -108,7 +107,6 @@ export default {
 
   <div class="container-fluid">
 
-  
 
     <swiper
       :slidesPerView= "4"
@@ -178,6 +176,94 @@ h2{
   }
 }
 
+@media (min-width: 0 ) and (max-width: 575px){
+
+h2{
+    font-size: 1.6rem;
+    margin: 20px 0px 25px 0px;
+  }
+
+  .card-popular-search{
+  width: 250px;
+  border-radius: 20px;
+  overflow: hidden;
+  img{
+    width: 100%;
+    border-radius: 20px;
+    &:hover {
+    filter: saturate(150%);
+    
+    }
+  }
+}
+}
+
+.xsm-none{
+    display: none;
+}
+
+.swiper-slide{
+  margin-right: 500px;
+}
+
+@media (min-width: 330px ) and (max-width: 360px){
+
+.swiper-slide{
+    margin-right: 10px !important;
+    
+}
+}
 
 
+
+
+
+.arrows {
+	width: 60px;
+	height: 72px;
+	position: absolute;
+	left: 88%;
+	margin-left: -30px;
+	bottom: 50%;
+  transform: rotate(270deg);
+}
+
+.arrows path {
+	stroke: #3fa9e4;
+	fill: transparent;
+	stroke-width: 1px;	
+	animation: arrow 2s infinite;
+	-webkit-animation: arrow 2s infinite; 
+}
+
+@keyframes arrow
+{
+0% {opacity:0}
+40% {opacity:1}
+80% {opacity:0}
+100% {opacity:0}
+}
+
+@-webkit-keyframes arrow /*Safari and Chrome*/
+{
+0% {opacity:0}
+40% {opacity:1}
+80% {opacity:0}
+100% {opacity:0}
+}
+
+.arrows path.a1 {
+	animation-delay:-1s;
+	-webkit-animation-delay:-1s; /* Safari 和 Chrome */
+}
+
+.arrows path.a2 {
+	animation-delay:-0.5s;
+	-webkit-animation-delay:-0.5s; /* Safari 和 Chrome */
+}
+
+.arrows path.a3 {	
+	animation-delay:0s;
+	-webkit-animation-delay:0s; /* Safari 和 Chrome */
+}
 </style>
