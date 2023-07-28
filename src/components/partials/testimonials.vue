@@ -48,7 +48,7 @@ export default {
 </script>
 
 <template>
-  <div class="background-testimonials ">
+  <div class="bg">
 <swiper
     :effect="'fade'"
     :navigation="true"
@@ -68,7 +68,7 @@ export default {
   v-for="testimonial in testimonials" 
   :key="testimonial.id"
   >
-      <div class="bg d-flex justify-content-center align-items-center">
+      <div class="background-testimonials d-flex justify-content-center align-items-center">
         <div class="box-image">
           <img :src="'../../src/assets/testimonials/' + testimonial.image" alt="" />
         </div>
@@ -81,8 +81,8 @@ export default {
   </swiper-slide>
     
   </swiper>
-</div> 
 
+</div>
 </template>
 
 
@@ -94,17 +94,17 @@ export default {
 
 .bg{
   background-color: #f7f7f7;
+  padding-top: 20px;
+  margin-top: 50px;
 }
 
 .background-testimonials{
   height: 100%;
   background-color: #f7f7f7;
   padding: 40px 0;
-  margin-top: 60px;
-  margin-bottom: 60px;
 
   .box-image{
-    width: 600px;
+    width: 50%;
     margin-right: 40px;
     img{
       width: 100%;
@@ -112,7 +112,6 @@ export default {
   }
   .description{
     width: 500px;
-    background-color: #f7f7f7;
     img{
       width: 40px;
     }
@@ -134,14 +133,15 @@ export default {
   .swiper{
   margin-bottom: 5px !important;
 }
+
+.bg{
+  margin-bottom: 60px;
+}
   .background-testimonials{
   height: 100%;
   background-color: #f7f7f7;
   flex-direction: column;
-  margin-top: 40px !important;
-  margin-bottom: 60px !important;
   padding-bottom: 0px;
-  padding-top: 40px;
   .box-image{
     width: 70%;
     margin-right: 0px;
@@ -152,7 +152,7 @@ export default {
   .description{
     width: 70%;
     height: 100%;
-    padding-bottom: 30px;
+    padding-bottom: 40px;
     font-style: italic;
     font-family: 'Borel', cursive;
     background-color: #f7f7f7;

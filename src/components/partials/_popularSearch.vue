@@ -120,6 +120,10 @@ export default {
          slidesPerView: 4,       
          spaceBetween: 30     
       },
+      1000: {       
+         slidesPerView: 4,       
+         spaceBetween: 280     
+      },
       1300: {       
          slidesPerView: 5,       
          spaceBetween: 270    
@@ -133,8 +137,8 @@ export default {
          spaceBetween: 10     
       },
       1800: {       
-         slidesPerView: 7,       
-         spaceBetween: 290     
+         slidesPerView: 6,       
+         spaceBetween: 90     
       }  
    }   
         }
