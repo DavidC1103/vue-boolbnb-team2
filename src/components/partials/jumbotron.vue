@@ -1,22 +1,64 @@
 <script>
 
 import { store } from '../../data/store';
+import axios from 'axios';
 
 export default {
     data(){
         name:'jumbotron'
         return{
-			store
+			store,
+			cities: [],
         }
     },
-		methods:{
-			getResult(city){
-				store.inputText = city;
-				this.$router.push({ name: "advanced-search", query: { city: city } });
-			}
+	methods:{
+		getResult(city){
+			store.inputText = city;
+			this.$router.push({ name: "advanced-search", query: { city: city } });
 		},
-		mounted(){
-    }
+
+		autoCompleteSearch(){
+
+			const options = {
+				autocompleteOptions : {
+					key: 'HuISvV9BlBXkZwU8lSoO2N7Wra0h8GlA',
+					language: 'it-IT',
+					countrySet: 'IT',
+					typeahead: 'city'
+				},
+				searchOptions : {
+					key: 'HuISvV9BlBXkZwU8lSoO2N7Wra0h8GlA',
+					language: 'it-IT',
+					limit: 10,
+					countrySet: 'IT',
+					
+				}
+			}
+
+			const ttSearchBox = new tt.plugins.SearchBox(tt.services, options)
+			const searchBoxHTML = ttSearchBox.getSearchBoxHTML()
+			const searchBoxContainer = document.getElementById('searchbox');
+
+			searchBoxContainer.append(searchBoxHTML)
+
+			const inputBox = searchBoxHTML.firstChild.children[2]
+
+			inputBox.setAttribute('name', 'address')
+			inputBox.setAttribute('autocomplete', 'off')
+			inputBox.setAttribute('required', true)
+			inputBox.setAttribute('placeholder', 'Cerca una città')
+			inputBox.setAttribute('v-model', 'store.inputText');
+			
+			inputBox.addEventListener('keyup', (event) => {
+				if (event.key === 'Enter') {
+					this.getResult(this.store.inputText);
+				}
+			});
+		}
+	},
+	mounted(){
+		this.autoCompleteSearch();
+	}
 }
 </script>
 
@@ -24,19 +66,19 @@ export default {
     <div class="boolbnb-jumbotron">
         <div class="layer text-white text-center active fade-left ">
             <h1>Trova e prenota il tuo posto ideale</h1>
-            <div class="search d-none d-lg-flex">
-                <input id='search-btn' type='checkbox'/>
-                <label for='search-btn'>Show search bar</label>
-                <input @keyup.enter="getResult(store.inputText)" v-model="store.inputText" id='search-bar' type='text' placeholder='Inserisci località'/>      
-            </div>
+
+			<!-- Input ricerca -->
+			<div class="mb-3" id="searchbox">
+			</div>
 
 
-						<div class="search-bar d-flex justify-content-center d-lg-none">
-	<input class="" @keyup.enter="getResult(store.inputText)" v-model="store.inputText" type="search" name="search" pattern=".*\S.*" required>
-	<button class="search-btn" @click="getResult(store.inputText)">
-		<span>Search</span>
-	</button>
-</div>
+			<!-- Input versione mobile
+			<div class="search-bar d-flex justify-content-center d-lg-none">
+				<input class="" @keyup.enter="getResult(store.inputText)" v-model="store.inputText" type="search" name="search" pattern=".*\S.*" required>
+				<button class="search-btn" @click="getResult(store.inputText)">
+					<span>Search</span>
+				</button>
+			</div> -->
 
         </div>
         <div class="jumbo-faded"></div>
@@ -57,6 +99,7 @@ export default {
         background: rgba(0,0,0,0.40);
         border-radius: 8px;
         width: 900px;
+		padding-bottom: 50px;
         h1{
             font-size: 3.4rem;
             font-weight: bold;
@@ -77,16 +120,70 @@ export default {
         }
     }
     .jumbo-faded{
-        height: 15rem;
+        height: 17rem;
         background-image: linear-gradient(180deg, transparent, rgba(202, 202, 202, 0.61),#fff);
     }
+}
+
+#searchbox {
+	display: flex;
+	justify-content: center;
+	// border-radius: 20px;
+	.tt-search-box{
+		width: 50%;
+		height: 100%;
+		border-radius: 20px;
+		background-color: white;
+		color: white;
+		.tt-search-box-input-container{
+			border: none;
+			.tt-search-box-input{
+				border-radius: 20px;
+				.tt-search-box-result-list-container{
+					border-radius: 20px;
+					.tt-search-box-result-list{
+						border-radius: 20px;
+						border: 1px solid black;
+					}
+				}
+			}
+		}
+	}
 }
 
 
 @media (min-width: 0 ) and (max-width: 575px){
 
+#searchbox {
+display: flex;
+justify-content: center;
+// border-radius: 20px;
+.tt-search-box{
+	width: 80%;
+	height: 100%;
+	border-radius: 20px;
+	background-color: white;
+	color: white;
+	.tt-search-box-input-container{
+		border: none;
+		.tt-search-box-input{
+			border-radius: 20px;
+			color: #040916;
+			.tt-search-box-result-list-container{
+				border-radius: 20px;
+				.tt-search-box-result-list{
+					border-radius: 20px;
+					border: 1px solid black;
+				}
+			}
+		}
+	}
+}
+}
 
-	.search-bar input,
+
+
+.search-bar input,
 .search-btn, 
 .search-btn:before, 
 .search-btn:after {
