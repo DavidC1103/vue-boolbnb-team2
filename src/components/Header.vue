@@ -11,7 +11,9 @@ import jumbotron from './partials/jumbotron.vue'
             return{
 
             }
-        }
+        },
+        mounted() {
+        },
     }
 </script>
 
@@ -73,7 +75,9 @@ header {
     top: 0;
     width: 100%;
     height: 80px;
-    transition: all 0.3s ease;
+    // transition: all 0.3s ease;
+    animation: ease-in;
+    transition: all 0.3s;
     .wrapper {
         width: 100%;
         height: 100%;
@@ -218,8 +222,11 @@ header {
 
 }
 .header-bg{
-    background-color: #3fa9e4;
-    
+    background: rgb(12,16,240);
+    background: -moz-linear-gradient(339deg, rgba(12,16,240,1) 0%, rgba(53,167,255,1) 100%);
+    background: -webkit-linear-gradient(339deg, rgba(12,16,240,1) 0%, rgba(53,167,255,1) 100%);
+    background: linear-gradient(339deg, rgba(12,16,240,1) 0%, rgba(53,167,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0c10f0",endColorstr="#35a7ff",GradientType=1); 
 }
 
 .shadow-header{
