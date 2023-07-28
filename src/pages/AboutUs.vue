@@ -45,7 +45,26 @@ export default{
 
 
 
-<style lang="scss">
+<style lang="scss" scoped>
 
-
+.social-icons{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: #777777;
+}
+.social-icons a{
+  color: #777777;
+}
+.social-icons a:hover{
+  color: #000;
+}
+.social-icons a i{
+    box-shadow: rgb(0 0 0 / 8%) 0px 4px 12px;
+    padding: 0.4rem 1rem 0.4rem 1rem;
+    border-radius: 3px;
+    color: #3D40F5;
+    font-size: 16px;
+    margin-right: 12px;
+}
 </style>

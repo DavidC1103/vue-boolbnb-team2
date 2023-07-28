@@ -139,23 +139,7 @@ export default {
     padding-bottom: 80px;
     background-color: #f4efed;
 }
-#footer2{
-    background: #f7f7f7;
-    padding: 3rem;
-    margin-top: 0px;
-    padding-top: 7rem;
-    padding-bottom: 80px;
-    background-image: url(../images/cards/v748-toon-111.png);
-}
 
-.social-links h2{
-    padding-bottom: 15px;
-    font-size: 20px;
-    font-weight: 600;
-}
-.social-links img{
-    padding-bottom: 25px;
-}
 .social-icons{
     display: flex;
     flex-direction: column;
@@ -290,5 +274,22 @@ li{
     img{
         width: 250px;
     }
+}
+
+@media (min-width: 0 ) and (max-width: 577px){
+
+    .download-app, .metodo-pagamento{
+    img{
+        width: 70%;
+    }
+}
+
+.valutazione i{
+    font-size: 8px;
+}
+
+.line{
+    width: 100%;
+}
 }
 </style>
