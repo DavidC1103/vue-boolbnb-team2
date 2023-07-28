@@ -46,7 +46,10 @@ export default {
       }
 
       const sponsoredSet = new Set(store.sponsoredApt.map(apartment => apartment.id));
-      const sortedApartments = array.sort((a, b) => {
+      const sortedApartments = array.map(apartment => {
+        const isSponsored = sponsoredSet.has(apartment.id);
+        return { ...apartment, isSponsored };
+      }).sort((a, b) => {
         const isAInSponsored = sponsoredSet.has(a.id);
         const isBInSponsored = sponsoredSet.has(b.id);
 
@@ -77,7 +80,7 @@ export default {
     },
     resetSearch() {
       if(!store.inputText) {
-        this.searchApartments();
+        this.sortApartments(store.arrApartments);
       }
     },
     inSequence(a, b, c) {
@@ -115,11 +118,12 @@ export default {
     if(store.inputText) {
       this.searchApartments();
     }
-    
+
     const rangeSlider = document.getElementById("rs-range-line");
     const rangeBullet = document.getElementById("rs-bullet");
     
     rangeSlider.addEventListener("input", showSliderValue, false);
+    
 
     function showSliderValue() {
       rangeBullet.innerHTML = rangeSlider.value;
@@ -149,7 +153,7 @@ export default {
           <i class="fa-solid fa-magnifying-glass position-absolute search-btn" @click="searchApartments()"></i>
         </div>
         <!-- INPUT RANGE -->
-        <div v-if="store.inputText" class="range-slider d-flex align-items-center py-3">
+        <div class="range-slider d-flex align-items-center py-3">
           <input id="rs-range-line"
             class="rs-range"
             type="range"
@@ -196,6 +200,7 @@ export default {
         :title="apartment.title"
         :address="apartment.address"
         :price="apartment.price"
+        :sponsored="apartment.isSponsored"
         @click="$router.push('/detail-apartment/' + apartment.slug)" />
 
     </div>
