@@ -68,7 +68,7 @@ export default {
   v-for="testimonial in testimonials" 
   :key="testimonial.id"
   >
-      <div class="d-flex justify-content-center align-items-center">
+      <div class="bg d-flex justify-content-center align-items-center">
         <div class="box-image">
           <img :src="'../../src/assets/testimonials/' + testimonial.image" alt="" />
         </div>
@@ -92,6 +92,9 @@ export default {
   margin-bottom: 100px;
 }
 
+.bg{
+  background-color: #f7f7f7;
+}
 
 .background-testimonials{
   height: 100%;
