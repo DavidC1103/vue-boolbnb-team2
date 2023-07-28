@@ -51,7 +51,7 @@
                             key: this.mapKey,
                             container: "map",
                             center: center,
-                            zoom: 10
+                            zoom: 16
                         });
                         map.on('load', () =>{
                             new tt.Marker().setLngLat(center).addTo(map)
@@ -257,6 +257,10 @@
             </div>
 
             <div class="right-side">
+                
+                <div class="map d-flex justify-content-center align-items-center mt-3">
+                    <div id="map"></div>
+                </div>
 
                 <div class="contact">
                     <div class="form" v-if="!messageSent">
@@ -311,12 +315,6 @@
                         <span>{{ messageSent }}</span>
                     </div>
                 </div>
-
-                
-                <div class="map d-flex justify-content-center align-items-center mt-3">
-                    <div id="map"></div>
-                </div>
-
             </div>
 
             
