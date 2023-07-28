@@ -257,7 +257,7 @@
             </div>
 
             <div class="right-side">
-                
+
                 <div class="map d-flex justify-content-center align-items-center mt-3">
                     <div id="map"></div>
                 </div>
@@ -363,7 +363,7 @@
     background-color: #f2f2f2;
     padding-top: 80px;
     .ps-container{
-        width: 1600px;
+        width: 95%;
         margin: 0 auto;
         padding-top: 30px;
         // background-color: red; DEBUG
@@ -381,6 +381,7 @@
                     border-radius: 10px;
                     h1{
                         font-size: 4rem;
+                        width: 90%;
                     }
                     h4{
                         font-size: 1.4rem;
@@ -560,6 +561,73 @@
                 }
             }
         }
+    }
+}
+
+@media (max-width: 468px) {
+    .bg-detail .ps-container {
+        width: 100%;
+        max-width: 600px; 
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .bg-detail .ps-container .left-side {
+        width: 100%;
+        margin-right: 10px;
+        margin-left: 10px;
+        .description-general{
+            .description{
+                h1{
+                    font-size: 2rem;
+                }
+            }
+            .image-user{
+                width: 100px;
+                height: 100px;
+            }
+            .feature{
+                flex-wrap: wrap;
+                .box-feature{
+                    width: 50%;
+                }
+            }
+        }
+    }
+
+    .bg-detail .ps-container .right-side {
+        width: 100%; 
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    /* Aggiungi altri stili specifici per schermi a 468px qui se necessario */
+}
+@media (min-width: 469px) and (max-width: 1060px){
+    .bg-detail .ps-container {
+        width: 100%;
+        max-width: 700px; 
+        flex-wrap: wrap;
+    }
+
+    .bg-detail .ps-container .left-side {
+        width: 100%;
+        margin-right: 10px;
+        margin-left: 10px;
+        .description-general{
+            .description{
+                h1{
+                    font-size: 3rem;
+                }
+            }
+            .image-user{
+                width: 140px;
+                height: 140px;
+            }
+        }
+    }
+    .bg-detail .ps-container .right-side {
+        width: 100%; 
     }
 }
 
