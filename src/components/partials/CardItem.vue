@@ -8,7 +8,8 @@ export default {
         img : String,
         title : String,
         address: String,
-        price : String
+        price : String,
+        sponsored: Boolean
     }
 }
 </script>
@@ -19,6 +20,7 @@ export default {
         class="boolbnb-card"
         >
         <img :src="img">
+        <i v-if="sponsored" class="sponsored fa-solid fa-star" title="In Evidenza"></i>
         <div class="description-card">
             <h3>{{ title }}</h3>
             <p>{{ address }}</p>
@@ -34,9 +36,11 @@ export default {
 
 
 <style lang="scss" scoped> 
+@use '../../scss/partials/vars' as *;
     .boolbnb-card{
+        position: relative;
         border-radius: 15px;
-        flex-basis: 30%;
+        flex-basis: 100%;
         margin: 20px 20px;
         box-shadow: rgba(200, 200, 200, 0.5) 0px 0px 0.5rem 0px;
         overflow: hidden;
@@ -45,36 +49,44 @@ export default {
             background-size: 100% 100%;
             transform: translateY(-0.15em);
         }
-
-        &:nth-child(3n+2){
-            animation: fade-top 1s ease-in;
-
-            @keyframes fade-top {
-                    0% {
-                    transform: translateY(100px);
-                    opacity: 0;
-                    }
-                    100% {
-                    transform: translateY(0);
-                    opacity: 1;
-                    }
-                }
+        .sponsored {
+            position: absolute;
+            top: 5%;
+            right: 5%;
+            color: $federal_blue;
+            padding: .5rem;
+            background: $lightsky_blue;
+            border-radius: .5rem;
         }
+        // &:nth-child(3n+2){
+        //     animation: fade-top 1s ease-in;
 
-        &:nth-child(3n+3){
-            animation: fade-right 1s ease-in;
+        //     @keyframes fade-top {
+        //             0% {
+        //             transform: translateY(100px);
+        //             opacity: 0;
+        //             }
+        //             100% {
+        //             transform: translateY(0);
+        //             opacity: 1;
+        //             }
+        //         }
+        // }
 
-            @keyframes fade-right {
-                0% {
-                transform: translateX(100px);
-                opacity: 0;
-                }
-                100% {
-                transform: translateX(0);
-                opacity: 1;
-                }
-            }
-        }
+        // &:nth-child(3n+3){
+        //     animation: fade-right 1s ease-in;
+
+        //     @keyframes fade-right {
+        //         0% {
+        //         transform: translateX(100px);
+        //         opacity: 0;
+        //         }
+        //         100% {
+        //         transform: translateX(0);
+        //         opacity: 1;
+        //         }
+        //     }
+        // }
 
         &:hover{
             cursor: pointer;
@@ -112,6 +124,11 @@ export default {
                 }
             }
         }
-        
+        @media screen and (min-width: 768px){
+            flex-basis: 40%;
+        }
+        @media screen and (min-width: 1400px) {
+            flex-basis: 30%;
+        }
     }
 </style>
