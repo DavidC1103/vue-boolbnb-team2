@@ -31,7 +31,7 @@ export default {
       };
       axios.post(store.apiUrl + 'search', requestData)
         .then(response => {
-          console.log(response);
+          // console.log(response);
           store.searchedApt = response.data.apartments;
           store.arrServices = response.data.availableServices;
           this.arrSearch = response.data.apartments;
@@ -39,43 +39,65 @@ export default {
           this.isLoaded = true;
         })
         .catch(error => {
-          console.log(error);
+          // console.log(error);
           this.arrSearch = [];
           this.arrCount = 0;
           this.isLoaded = true;
         });
     },
-    // sortApartments(array) {
-    //   if (!Array.isArray(array)) {
-    //     this.arrSearch = [];
-    //     return;
-    //   }
-
-    //   const sponsoredSet = new Set(store.sponsoredApt.map(apartment => apartment.id));
-    //   const sortedApartments = array.map(apartment => {
-    //     const isSponsored = sponsoredSet.has(apartment.id);
-    //     return { ...apartment, isSponsored };
-    //   }).sort((a, b) => {
-    //     const isAInSponsored = sponsoredSet.has(a.id);
-    //     const isBInSponsored = sponsoredSet.has(b.id);
-
-    //     if (isAInSponsored && isBInSponsored) {
-    //       // Both apartments are in sponsoredApt array, maintain their original order
-    //       return 0;
-    //     } else if (isAInSponsored) {
-    //       // Only apartment A is in sponsoredApt array, prioritize it
-    //       return -1;
-    //     } else if (isBInSponsored) {
-    //       // Only apartment B is in sponsoredApt array, prioritize it
-    //       return 1;
-    //     } else {
-    //       // Both apartments are not in sponsoredApt array, maintain their original order
-    //       return 0;
-    //     }
-    //   });
-
-    //   this.arrSearch = sortedApartments;
-    // },
+    autoCompleteSearch(){
+      const options = {
+        autocompleteOptions : {
+          key: 'HuISvV9BlBXkZwU8lSoO2N7Wra0h8GlA',
+          language: 'it-IT',
+          countrySet: 'IT',
+          typeahead: 'city',
+          resultSet: 'address'
+        },
+        searchOptions : {
+          key: 'HuISvV9BlBXkZwU8lSoO2N7Wra0h8GlA',
+          language: 'it-IT',
+          limit: 5,
+          countrySet: 'IT',
+        }
+      }
+      const ttSearchBox = new tt.plugins.SearchBox(tt.services, options)
+      const searchBoxHTML = ttSearchBox.getSearchBoxHTML()
+      const searchBoxContainer = document.getElementById('searchbox');
+      searchBoxContainer.append(searchBoxHTML);
+      searchBoxContainer.children[0].classList.add('w-100');
+      searchBoxContainer.children[0].children[0].style.border = '1px solid #0A0F59';
+      searchBoxContainer.children[0].children[0].style.borderRadius = '2rem';
+      searchBoxContainer.children[0].children[0].children[2].style.color = '#0A0F59';
+      searchBoxContainer.children[0].children[0].children[2].style.left = '-15px';
+      searchBoxContainer.children[0].children[0].style.flexDirection = 'row-reverse';
+      searchBoxContainer.children[0].children[0].children[0].style.cursor = 'pointer';
+      searchBoxContainer.children[0].children[0].children[0].addEventListener('click', event => {
+        this.searchApartments();
+      });
+      searchBoxContainer.children[0].children[0].children[3].classList.add('d-none');
+      const inputBox = searchBoxHTML.firstChild.children[2];
+      inputBox.setAttribute('name', 'address');
+      inputBox.setAttribute('autocomplete', 'off');
+      inputBox.setAttribute('required', true);
+      inputBox.setAttribute('placeholder', 'Cerca per città');
+      inputBox.value = store.inputText;
+      inputBox.addEventListener('keyup', (event) => {
+        store.inputText = event.srcElement.value;
+        if (event.key === 'Enter') {
+          this.searchApartments();
+        } else if (event.key === 'Backspace') {
+          if(!event.srcElement.value) {
+            store.inputText = '';
+            this.searchApartments();
+          }
+        }
+      });
+    },	
+    getResult(city){
+			store.inputText = city;
+			this.$router.push({ name: "advanced-search", query: { city: city } });
+		},
     refreshSearch(id) {
       if (store.servicesToSearch.includes(id)) {
         store.servicesToSearch.splice(store.servicesToSearch.indexOf(id), 1);
@@ -133,6 +155,7 @@ export default {
     function showSliderValue() {
       rangeBullet.innerHTML = rangeSlider.value;
     }
+    this.autoCompleteSearch();
   }
 }
 </script>
@@ -147,15 +170,7 @@ export default {
       <h4 class="mb-3">FILTRI</h4>
       <div class="d-flex align-items-md-center flex-column flex-md-row justify-content-between mb-5">
         <!-- TEXT INPUT -->
-        <div class="search-text position-relative mb-3 me-md-5">
-          <input class="input-text p-3 w-100"
-            type="text"
-            v-model="store.inputText"
-            placeholder="Cerca per città"
-            @keyup.enter="searchApartments()"
-            @keyup.delete="resetSearch()">
-          <i class="fa-solid fa-magnifying-glass position-absolute search-btn desktop" @click="searchApartments()"></i>
-          <span class="position-absolute search-btn mobile" @click="searchApartments()">Cerca</span>
+        <div id="searchbox" class="search-text position-relative mb-3 me-md-5">
         </div>
         <!-- INPUT RANGE -->
         <div class="range-slider d-flex align-items-center py-3">
@@ -223,36 +238,18 @@ export default {
 
 <style lang="scss" scoped>
 @use '../scss/partials/vars' as *;
-
+body {
+  background: white;
+  input {
+    color: black;
+  }
+}
 .advanced {
   h2 {
     margin-top: 60px;
   }
   .search-text {
     width: 100%;
-    .input-text {
-      border: 1px solid $federal_blue;
-      border-radius: 2rem;
-      color: $federal_blue;
-    }
-
-    .search-btn {
-      cursor: pointer;
-      font-size: 1rem;
-      color: $federal_blue;
-      top: 50%;
-      transform: translateY(-50%);
-      &.mobile{
-        background: white;
-        width: 15%;
-        text-transform: uppercase;
-        right: 30px;
-      }
-      &.desktop{
-        right: 20px;
-        display: none;
-      }
-    }
   }
   .rs-label {
     position: relative;

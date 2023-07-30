@@ -50,8 +50,9 @@ export default {
 			inputBox.setAttribute('v-model', 'store.inputText');
 			
 			inputBox.addEventListener('keyup', (event) => {
+        store.inputText = event.srcElement.value;
 				if (event.key === 'Enter') {
-					this.getResult(this.store.inputText);
+					this.getResult(store.inputText);
 				}
 			});
 		}
