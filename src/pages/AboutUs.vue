@@ -21,9 +21,11 @@ export default{
 
 
 <template>
-  <div class="container-fluid">
-    <div class="container-profile mb-5">
- 
+  <Header class="header-bg"/>
+  <div class="container-fluid ">
+    <div class="container-profile">
+        <h1 class="text-center pb-5"><span>OUR</span> TEAM</h1>
+        <div class="d-flex justify-content-around align-items-center flex-wrap">
        <div class="card"
        v-for="profile in team"
        :key="profile.name">
@@ -34,8 +36,9 @@ export default{
            <li><a href="#"><i class="fa-brands fa-github"></i></a></li>
            <li><a href="#"><i class="fa-brands fa-linkedin"></i></a></li>
          </ul>
-         <div>Email : {{ profile.email }}</div>
+         <div class="email">Email : {{ profile.email }}</div>
        </div>
+      </div>
      </div>
   </div>
 
@@ -66,5 +69,9 @@ export default{
     color: #3D40F5;
     font-size: 16px;
     margin-right: 12px;
+}
+
+.container-fluid{
+  background-color: #ffffff09;
 }
 </style>

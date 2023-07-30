@@ -1,14 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@400;500&display=swap");
 
 .container-profile {
-  padding-top: 300px; 
+  padding-top: 150px; 
   padding-bottom: 200px; 
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  
   font-family: 'Baloo Paaji 2', cursive;
+  h1{
+    font-size: 10vw;
+    color: #2b81fc;
+    span{
+      color: transparent;
+      text-align: center;
+      -webkit-text-stroke: 3px #2b81fc;
+    }
+  }
   .card {
-    background-color: $federal_blue;
+    background: rgb(12,16,240);
+    background: -moz-linear-gradient(339deg, rgba(12,16,240,1) 0%, rgba(53,167,255,1) 100%);
+    background: -webkit-linear-gradient(339deg, rgba(12,16,240,1) 0%, rgba(53,167,255,1) 100%);
+    background: linear-gradient(339deg, rgba(12,16,240,1) 0%, rgba(53,167,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0c10f0",endColorstr="#35a7ff",GradientType=1); 
     height: 400px;
     width: 300px;
     border-radius: 10px;
@@ -39,12 +50,12 @@
         position: relative;
         font-size: 1em;
         i {
-          color: #fff;
+          color: #0a0f59;
           position: absolute;
-          top: 7px;
-          left: 0;
+          top:10px;
+          left: -2px;
           transition: all 265ms ease-out;
-          font-size: 16px;
+          font-size: 21px;
         }
       }
       
@@ -53,6 +64,10 @@
       }
       
       
+    }
+
+    .email{
+      font-size: 0.9rem;
     }
     
     .social-icons a:before {
@@ -64,7 +79,7 @@
       height: 45px;
       border-radius: 100%;
       display: block;
-      background: linear-gradient(45deg, #ff003c, #c648c8);
+      background: #fde74c;
       transition: all 265ms ease-out;
     }
     
@@ -77,8 +92,8 @@
       transform: scale(2.2);
       -ms-transform: scale(2.2);
       -webkit-transform: scale(2.2);
-      color: #ff003c;
-      background: -webkit-linear-gradient(45deg, #ff003c, #c648c8);
+      color: #fde74c;
+      background: #fde74c;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       transition: all 265ms ease-in;

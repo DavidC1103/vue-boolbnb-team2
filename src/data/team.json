@@ -3,40 +3,40 @@
       "name": "David Salvatore Calaiò",
       "image": "img",
       "job": "Jr. Full-Stack Web Developer",
-      "link": "link",
-      "link2": "link",
+      "link": "https://github.com/DavidC1103",
+      "link2": "https://www.linkedin.com/in/david-salvatore-calai%C3%B3-698929234/",
       "email": "davidcalaio.dev@gmail.com"
     },
     {
       "name": "Marco Spezzaferro",
       "image": "img",
       "job": "Jr. Full-Stack Web Developer",
-      "link": "link",
-      "link2": "link",
-      "email": "davidcalaio.dev@gmail.com"
+      "link": "https://github.com/mcspe",
+      "link2": "https://www.linkedin.com/in/mcspezzaferro/",
+      "email": "mcspezzaferro@gmail.com"
     },
     {
       "name": "Raffaele Catalano",
       "image": "img",
       "job": "Jr. Full-Stack Web Developer",
-      "link": "link",
-      "link2": "link",
-      "email": "davidcalaio.dev@gmail.com"
+      "link": "https://github.com/raffaele-catalano",
+      "link2": "https://www.linkedin.com/in/raffaele-catalano/",
+      "email": "r.catalano.dev@gmail.com"
     },
     {
       "name": "Marco Cancelliere",
       "image": "img",
       "job": "Jr. Full-Stack Web Developer",
-      "link": "link",
-      "link2": "link",
-      "email": "davidcalaio.dev@gmail.com"
+      "link": "https://github.com/marcocnc",
+      "link2": "https://www.linkedin.com/in/marco-cancelliere-b439a4281/",
+      "email": "marcocancelliere56@gmail.com"
     },
     {
       "name": "Mirko Di Franco",
       "image": "img",
       "job": "Jr. Full-Stack Web Developer",
-      "link": "link",
-      "link2": "link",
-      "email": "davidcalaio.dev@gmail.com"
+      "link": "https://github.com/mirkettinho",
+      "link2": "https://www.linkedin.com/in/mirko-di-franco/",
+      "email": "mirkodifranco.dev@gmail.com"
     }
   ]
