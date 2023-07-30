@@ -9,7 +9,7 @@ export default {
         title : String,
         address: String,
         price : String,
-        sponsored: Boolean
+        sponsored: Number
     }
 }
 </script>
