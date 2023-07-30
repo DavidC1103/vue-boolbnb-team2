@@ -329,8 +329,6 @@
 @use '../scss/partials/msgSentAnimation';
 
 .loader {
-    // background: rgba($color: grey, $alpha: .3);
-    // border: 1px solid black;
     background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
     border-radius: 5px;
     background-size: 200% 100%;
