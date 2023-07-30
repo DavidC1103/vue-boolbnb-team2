@@ -14,19 +14,20 @@ export default {
     return {
       store,
       arrSearch: [],
+      arrCount: 0,
       serviceOpen: false
     };
   },
   methods: {
-    getAllApartments() {
-      axios.get(store.apiUrl + 'apartments')
-        .then(result => {
-          store.arrApartments = result.data.total_apartments;
-          store.sponsoredApt = result.data.sponsored_apartments;
-          store.arrServices = result.data.availableServices;
-          this.sortApartments(store.arrApartments);
-        });
-    },
+    // getAllApartments() {
+    //   axios.get(store.apiUrl + 'apartments')
+    //     .then(result => {
+    //       store.arrApartments = result.data.total_apartments;
+    //       store.sponsoredApt = result.data.sponsored_apartments;
+    //       store.arrServices = result.data.availableServices;
+    //       this.sortApartments(store.arrApartments);
+    //     });
+    // },
     searchApartments() {
       const requestData = {
         input: store.inputText,
@@ -36,40 +37,48 @@ export default {
       axios.post(store.apiUrl + 'search', requestData)
         .then(response => {
           store.searchedApt = response.data.apartments;
-          this.sortApartments(store.searchedApt);
+          console.log(response);
+          store.arrServices = response.data.availableServices;
+          this.arrSearch = response.data.apartments;
+          this.arrCount = response.data.count;
+        })
+        .catch(error => {
+          console.log(error);
+          this.arrSearch = [];
+          this.arrCount = 0;
         });
     },
-    sortApartments(array) {
-      if (!Array.isArray(array)) {
-        this.arrSearch = [];
-        return;
-      }
+    // sortApartments(array) {
+    //   if (!Array.isArray(array)) {
+    //     this.arrSearch = [];
+    //     return;
+    //   }
 
-      const sponsoredSet = new Set(store.sponsoredApt.map(apartment => apartment.id));
-      const sortedApartments = array.map(apartment => {
-        const isSponsored = sponsoredSet.has(apartment.id);
-        return { ...apartment, isSponsored };
-      }).sort((a, b) => {
-        const isAInSponsored = sponsoredSet.has(a.id);
-        const isBInSponsored = sponsoredSet.has(b.id);
+    //   const sponsoredSet = new Set(store.sponsoredApt.map(apartment => apartment.id));
+    //   const sortedApartments = array.map(apartment => {
+    //     const isSponsored = sponsoredSet.has(apartment.id);
+    //     return { ...apartment, isSponsored };
+    //   }).sort((a, b) => {
+    //     const isAInSponsored = sponsoredSet.has(a.id);
+    //     const isBInSponsored = sponsoredSet.has(b.id);
 
-        if (isAInSponsored && isBInSponsored) {
-          // Both apartments are in sponsoredApt array, maintain their original order
-          return 0;
-        } else if (isAInSponsored) {
-          // Only apartment A is in sponsoredApt array, prioritize it
-          return -1;
-        } else if (isBInSponsored) {
-          // Only apartment B is in sponsoredApt array, prioritize it
-          return 1;
-        } else {
-          // Both apartments are not in sponsoredApt array, maintain their original order
-          return 0;
-        }
-      });
+    //     if (isAInSponsored && isBInSponsored) {
+    //       // Both apartments are in sponsoredApt array, maintain their original order
+    //       return 0;
+    //     } else if (isAInSponsored) {
+    //       // Only apartment A is in sponsoredApt array, prioritize it
+    //       return -1;
+    //     } else if (isBInSponsored) {
+    //       // Only apartment B is in sponsoredApt array, prioritize it
+    //       return 1;
+    //     } else {
+    //       // Both apartments are not in sponsoredApt array, maintain their original order
+    //       return 0;
+    //     }
+    //   });
 
-      this.arrSearch = sortedApartments;
-    },
+    //   this.arrSearch = sortedApartments;
+    // },
     refreshSearch(id) {
       if (store.servicesToSearch.includes(id)) {
         store.servicesToSearch.splice(store.servicesToSearch.indexOf(id), 1);
@@ -80,7 +89,7 @@ export default {
     },
     resetSearch() {
       if(!store.inputText) {
-        this.sortApartments(store.arrApartments);
+        this.searchApartments();
       }
     },
     inSequence(a, b, c) {
@@ -111,13 +120,12 @@ export default {
     }
   },
   mounted() {
+    // console.log(store.arrApartments);
     store.servicesToSearch = [];
     store.rangeValue = 20;
-    this.getAllApartments();
+    // this.getAllApartments();
     // console.log(this.arrSearch);
-    if(store.inputText) {
-      this.searchApartments();
-    }
+    this.searchApartments();
 
     const rangeSlider = document.getElementById("rs-range-line");
     const rangeBullet = document.getElementById("rs-bullet");
@@ -158,7 +166,7 @@ export default {
             class="rs-range"
             type="range"
             v-model="store.rangeValue"
-            min="0"
+            min="10"
             max="200"
             step="10"
             @change="searchApartments()">
@@ -172,7 +180,7 @@ export default {
           <i v-if="serviceOpen" class="fa-solid fa-sort-up"></i>
           <i v-else class="fa-solid fa-sort-down"></i>
         </div>
-        <div class="services-display row mt-3 p-5 justify-content-center align-items-center text-center" :hidden="!serviceOpen">
+        <div class="services-display row mt-3 p-5 justify-content-center align-items-center text-center" :hidden="!serviceOpen" @click="toggleServices()">
           <div class="form-check col-9 col-md-5 col-lg-3 col-xl-2"
             v-for="service in store.arrServices"
             :key="service.id">
@@ -189,6 +197,9 @@ export default {
       </div>
     </div>
     <!-- Cards container -->
+    <h4 v-if="!store.inputText">Sono disponibili {{ arrCount }} appartamenti, cerca una città per restringere la tua ricerca</h4>
+    <h4 v-else-if="arrCount">La tua ricerca ha prodotto {{ arrCount }} risultati</h4>
+    <h4 v-else>Ci dispiace, purtroppo non sono disponibili risultati per la tua ricerca, prova a modificare i filtri per estendere la ricerca</h4>
     <div class="container-card d-flex flex-wrap justify-content-center pb-5">
 
 
@@ -200,7 +211,7 @@ export default {
         :title="apartment.title"
         :address="apartment.address"
         :price="apartment.price"
-        :sponsored="apartment.isSponsored"
+        :sponsored="apartment.sponsored"
         @click="$router.push('/detail-apartment/' + apartment.slug)" />
 
     </div>
@@ -259,15 +270,6 @@ export default {
       margin-top: -2px;
     }
   }
-  // .box-minmax {
-  //   margin-top: 10px;
-  //   width: 100%;
-  //   display: flex;
-  //   justify-content: space-between;
-  //   align-items: center;
-  //   font-size: 20px;
-  //   color: $federal_blue;
-  // }
   .rs-range {
     margin: 0 2rem;
     width: 80%;
@@ -331,32 +333,35 @@ export default {
   }
   .services {
     user-select: none;
-  }
-  .services-display {
-    background: #f7f7f7;
-  }
-  .form-check {
-    padding: 0;
-    margin: .5rem;
-    label {
+    .services-title {
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 4rem;
-      outline: 1px solid $federal_blue;
-      outline-offset: -1px;
-      padding: .5rem 2rem;
-      border-radius: 2rem;
-      color: $federal_blue;
-      font-weight: bold;
-      transition: all .5s linear;
     }
-    input:checked + label {
-      background: $argentinian_blue;
-      color: white;
-      outline: none;
-      transition: all .5s linear;
+    .services-display {
+      background: #f7f7f7;
+      .form-check {
+        padding: 0;
+        margin: .5rem;
+        label {
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 4rem;
+          outline: 1px solid $federal_blue;
+          outline-offset: -1px;
+          padding: .5rem 2rem;
+          border-radius: 2rem;
+          color: $federal_blue;
+          font-weight: bold;
+          transition: all .5s linear;
+        }
+        input:checked + label {
+          background: $argentinian_blue;
+          color: white;
+          outline: none;
+          transition: all .5s linear;
+        }
+      }
     }
   }
 }
