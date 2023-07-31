@@ -110,15 +110,23 @@ export default {
       500: {       
          slidesPerView: 2,
          spaceBetween: 50     
-      },              
-      770: {       
-         slidesPerView: 2,       
-         spaceBetween: 50     
+      },
+      576: {       
+         slidesPerView: 2,
+         spaceBetween: 65     
+      },
+      650: {       
+         slidesPerView: 2,
+         spaceBetween: 0     
+      },                   
+      750: {       
+         slidesPerView: 3,       
+         spaceBetween: 220     
       },   
   
-      771: {       
-         slidesPerView: 4,       
-         spaceBetween: 30     
+      850: {       
+         slidesPerView: 3,       
+         spaceBetween: 110     
       },
       1000: {       
          slidesPerView: 4,       
@@ -263,6 +271,7 @@ h2{
 }
 
 }
+
 
 
 

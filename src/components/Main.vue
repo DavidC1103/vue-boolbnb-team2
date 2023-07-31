@@ -233,6 +233,42 @@ export default{
 }
 }
 
+@media (min-width: 576px ) and (max-width: 950px){
+
+    .boolbnb-card{
+    flex-basis: 40% !important;
+
+    img{
+        height: 160px !important;
+    }
+    .description-card{
+        h3{
+            font-size: 1rem;
+            margin-bottom: 0px;
+            padding: 8px 20px !important;
+        }
+        h5{
+            font-size: 1.2rem;
+            padding: 8px 20px !important;
+        }
+    }
+    .icon{
+        
+        img{
+            height: 15px !important;
+            width: 15px !important;
+        }
+        div{
+            margin-right: 8px !important;
+            span{
+                font-size: 0.8rem;
+            }
+        }
+    }
+
+}
+}
+
 
 
 </style>

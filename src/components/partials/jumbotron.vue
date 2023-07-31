@@ -328,7 +328,6 @@ justify-content: center;
 	padding-top: 25%;
 	.layer{
 		width: 70%;
-		background: transparent;
 		h1{
 			font-size: 1.6rem;
 			margin-bottom: 0;
@@ -346,6 +345,20 @@ justify-content: center;
   display: none !important;
 }
 
+
+// Media QUERIES
+@media (min-width: 576px ) and (max-width: 950px){
+
+	.boolbnb-jumbotron{
+
+		.layer{
+			width: 80%;
+		}
+	}
+	#searchbox .tt-search-box{
+		width: 80%;
+	}
+}
 
 
 

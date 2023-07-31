@@ -126,7 +126,7 @@ export default {
   }
 }
 
-@media (min-width: 0 ) and (max-width: 575px){
+@media (min-width: 0 ) and (max-width: 950px){
   
   
 
@@ -177,6 +177,8 @@ export default {
   align-items: center;
 }
 }
+
+
 
 .xsm-none{
   display: none;
