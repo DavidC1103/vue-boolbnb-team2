@@ -29,7 +29,7 @@ export default{
        <div class="card"
        v-for="profile in team"
        :key="profile.name">
-         <img src="https://lh3.googleusercontent.com/ytP9VP86DItizVX2YNA-xTYzV09IS7rh4WexVp7eilIcfHmm74B7odbcwD5DTXmL0PF42i2wnRKSFPBHlmSjCblWHDCD2oD1oaM1CGFcSd48VBKJfsCi4bS170PKxGwji8CPmehwPw=w200-h247-no" alt="Person" class="card__image">
+         <img :src="profile.image">
          <p class="card__name">{{ profile.name }}</p>
          <div>{{ profile.job }}</div>
          <ul class="social-icons">
@@ -49,7 +49,14 @@ export default{
 
 
 <style lang="scss" scoped>
-
+.card {
+  img{
+    overflow: hidden;
+    border-radius: 50%;
+    border: 3px solid #FDE74C;
+    margin-top: 5px;
+  }
+}
 .social-icons{
     display: flex;
     flex-direction: column;
