@@ -104,7 +104,7 @@ export default {
   padding: 40px 0;
 
   .box-image{
-    width: 50%;
+    width: 30%;
     margin-right: 40px;
     img{
       width: 100%;
@@ -117,7 +117,7 @@ export default {
     }
     p{
       padding-top: 40px;
-      font-size: 30px;
+      font-size: 26px;
       font-weight: 500;
       &:last-of-type{
         font-size: 18px;
