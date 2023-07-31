@@ -207,7 +207,7 @@ details[open] .faq__summary:after {
   color: hsl(240, 6%, 50%);
 }
 
-@media (min-width: 0 ) and (max-width: 575px){
+@media (min-width: 0 ) and (max-width: 950px){
 
 .faq{
 	width: 80%;

@@ -79,4 +79,14 @@ export default{
 .container-fluid{
   background-color: #ffffff09;
 }
+
+@media (min-width: 0 ) and (max-width: 950px){
+
+  .card{
+    margin-top: 20px;
+  }
+
+
+}
+
 </style>

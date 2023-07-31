@@ -292,4 +292,22 @@ li{
     width: 100%;
 }
 }
+
+
+@media (min-width: 768px ) and (max-width: 950px){
+
+.download-app, .metodo-pagamento{
+img{
+    width: 100%;
+}
+}
+
+.valutazione i{
+font-size: 11px;
+}
+
+.line{
+width: 100%;
+}
+}
 </style>
