@@ -394,14 +394,19 @@
 
             .services{
                 font-size: 1.4rem;
+                color: rgb(255, 255, 255);
                 font-weight: 600;
                 padding: 40px;
                 border-radius: 8px;
-                background-color: #dedede;
+                background: rgb(12,16,240);
+                background: -moz-linear-gradient(339deg, rgba(12,16,240,0.20) 0%, rgba(53,167,255,1) 100%);
+                background: -webkit-linear-gradient(339deg, rgba(0, 4, 255, 1) 0%, rgba(9, 149, 255, 1) 100%);
+                background: linear-gradient(339deg, rgba(2, 6, 255, 0.8) 0%, rgba(2, 120, 211, 0.5) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0c10f0",endColorstr="#35a7ff",GradientType=1); 
             }
 
             .user-information{
-                padding: 40px 40px 40px 0px;
+                padding: 20px 40px 20px 0px;
                 .image-user{
                 width: 170px;
                 height: 170px;
@@ -417,7 +422,11 @@
             }
             .box-image{
                 width: 100%;
-                background-color: #dedede;
+                background: rgb(12,16,240);
+                background: -moz-linear-gradient(339deg, rgba(12,16,240,0.20) 0%, rgba(53,167,255,1) 100%);
+                background: -webkit-linear-gradient(339deg, rgba(0, 4, 255, 1) 0%, rgba(9, 149, 255, 1) 100%);
+                background: linear-gradient(339deg, rgba(2, 6, 255, 0.8) 0%, rgba(2, 120, 211, 0.5) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0c10f0",endColorstr="#35a7ff",GradientType=1); 
                 padding: 20px;
                 img{
                     width: 100%;
@@ -467,7 +476,6 @@
                 border-radius: 10px; 
                 padding: 20px;
                 .title {
-                    font-family: 'Pacifico', cursive;
                     color: #212529;
                     font-size: 2.5rem;
                 }
@@ -553,6 +561,7 @@
                 background-color: #ffffff;
                 border-radius: 10px; 
                 padding: 2rem;
+                margin-bottom: 20px;
                 #map {
                     width: 100%;
                     height: 100%;
@@ -562,7 +571,7 @@
     }
 }
 
-@media (max-width: 468px) {
+@media (max-width: 480px) {
     .bg-detail .ps-container {
         width: 100%;
         max-width: 600px; 
@@ -599,9 +608,30 @@
         margin-left: 10px;
     }
 
-    /* Aggiungi altri stili specifici per schermi a 468px qui se necessario */
+    .services{
+        padding: 20px !important;
+        margin-bottom: 0px !important;
+        li{
+            font-size: 0.9rem;
+        }
+
+    }
+    .map{
+        margin-bottom: 20px;
+    }
+
+    .description{
+        h4{
+            font-size: 1.1rem !important;
+        }
+    }
+
+    .contact{
+        margin-bottom: 30px;
+    }
+    /* Aggiungi altri stili specifici per schermi a 480px qui se necessario */
 }
-@media (min-width: 469px) and (max-width: 1060px){
+@media (min-width: 481px) and (max-width: 1060px){
     .bg-detail .ps-container {
         width: 100%;
         max-width: 700px; 
