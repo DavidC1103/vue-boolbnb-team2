@@ -26,7 +26,7 @@ export default{
     <div class="container-profile">
         <h2 class="text-center pb-5"><span>OUR</span> TEAM</h2>
         <div class="d-flex justify-content-around align-items-center flex-wrap">
-       <div class="card"
+       <div class="card py-2"
        v-for="profile in team"
        :key="profile.name">
          <img :src="profile.image">

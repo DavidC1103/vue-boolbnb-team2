@@ -258,7 +258,7 @@
 
             <div class="right-side">
 
-                <div class="map d-flex justify-content-center align-items-center mt-3">
+                <div class="map d-flex justify-content-center align-items-center">
                     <div id="map"></div>
                 </div>
 

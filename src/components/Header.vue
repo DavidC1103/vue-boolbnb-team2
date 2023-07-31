@@ -55,19 +55,19 @@ import jumbotron from './partials/jumbotron.vue'
                     <ul class="menu__box">
 
                         <li>
-                            <router-link class="menu__item" :to='{ name: "home"}'>Home</router-link>
+                            <router-link class="menu__item text-light" :to='{ name: "home"}'>Home</router-link>
                         </li>
                         <li>
-                            <router-link class="menu__item" :to='{ name: "advanced-search"}'>Ricerca Avanzata</router-link>
+                            <router-link class="menu__item text-light" :to='{ name: "advanced-search"}'>Ricerca Avanzata</router-link>
                         </li>
                         <li>
-                            <router-link class="menu__item" :to='{ name: "about-us"}'>Chi siamo</router-link>
+                            <router-link class="menu__item text-light" text-light :to='{ name: "about-us"}'>Chi siamo</router-link>
                         </li>
                         <li>
-                            <a class="menu__item" href="http://127.0.0.1:8000/login-register">Login</a>
+                            <a class="menu__item text-light" href="http://127.0.0.1:8000/login-register">Login</a>
                         </li>
                         <li>
-                            <a class="menu__item" href="http://127.0.0.1:8000/login-register">Registrati</a>
+                            <a class="menu__item text-light" href="http://127.0.0.1:8000/login-register">Registrati</a>
                         </li>
 
                     </ul>
