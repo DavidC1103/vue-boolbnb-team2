@@ -176,11 +176,14 @@ justify-content: center;
 					border-radius: 20px;
 					border: 1px solid black;
 				}
-			}
 		}
 	}
 }
+
 }
+}
+
+
 
 
 
@@ -342,12 +345,19 @@ justify-content: center;
 }
 
 
+
 .xsm-none{
-  display: none !important;
+	display: none !important;
 }
 
 
 
+@media (min-width: 576 ) and (max-width: 1200px){
+	.layer{
+		width: 80% !important;
+	}
+
+}
 
 
 

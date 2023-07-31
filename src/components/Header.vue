@@ -25,11 +25,12 @@ import jumbotron from './partials/jumbotron.vue'
         <div class="wrapper d-flex justify-content-sm-between">
 
             <nav>
-
+                <!-- Logo -->
                 <div class="logo-mixin">
                     <img class="logo" src="../assets/logo-boolbnb/1.png" alt="logo_boolbnb" href="#">
                 </div>
                 
+                <!-- Header links -->
                 <div class="menu-center d-none d-md-block">
                     <ul>
                         <li class="item-link"><router-link :to='{ name: "home"}'>Home</router-link></li>
@@ -38,23 +39,40 @@ import jumbotron from './partials/jumbotron.vue'
                     </ul>
                 </div>
                 
+                <!-- Login - Register links -->
                 <div class="right-menu d-none d-md-block">
                     <ul>
                         <li class="item-link ps-4"> <a href="http://127.0.0.1:8000/login-register">Login</a> <span>|</span> <a href="http://127.0.0.1:8000/login-register">Registrati</a> <i class="fa-solid fa-globe"></i></li>
                     </ul>
                 </div>
 
+                <!-- Hamburger menù -->
                 <div class="hamburger-menu">
                     <input id="menu__toggle" type="checkbox" />
                     <label class="menu__btn" for="menu__toggle">
                     <span></span>
                     </label>
                     <ul class="menu__box">
-                        <li><a class="menu__item" href="#evidenza">In Evidenza</a></li>
-                        <li><a class="menu__item" href="#">Ricerca Avanzata</a></li>
-                        <li><a class="menu__item" href="http://127.0.0.1:8000/login-register">Login</a></li>
+
+                        <li>
+                            <router-link class="menu__item" :to='{ name: "home"}'>Home</router-link>
+                        </li>
+                        <li>
+                            <router-link class="menu__item" :to='{ name: "advanced-search"}'>Ricerca Avanzata</router-link>
+                        </li>
+                        <li>
+                            <router-link class="menu__item" :to='{ name: "about-us"}'>Chi siamo</router-link>
+                        </li>
+                        <li>
+                            <a class="menu__item" href="http://127.0.0.1:8000/login-register">Login</a>
+                        </li>
+                        <li>
+                            <a class="menu__item" href="http://127.0.0.1:8000/login-register">Registrati</a>
+                        </li>
+
                     </ul>
                 </div>
+                <!-- End Hamburger menù -->
             </nav>
         </div>
     </header>
@@ -90,6 +108,7 @@ header {
                 height: 100%;
                 img{
                     width: 120px;
+                    cursor: pointer;
                 }
             }
             .menu-center {
@@ -210,13 +229,19 @@ header {
 
         .menu__box{
             width: 180px !important;
-            background-color: #3fa9e4 !important;
+            background: rgb(186,238,249);
+            background: linear-gradient(137deg, rgba(186,238,249,1) 49%, rgba(24,22,122,1) 100%);
             .menu__item{
                 font-size: 16px !important;
+                padding: 10px 15px !important;
+                &:hover{
+                    background-color: $argentinian_blue;
+                }
+
             }
             li{
                 a{
-                    color: #ffffff;
+                    color: $federal_blue;
                 }
             }
         }
