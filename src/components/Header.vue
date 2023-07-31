@@ -210,7 +210,7 @@ header {
 }
 .header-bg{
     background: rgb(12,16,240);
-    background: -moz-linear-gradient(339deg, rgba(12,16,240,1) 0%, rgba(53,167,255,1) 100%);
+    background: -moz-linear-gradient(339deg, rgb(12, 16, 240) 0%, rgb(53, 167, 255) 100%);
     background: -webkit-linear-gradient(339deg, rgba(12,16,240,1) 0%, rgba(53,167,255,1) 100%);
     background: linear-gradient(339deg, rgba(12,16,240,1) 0%, rgba(53,167,255,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0c10f0",endColorstr="#35a7ff",GradientType=1); 
@@ -229,8 +229,11 @@ header {
 
         .menu__box{
             width: 180px !important;
-            background: rgb(186,238,249);
-            background: linear-gradient(137deg, rgba(186,238,249,1) 49%, rgba(24,22,122,1) 100%);
+            background: rgb(76,79,238);
+            background: -moz-linear-gradient(180deg, rgba(76,79,238,1) 13%, rgba(12,16,240,1) 28%, rgba(53,167,255,1) 100%);
+            background: -webkit-linear-gradient(180deg, rgba(76,79,238,1) 13%, rgba(12,16,240,1) 28%, rgba(53,167,255,1) 100%);
+            background: linear-gradient(180deg, rgba(27, 73, 245, 1) 13%, rgba(12,16,240,1) 28%, rgba(53,167,255,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#4c4fee",endColorstr="#35a7ff",GradientType=1);
             .menu__item{
                 font-size: 16px !important;
                 padding: 10px 15px !important;
