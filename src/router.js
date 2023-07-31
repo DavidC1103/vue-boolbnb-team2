@@ -7,6 +7,7 @@ import AboutUs from "./pages/AboutUs.vue";
 
 const router = createRouter({
   history: createWebHistory(),
+  linkExactActiveClass: 'link-active',
 
   // qui metteremo le rotte che saranno in un array di oggetti
   routes:[

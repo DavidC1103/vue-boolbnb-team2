@@ -58,13 +58,10 @@ import jumbotron from './partials/jumbotron.vue'
             </nav>
         </div>
     </header>
-
-
 </template>
 
 
 <style lang="scss">
-
 @use '../scss/main.scss' as *;
 
 header {
@@ -75,28 +72,22 @@ header {
     top: 0;
     width: 100%;
     height: 80px;
-    // transition: all 0.3s ease;
     animation: ease-in;
     transition: all 0.3s;
     .wrapper {
         width: 100%;
         height: 100%;
-        //debug
-        // border: 1px solid red;
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             width: 100%;
             height: 100%;
-            //debug
-            // border: 2px solid purple;
+
             .logo-mixin {
                 display: flex;
                 align-items: center;
                 height: 100%;
-                //debug
-                // border: 1px solid gold;
                 img{
                     width: 120px;
                 }
@@ -111,17 +102,9 @@ header {
                     justify-content: center;
                     height: 100%;
                     padding-left: 0 !important;
-                    //debug
-                    // border: 1px solid green;
                     li{
-                        // display: flex;
-                        // justify-content: center;
-                        // align-items: center;
-                        // width: 100%;
-                        // height: 100%;
                         list-style: none;
-                        //debug
-                        // border: 1px solid black;
+                        padding: 10px 15px;
                         i{
                             color: white;
                         }
@@ -132,12 +115,9 @@ header {
                         a{
                             text-decoration: none;
                             color: white;
-                            // padding: 10px 10px;
-                            // border-radius: 20px;
                             font-size: 1.1rem;
                             font-weight: bold;
                             &:hover{
-                                // color: #FDE74C;
                                 color: #0a0f59;
                                 transform: scale(1.1);
                             }
@@ -159,17 +139,9 @@ header {
                     justify-content: center;
                     height: 100%;
                     padding-left: 0 !important;
-                    //debug
-                    // border: 1px solid blue;
                     li{
-                        // display: flex;
-                        // justify-content: center;
-                        // align-items: center;
-                        // width: 100%;
-                        // height: 100%;
                         list-style: none;
-                        //debug
-                        // border: 1px solid black;
+
                         i{
                             color: white;
                         }
@@ -180,12 +152,10 @@ header {
                         a{
                             text-decoration: none;
                             color: white;
-                            // padding: 10px 10px;
-                            // border-radius: 20px;
                             font-size: 1.1rem;
                             font-weight: bold;
+
                             &:hover{
-                                // color: #FDE74C;
                                 color: #0a0f59;
                                 transform: scale(1.1);
                             }
@@ -200,9 +170,7 @@ header {
         }
     }
 }
-//
-// TODO: SISTEMARE COLORI CON VARIABILI SETTATE DA MARCOCNC
-//
+
 .item-link{
     &:hover{
         cursor: pointer;
@@ -213,7 +181,7 @@ header {
         margin: 0 auto;
         width: 0;
         height: 2px;
-        background-color: #FDE74C;
+        background-color: $maize_yellow;
         transition: all 0.3s;
     }
     &:hover::after{
@@ -239,8 +207,7 @@ header {
 
     header {
         width: 90%;
-        //debug
-        // border: 2px solid black;
+
         .menu__box{
             width: 180px !important;
             background-color: #3fa9e4 !important;
@@ -256,12 +223,8 @@ header {
         .logo-container {
             display: flex;
             justify-content: center !important;
-            //debug
-            // border: 1px solid green;
-            // background-color: #FDE74C;
+
             .logo-mixin{
-                //debug
-                // border: 1px solid green;
                 .logo {
                     display: flex;
                     align-self: flex-end;
