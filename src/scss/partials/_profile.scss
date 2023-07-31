@@ -5,8 +5,8 @@
   padding-bottom: 200px; 
   
   font-family: 'Baloo Paaji 2', cursive;
-  h1{
-    font-size: 10vw;
+  h2{
+    font-size: 6vw;
     color: #2b81fc;
     span{
       color: transparent;
@@ -15,11 +15,12 @@
     }
   }
   .card {
-    background: rgb(12,16,240);
-    background: -moz-linear-gradient(339deg, rgba(12,16,240,1) 0%, rgba(53,167,255,1) 100%);
-    background: -webkit-linear-gradient(339deg, rgba(12,16,240,1) 0%, rgba(53,167,255,1) 100%);
-    background: linear-gradient(339deg, rgba(12,16,240,1) 0%, rgba(53,167,255,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0c10f0",endColorstr="#35a7ff",GradientType=1); 
+    // background: rgb(12,16,240);
+    // background: -moz-linear-gradient(339deg, rgba(12,16,240,1) 0%, rgba(53,167,255,1) 100%);
+    // background: -webkit-linear-gradient(339deg, rgba(12,16,240,1) 0%, rgba(53,167,255,1) 100%);
+    // background: linear-gradient(339deg, rgba(12,16,240,1) 0%, rgba(53,167,255,1) 100%);
+    // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0c10f0",endColorstr="#35a7ff",GradientType=1); 
+    background-color: #1D4FF6;
     height: 400px;
     width: 300px;
     border-radius: 10px;
@@ -52,8 +53,8 @@
         i {
           color: #0a0f59;
           position: absolute;
-          top:10px;
-          left: -2px;
+          top:6px;
+          left: -3px;
           transition: all 265ms ease-out;
           font-size: 21px;
         }
