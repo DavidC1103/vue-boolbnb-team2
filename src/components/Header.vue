@@ -25,11 +25,12 @@ import jumbotron from './partials/jumbotron.vue'
         <div class="wrapper d-flex justify-content-sm-between">
 
             <nav>
-
+                <!-- Logo -->
                 <div class="logo-mixin">
                     <img class="logo" src="../assets/logo-boolbnb/1.png" alt="logo_boolbnb" href="#">
                 </div>
                 
+                <!-- Header links -->
                 <div class="menu-center d-none d-md-block">
                     <ul>
                         <li class="item-link"><router-link :to='{ name: "home"}'>Home</router-link></li>
@@ -38,33 +39,47 @@ import jumbotron from './partials/jumbotron.vue'
                     </ul>
                 </div>
                 
+                <!-- Login - Register links -->
                 <div class="right-menu d-none d-md-block">
                     <ul>
                         <li class="item-link ps-4"> <a href="http://127.0.0.1:8000/login-register">Login</a> <span>|</span> <a href="http://127.0.0.1:8000/login-register">Registrati</a> <i class="fa-solid fa-globe"></i></li>
                     </ul>
                 </div>
 
+                <!-- Hamburger menù -->
                 <div class="hamburger-menu">
                     <input id="menu__toggle" type="checkbox" />
                     <label class="menu__btn" for="menu__toggle">
                     <span></span>
                     </label>
                     <ul class="menu__box">
-                        <li><a class="menu__item" href="#evidenza">In Evidenza</a></li>
-                        <li><a class="menu__item" href="#">Ricerca Avanzata</a></li>
-                        <li><a class="menu__item" href="http://127.0.0.1:8000/login-register">Login</a></li>
+
+                        <li>
+                            <router-link class="menu__item" :to='{ name: "home"}'>Home</router-link>
+                        </li>
+                        <li>
+                            <router-link class="menu__item" :to='{ name: "advanced-search"}'>Ricerca Avanzata</router-link>
+                        </li>
+                        <li>
+                            <router-link class="menu__item" :to='{ name: "about-us"}'>Chi siamo</router-link>
+                        </li>
+                        <li>
+                            <a class="menu__item" href="http://127.0.0.1:8000/login-register">Login</a>
+                        </li>
+                        <li>
+                            <a class="menu__item" href="http://127.0.0.1:8000/login-register">Registrati</a>
+                        </li>
+
                     </ul>
                 </div>
+                <!-- End Hamburger menù -->
             </nav>
         </div>
     </header>
-
-
 </template>
 
 
 <style lang="scss">
-
 @use '../scss/main.scss' as *;
 
 header {
@@ -75,30 +90,25 @@ header {
     top: 0;
     width: 100%;
     height: 80px;
-    // transition: all 0.3s ease;
     animation: ease-in;
     transition: all 0.3s;
     .wrapper {
         width: 100%;
         height: 100%;
-        //debug
-        // border: 1px solid red;
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             width: 100%;
             height: 100%;
-            //debug
-            // border: 2px solid purple;
+
             .logo-mixin {
                 display: flex;
                 align-items: center;
                 height: 100%;
-                //debug
-                // border: 1px solid gold;
                 img{
                     width: 120px;
+                    cursor: pointer;
                 }
             }
             .menu-center {
@@ -111,17 +121,9 @@ header {
                     justify-content: center;
                     height: 100%;
                     padding-left: 0 !important;
-                    //debug
-                    // border: 1px solid green;
                     li{
-                        // display: flex;
-                        // justify-content: center;
-                        // align-items: center;
-                        // width: 100%;
-                        // height: 100%;
                         list-style: none;
-                        //debug
-                        // border: 1px solid black;
+                        padding: 10px 15px;
                         i{
                             color: white;
                         }
@@ -132,12 +134,9 @@ header {
                         a{
                             text-decoration: none;
                             color: white;
-                            // padding: 10px 10px;
-                            // border-radius: 20px;
                             font-size: 1.1rem;
                             font-weight: bold;
                             &:hover{
-                                // color: #FDE74C;
                                 color: #0a0f59;
                                 transform: scale(1.1);
                             }
@@ -159,17 +158,9 @@ header {
                     justify-content: center;
                     height: 100%;
                     padding-left: 0 !important;
-                    //debug
-                    // border: 1px solid blue;
                     li{
-                        // display: flex;
-                        // justify-content: center;
-                        // align-items: center;
-                        // width: 100%;
-                        // height: 100%;
                         list-style: none;
-                        //debug
-                        // border: 1px solid black;
+
                         i{
                             color: white;
                         }
@@ -180,12 +171,10 @@ header {
                         a{
                             text-decoration: none;
                             color: white;
-                            // padding: 10px 10px;
-                            // border-radius: 20px;
                             font-size: 1.1rem;
                             font-weight: bold;
+
                             &:hover{
-                                // color: #FDE74C;
                                 color: #0a0f59;
                                 transform: scale(1.1);
                             }
@@ -200,9 +189,7 @@ header {
         }
     }
 }
-//
-// TODO: SISTEMARE COLORI CON VARIABILI SETTATE DA MARCOCNC
-//
+
 .item-link{
     &:hover{
         cursor: pointer;
@@ -213,7 +200,7 @@ header {
         margin: 0 auto;
         width: 0;
         height: 2px;
-        background-color: #FDE74C;
+        background-color: $maize_yellow;
         transition: all 0.3s;
     }
     &:hover::after{
@@ -223,7 +210,7 @@ header {
 }
 .header-bg{
     background: rgb(12,16,240);
-    background: -moz-linear-gradient(339deg, rgba(12,16,240,1) 0%, rgba(53,167,255,1) 100%);
+    background: -moz-linear-gradient(339deg, rgb(12, 16, 240) 0%, rgb(53, 167, 255) 100%);
     background: -webkit-linear-gradient(339deg, rgba(12,16,240,1) 0%, rgba(53,167,255,1) 100%);
     background: linear-gradient(339deg, rgba(12,16,240,1) 0%, rgba(53,167,255,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0c10f0",endColorstr="#35a7ff",GradientType=1); 
@@ -239,29 +226,33 @@ header {
 
     header {
         width: 90%;
-        //debug
-        // border: 2px solid black;
+
         .menu__box{
             width: 180px !important;
-            background-color: #3fa9e4 !important;
+            background: rgb(76,79,238);
+            background: -moz-linear-gradient(180deg, rgba(76,79,238,1) 13%, rgba(12,16,240,1) 28%, rgba(53,167,255,1) 100%);
+            background: -webkit-linear-gradient(180deg, rgba(76,79,238,1) 13%, rgba(12,16,240,1) 28%, rgba(53,167,255,1) 100%);
+            background: linear-gradient(180deg, rgba(27, 73, 245, 1) 13%, rgba(12,16,240,1) 28%, rgba(53,167,255,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#4c4fee",endColorstr="#35a7ff",GradientType=1);
             .menu__item{
                 font-size: 16px !important;
+                padding: 10px 15px !important;
+                &:hover{
+                    background-color: $argentinian_blue;
+                }
+
             }
             li{
                 a{
-                    color: #ffffff;
+                    color: $federal_blue;
                 }
             }
         }
         .logo-container {
             display: flex;
             justify-content: center !important;
-            //debug
-            // border: 1px solid green;
-            // background-color: #FDE74C;
+
             .logo-mixin{
-                //debug
-                // border: 1px solid green;
                 .logo {
                     display: flex;
                     align-self: flex-end;
